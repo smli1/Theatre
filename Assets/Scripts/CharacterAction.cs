@@ -4,17 +4,23 @@ using UnityEngine;
 
 public class CharacterAction : MonoBehaviour {
 
-	bool isActed = false;
 
-	void OnCollisionEnter(Collision collision){
-		if(!isActed){
-			Debug.Log ("! "+collision.collider.gameObject.tag);
-			if (collision.collider.gameObject.tag != "missionItem") {
-				return;
-			}
-			Debug.Log ("Hit!");
-			//isActed = true;
-			GetComponent<Rigidbody> ().AddForce (Vector3.up * 100);
+	int statusNum = 0;
+	GameObject catchObject;
+
+	void Start(){
+		catchObject = GameObject.Find ("BigYarn");
+	}
+
+	void Update(){
+		switch(statusNum){
+		case 1:
+			//transform.position += (catchObject.transform.position + Vector3.right - transform.position).normalized * Time.deltaTime * 5;
+			break;
 		}
+	}
+
+	public void switchStatus(int num){
+		statusNum = num;
 	}
 }

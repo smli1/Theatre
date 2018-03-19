@@ -5,7 +5,7 @@ using UnityEngine;
 public class MissionTargetCount {
 
 	static float count = 0;
-	static int[] missionTargetNum = new int[] {1};
+	static int[] missionTargetNum = new int[] {1,1,1};
 	static int missionNum = 0;
 
 
@@ -15,7 +15,11 @@ public class MissionTargetCount {
 			count = 0;
 			missionNum++;
 			Debug.Log ("Check point move to "+(missionNum+1));
-			GameObject.FindGameObjectWithTag ("Player").GetComponent<Movement> ().Enable ();
+
 		}
+	}
+
+	static public int GetMissionNum(){
+		return missionNum;
 	}
 }

@@ -8,6 +8,8 @@ TagManager:
   - endPoint
   - middlePoint
   - missionItem
+  - Message
+  - fairy
   layers:
   - Default
   - TransparentFX

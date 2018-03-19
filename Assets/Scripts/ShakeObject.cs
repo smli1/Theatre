@@ -19,10 +19,10 @@ public class ShakeObject : MonoBehaviour {
 			StartCoroutine (ShakeSelf (10));
 			if(transform.childCount > 0){
 				foreach(Rigidbody temp in transform.GetComponentsInChildren<Rigidbody>() ){
-					if(temp.gameObject.tag == "missionItem"){
-						Debug.Log ("Update Mission!");
-						MissionTargetCount.updateTarget (1);
-					}
+					//if(temp.gameObject.tag == "missionItem"){
+					//	Debug.Log ("Update Mission!");
+					//	MissionTargetCount.updateTarget (1);
+					//}
 					temp.transform.parent = null;
 					temp.isKinematic = false;
 				}

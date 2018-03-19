@@ -8,7 +8,7 @@ public class Movement : MonoBehaviour {
 	//Rigidbody rigidbody;
 	[SerializeField]
 	GameObject middlePointPrefab;
-	Transform startPoint,endPoint;
+	Transform startPoint,endPoint, realStart, realEnd;
 	GameObject[] middlePoints;
 	Vector3 targetPoint;
 	public float speed = 10;
@@ -16,10 +16,11 @@ public class Movement : MonoBehaviour {
 	float targetSpeed = 0;
 	float[] speedMag;
 	int speedMagIndex = 0;
+	bool isEnable = false;
+	bool moveBackward = false;
+
 	[SerializeField]
 	bool isRepeat = false;
-	[SerializeField]
-	bool isEnable = false;
 
 	LinkedList<Transform> noArrivedPoints;
 
@@ -29,8 +30,8 @@ public class Movement : MonoBehaviour {
 		//speedMag = new float[]{1f,1.1f,1f,0.5f,0.75f,0.6f,1f,1f,0f};
 		speedMag = new float[]{3f};
 		//rigidbody = GetComponent<Rigidbody> ();
-		startPoint = GameObject.FindWithTag ("startPoint").transform;
-		endPoint = GameObject.FindWithTag ("endPoint").transform;
+		realStart = startPoint = GameObject.FindWithTag ("startPoint").transform;
+		realEnd = endPoint = GameObject.FindWithTag ("endPoint").transform;
 		//noArrivedPoints = new LinkedList<Transform> ();
 
 		Reset();
@@ -41,7 +42,7 @@ public class Movement : MonoBehaviour {
 			//Vector3 pointToEnd = endPoint.position - transform.position;
 			//transform.position = Vector3.Lerp(transform.position,targetPoint,0.01f * Time.deltaTime * speed);
 			if(targetPoint != Vector3.zero){
-				currentSpeed = Mathf.Lerp (currentSpeed,targetSpeed, 0.2f);
+				currentSpeed = Mathf.Lerp (currentSpeed,targetSpeed, 0.9f);
 				transform.position += ( targetPoint - transform.position).normalized * Time.deltaTime * currentSpeed;
 				if(Vector3.Distance(transform.position,targetPoint) <= 1f){
 					FindNextPoint ();
@@ -114,11 +115,30 @@ public class Movement : MonoBehaviour {
 	}
 
 	void FindMiddlePoints(){
-		
-		middlePoints = GameObject.FindGameObjectsWithTag("middlePoint").OrderBy ((a) => a.transform.position.x).ToArray();
+		if (moveBackward) {
+			middlePoints = GameObject.FindGameObjectsWithTag ("middlePoint").OrderByDescending ((a) => a.transform.position.x).ToArray ();
+		} else {
+			middlePoints = GameObject.FindGameObjectsWithTag ("middlePoint").OrderBy ((a) => a.transform.position.x).ToArray ();
+		}
 		for(int j = 0; j < middlePoints.Length; j++){
 			noArrivedPoints.AddFirst (middlePoints [j].transform);
 		}
+	}
+
+	public void MoveBackward(){
+		moveBackward = true;
+		startPoint = realEnd;
+		endPoint = realStart;
+		Reset ();
+		Enable ();
+	}
+
+	public void MoveForward(){
+		moveBackward = false;
+		startPoint = realStart;
+		endPoint = realEnd;
+		Reset ();
+		Enable ();
 	}
 
 	public void Enable(){
