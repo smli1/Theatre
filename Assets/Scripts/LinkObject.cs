@@ -16,8 +16,10 @@ public class LinkObject : MonoBehaviour {
 		line = GetComponent<LineRenderer> ();
 		line.sortingLayerName = "OnTop";
 		line.sortingOrder = 5;
-		line.SetVertexCount(2);
-		line.SetWidth(0.5f, 0.5f);
+		line.positionCount = 2;
+		line.startWidth = 0.5f;
+		line.endWidth = 0.5f;
+		//line.widthCurve;
 		line.useWorldSpace = true;
 		line.material = LineMaterial;
 	}

@@ -31,7 +31,7 @@ public class ShakeObject : MonoBehaviour {
 	}
 
 	IEnumerator ShakeSelf(int shakeTime){
-
+		gameObject.GetComponent<Renderer> ().material.color = new Color (Random.Range(0.2f,1.0f),Random.Range(0.2f,1.0f),Random.Range(0.2f,1.0f));
 		for(int i = 0 ; i < shakeTime ; i++){
 			transform.localScale = origialScale * Random.Range (0.95f,1.05f);
 			yield return new WaitForSeconds (0.03f);

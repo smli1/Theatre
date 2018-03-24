@@ -44,6 +44,7 @@ public class Movement : MonoBehaviour {
 			if(targetPoint != Vector3.zero){
 				currentSpeed = Mathf.Lerp (currentSpeed,targetSpeed, 0.9f);
 				transform.position += ( targetPoint - transform.position).normalized * Time.deltaTime * currentSpeed;
+				DoExtra ();
 				if(Vector3.Distance(transform.position,targetPoint) <= 1f){
 					FindNextPoint ();
 				}
@@ -150,6 +151,13 @@ public class Movement : MonoBehaviour {
 			return speedMag [0];
 		} else {
 			return speedMag [index];
+		}
+	}
+
+	void DoExtra(){
+		//Debug.Log ("count : " + GetComponentsInChildren<RotateItself> ().Count());
+		foreach (RotateItself ri in GetComponentsInChildren<RotateItself> ()) {
+			ri.rotateForce (50f);
 		}
 	}
 }
