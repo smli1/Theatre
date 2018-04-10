@@ -14,7 +14,9 @@ public class InteractiveObject : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider c){
-		
+		if(c.tag != "fairy"){
+			return;
+		}
 		if (c.gameObject.transform.parent != null) {
 			if (c.transform.parent == transform.parent || c.transform.parent == gameObject.transform || c.gameObject == gameObject)
 				return;
@@ -23,7 +25,7 @@ public class InteractiveObject : MonoBehaviour {
 				return;
 			}
 		}
-		Debug.Log (c.gameObject);
+		//Debug.Log (c.gameObject);
 		//Debug.Log (ContentOfMail());
 		GameObject.FindGameObjectWithTag ("Message").GetComponent<Text> ().text = ContentOfMail();
 		NextAction (c.name);
@@ -73,11 +75,11 @@ public class InteractiveObject : MonoBehaviour {
 				}
 			}
 			*/
-			if(!isShaking){
+			if (!isShaking) {
 				isShaking = true;
-				StartCoroutine (ShakeSelf (10,name));
-				if(transform.childCount > 0){
-					foreach(Rigidbody temp in transform.GetComponentsInChildren<Rigidbody>() ){
+				StartCoroutine (ShakeSelf (10, name));
+				if (transform.childCount > 0) {
+					foreach (Rigidbody temp in transform.GetComponentsInChildren<Rigidbody>()) {
 						//if(temp.gameObject.tag == "missionItem"){
 						//	Debug.Log ("Update Mission!");
 						//	MissionTargetCount.updateTarget (1);
@@ -87,6 +89,9 @@ public class InteractiveObject : MonoBehaviour {
 					}
 				}
 			}
+			goto case "sendMail";
+		case "sendMail":
+			GameObject.FindGameObjectWithTag ("MailBoxContainer").GetComponent<MailBoxSystem>().createNewMail(gameObject.GetComponent<Renderer>().material.color);
 			break;
 		}
 	}

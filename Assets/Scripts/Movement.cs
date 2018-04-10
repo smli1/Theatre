@@ -11,8 +11,8 @@ public class Movement : MonoBehaviour {
 	Transform startPoint,endPoint, realStart, realEnd;
 	GameObject[] middlePoints;
 	Vector3 targetPoint;
-	public float speed = 10;
-	float currentSpeed = 0;
+	public float baseSpeed = 10;
+	public float currentSpeed = 0;
 	float targetSpeed = 0;
 	float[] speedMag;
 	int speedMagIndex = 0;
@@ -28,7 +28,7 @@ public class Movement : MonoBehaviour {
 		isRepeat = false;
 		isEnable = false;
 		//speedMag = new float[]{1f,1.1f,1f,0.5f,0.75f,0.6f,1f,1f,0f};
-		speedMag = new float[]{3f};
+		speedMag = new float[]{1f};
 		//rigidbody = GetComponent<Rigidbody> ();
 		realStart = startPoint = GameObject.FindWithTag ("startPoint").transform;
 		realEnd = endPoint = GameObject.FindWithTag ("endPoint").transform;
@@ -53,7 +53,7 @@ public class Movement : MonoBehaviour {
 	}
 
 	void FindNextPoint(){
-		targetSpeed = speed * getSpeedMag(speedMagIndex++);
+		targetSpeed = baseSpeed * getSpeedMag(speedMagIndex++);
 		if (noArrivedPoints.Count != 0) {
 			targetPoint = noArrivedPoints.Last().position;
 			//Debug.Log (targetPoint);
