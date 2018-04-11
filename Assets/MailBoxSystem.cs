@@ -21,18 +21,11 @@ public class MailBoxSystem : MonoBehaviour {
 			addNewMail(ref temp);
 		}
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		if (Input.GetKeyDown (KeyCode.G)) {
-			//GameObject temp = Instantiate (mailPrefab, Vector3.zero, Quaternion.identity);
-			//temp.GetComponent<Image> ().color = new Color (Random.Range(0.5f,0.95f),Random.Range(0.5f,0.95f),Random.Range(0.5f,0.95f));
-			//addNewMail (ref temp);
-		}
-	}
 
-	public void createNewMail(Color c){
+
+	public void createNewMail(string name,Color c){
 		GameObject temp = Instantiate (mailPrefab, Vector3.zero, Quaternion.identity);
+		temp.GetComponent<Mail> ().intialMail (name);
 		temp.GetComponent<Image> ().color = c;
 		addNewMail (ref temp);
 	}
@@ -43,12 +36,40 @@ public class MailBoxSystem : MonoBehaviour {
 		mailList.AddFirst (newMail);
 		newMail.GetComponent<Animator> ().Play ("MailFadeIn");
 		if (mailList.Count > 5) {
-			GameObject temp = mailList.Last.Value;
-			mailList.RemoveLast ();
-			temp.transform.SetParent(GameObject.FindGameObjectWithTag("canvas").transform);
-			temp.GetComponent<Animator> ().Play ("MailFadeOut");
-			StartCoroutine (waitForAnimaitonThenDestroy(temp, 1.0f));
+			LinkedListNode<GameObject> nobe = getRemoveableMail();
+			if (nobe != null) {
+				mailList.Remove (nobe);
+				GameObject temp = nobe.Value;
+				temp.transform.SetParent (GameObject.FindGameObjectWithTag ("canvas").transform);
+				temp.GetComponent<Animator> ().Play ("MailFadeOut");
+				StartCoroutine (waitForAnimaitonThenDestroy (temp, 1.0f));
+			} else {
+				newMail.transform.SetParent (GameObject.FindGameObjectWithTag ("canvas").transform);
+				newMail.GetComponent<Animator> ().Play ("MailFadeOut");
+				StartCoroutine (waitForAnimaitonThenDestroy (newMail, 1.0f));
+			}
 		}
+	}
+
+	public void removeMail(GameObject mail){
+		LinkedListNode<GameObject> temp = mailList.Find (mail);
+		if(temp != null){
+			mailList.Remove(temp);
+		}
+	}
+
+	LinkedListNode<GameObject> getRemoveableMail(){
+		LinkedListNode<GameObject> temp = mailList.Last;
+		while (temp.Value.GetComponent<Mail>().isLocked){
+			if (temp.Previous != null) {
+				temp = temp.Previous;
+			} else {
+				temp = null;
+				break;
+			}
+		}
+		return temp;
+
 	}
 
 	IEnumerator waitForAnimaitonThenDestroy(GameObject obj, float time){

@@ -1,35 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class Mail : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
+public class Mail : MonoBehaviour {
 
-	bool isOver;
-	public GameObject mailContent;
+	public MailData data;
+	public bool isLocked;
 
-	void Awake () {
-		isOver = false;
-		mailContent = GameObject.FindGameObjectWithTag ("MailBoxContainer").GetComponent<MailBoxSystem>().mailContentUI;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
-
-	public void OnPointerEnter(PointerEventData eventData)
-	{
-		mailContent.SetActive (true);
-		Debug.Log("Mouse enter");
-		isOver = true;
-	}
-
-	public void OnPointerExit(PointerEventData eventData)
-	{
-		mailContent.SetActive (false);
-		Debug.Log("Mouse exit");
-		isOver = false;
+	public void intialMail(string name){
+		data = new MailData (name);
+		GetComponent<Image> ().sprite = data.getSprite ();
+		isLocked = false;
 	}
 }

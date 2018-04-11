@@ -27,11 +27,11 @@ public class InteractiveObject : MonoBehaviour {
 		}
 		//Debug.Log (c.gameObject);
 		//Debug.Log (ContentOfMail());
-		GameObject.FindGameObjectWithTag ("Message").GetComponent<Text> ().text = ContentOfMail();
+		//GameObject.FindGameObjectWithTag ("Message").GetComponent<Text> ().text = ContentOfMail();
 		NextAction (c.name);
 	}
 
-	public string ContentOfMail() {
+	/*public string ContentOfMail() {
 		switch(gameObject.name){
 		case "cat":
 			return "I want a yarn";
@@ -39,7 +39,7 @@ public class InteractiveObject : MonoBehaviour {
 			return "";
 		}
 		return "";
-	}
+	}*/
 
 	public void NextAction(string name){
 		switch(gameObject.name.Split('_')[0]){
@@ -48,7 +48,7 @@ public class InteractiveObject : MonoBehaviour {
 				MissionTargetCount.updateTarget (1);
 				GameObject.FindGameObjectWithTag ("Player").transform.GetChild (0).gameObject.SetActive (true);
 			}
-			break;
+			goto case "sendMail";
 		case "BigYarn":
 			if(MissionTargetCount.GetMissionNum() == 2){
 				
@@ -91,7 +91,7 @@ public class InteractiveObject : MonoBehaviour {
 			}
 			goto case "sendMail";
 		case "sendMail":
-			GameObject.FindGameObjectWithTag ("MailBoxContainer").GetComponent<MailBoxSystem>().createNewMail(gameObject.GetComponent<Renderer>().material.color);
+			GameObject.FindGameObjectWithTag ("MailBoxContainer").GetComponent<MailBoxSystem>().createNewMail(gameObject.name,gameObject.GetComponent<Renderer>().material.color);
 			break;
 		}
 	}
