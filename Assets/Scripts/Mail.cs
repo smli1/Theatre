@@ -13,4 +13,8 @@ public class Mail : MonoBehaviour {
 		GetComponent<Image> ().sprite = data.getSprite ();
 		isLocked = false;
 	}
+
+	public void openMail(){
+		GetComponent<Image> ().sprite = data.getSpriteOpened ();
+	}
 }

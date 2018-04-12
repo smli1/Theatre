@@ -12,9 +12,11 @@ public class FairyMovement : MonoBehaviour {
 	GameObject player;
 	float timeCount = 0;
 	private Vector3 lastPoint;
+	private bool enable;
 
 	// Use this for initialization
 	void Start () {
+		enable = true;
 		lastPoint = Vector3.zero;
 		targetPos = transform.position;
 		player = GameObject.FindGameObjectWithTag ("Player");
@@ -28,7 +30,7 @@ public class FairyMovement : MonoBehaviour {
 			speed = 0;
 		} 
 		lastPoint = transform.position;
-		if (Input.GetMouseButton (0)) {
+		if (Input.GetMouseButton (0) && enable) {
 			//Debug.Log ("Click");
 			RaycastHit hit;
 			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
@@ -54,5 +56,9 @@ public class FairyMovement : MonoBehaviour {
 				//transform.position = (player.transform.position - transform.position + Vector3.up).normalized * Time.deltaTime * speed;
 			}
 		}
+	}
+
+	public void setEnable(bool b){
+		enable = b;
 	}
 }

@@ -60,7 +60,7 @@ public class MailData {
 	}
 
 	public Sprite getSpriteOpened(){
-		return mailArray [imageNum];
+		return mailOpenedArray [imageNum];
 	}
 
 	public Font getFont(){

@@ -12530,16 +12530,6 @@ Prefab:
       propertyPath: mailContent
       value: 
       objectReference: {fileID: 799256219}
-    - target: {fileID: 224292242437200468, guid: 154f04f950b874d3189f0dd3f0eb3ccc,
-        type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224292242437200468, guid: 154f04f950b874d3189f0dd3f0eb3ccc,
-        type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1251911698740604, guid: 154f04f950b874d3189f0dd3f0eb3ccc, type: 2}
       propertyPath: m_IsActive
       value: 0
@@ -13123,7 +13113,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4234843642239602, guid: 2bfafa2c28ee24f04a3f1f999b27fc52, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 84.6
+      value: 112.1
       objectReference: {fileID: 0}
     - target: {fileID: 4234843642239602, guid: 2bfafa2c28ee24f04a3f1f999b27fc52, type: 2}
       propertyPath: m_LocalPosition.y
@@ -13131,7 +13121,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4234843642239602, guid: 2bfafa2c28ee24f04a3f1f999b27fc52, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -149.21
+      value: -118.5
       objectReference: {fileID: 0}
     - target: {fileID: 4234843642239602, guid: 2bfafa2c28ee24f04a3f1f999b27fc52, type: 2}
       propertyPath: m_LocalRotation.x
@@ -17039,6 +17029,7 @@ MonoBehaviour:
   target: {fileID: 1473067823}
   chaseTarget: {fileID: 382185698}
   offset: {x: 0, y: 2.32, z: -15.2}
+  terrian: {fileID: 510317797}
 --- !u!114 &1505035641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21791,6 +21782,7 @@ GameObject:
   - component: {fileID: 2135605981}
   - component: {fileID: 2135605984}
   - component: {fileID: 2135605983}
+  - component: {fileID: 2135605982}
   m_Layer: 5
   m_Name: MailBox
   m_TagString: Untagged
@@ -21812,11 +21804,22 @@ RectTransform:
   m_Father: {fileID: 526299417}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -268}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 20}
   m_SizeDelta: {x: 375.41, y: 317.3}
   m_Pivot: {x: 0.5, y: 0}
+--- !u!114 &2135605982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2135605980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 312ecf8f89e79451a8d6f8ffca7f6dd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2135605983
 MonoBehaviour:
   m_ObjectHideFlags: 0

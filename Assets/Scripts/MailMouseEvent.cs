@@ -48,6 +48,7 @@ public class MailMouseEvent : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 			draggingObj = null;
 			Destroy (gameObject);
 		}
+		MailBoxMouseEvent.fairyScript.setEnable (true);
 	}
 
 
@@ -60,6 +61,7 @@ public class MailMouseEvent : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 			t.font = GetComponent<Mail>().data.getFont();
 			t.fontSize = GetComponent<Mail> ().data.fontSize;
 			mailContent.SetActive (true);
+			GetComponent<Mail> ().openMail ();
 		}
 	}
 
