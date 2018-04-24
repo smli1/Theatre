@@ -43,7 +43,7 @@ public class MailMouseEvent : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 			Ray ray = Camera.main.ScreenPointToRay (transform.position);
 			RaycastHit hit;
 			if (Physics.Raycast (ray, out hit, 1000f)) {
-				Debug.Log (hit.collider.name);
+				GetComponent<Mail> ().sendToTarget (hit.collider.gameObject);
 			}
 			draggingObj = null;
 			Destroy (gameObject);
