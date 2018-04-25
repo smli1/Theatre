@@ -42,7 +42,8 @@ public class InteractiveObject : MonoBehaviour {
 	}*/
 
 	public void NextAction(string name){
-		switch(gameObject.name.Split('_')[0]){
+		string caseName = gameObject.name.Split('_')[0];
+		switch(caseName){
 		case "cat":
 			if (MissionTargetCount.GetMissionNum () == 1) {
 				MissionTargetCount.updateTarget (1);
@@ -91,7 +92,11 @@ public class InteractiveObject : MonoBehaviour {
 			}
 			goto case "sendMail";
 		case "sendMail":
-			GameObject.FindGameObjectWithTag ("MailBoxContainer").GetComponent<MailBoxSystem>().createNewMail(gameObject.name,gameObject.GetComponent<Renderer>().material.color);
+			if (caseName == "Leave") {
+				GameObject.FindGameObjectWithTag ("MailBoxContainer").GetComponent<MailBoxSystem> ().createNewMail (gameObject);
+			} else {
+				GameObject.FindGameObjectWithTag ("MailBoxContainer").GetComponent<MailBoxSystem> ().createNewMail (gameObject,true);
+			}
 			break;
 		}
 	}
