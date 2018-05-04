@@ -9,6 +9,8 @@ public class StageCurtainSwitch : MonoBehaviour {
 
 	void Start () {
         animator = GetComponent<Animator>();
+        animator.Play(isOpened ? "CloseCurtain" : "OpenCurtain");
+        isOpened = !isOpened;
 	}
 
 	void Update()
