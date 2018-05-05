@@ -16,7 +16,7 @@ public class CameraChasing : MonoBehaviour {
 	}
 
 	void Update () {
-		transform.position = Vector3.Lerp (transform.position, target.transform.position+offset+new Vector3(0,terrian.terrainData.GetHeight((int)transform.position.x,(int)transform.position.z) / 2f,0) + avoidObstacleOffset ,Time.deltaTime);
+		transform.position = Vector3.Lerp (transform.position, target.transform.position+offset+new Vector3(0,terrian.terrainData.GetHeight((int)transform.position.x,(int)transform.position.z) / 2f,0) + avoidObstacleOffset ,Time.deltaTime * 2);
 
 		transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(((chaseTarget.transform.position - (chaseTarget.transform.position - target.transform.position).normalized * (chaseTarget.transform.position - target.transform.position).magnitude/2.0f) - Camera.main.transform.position).normalized), Time.deltaTime);
 

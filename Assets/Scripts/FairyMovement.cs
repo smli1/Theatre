@@ -27,7 +27,7 @@ public class FairyMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		//playerSpeed = target.GetComponent<Movement> ().currentSpeed;
+        //playerSpeed = target.GetComponent<Movement> ().currentSpeed;
         playerSpeed = 1;
 		if (lastPoint == transform.position) {
 			speed = 0;
@@ -55,7 +55,7 @@ public class FairyMovement : MonoBehaviour {
 			timeCount += Time.deltaTime;
 			float distance = Vector3.Distance (transform.position, target.transform.position + Vector3.up);
 			if(distance >= 0.75f && timeCount >= 3f){
-				transform.position = Vector3.Lerp(transform.position,transform.position + (target.transform.position - transform.position + Vector3.up).normalized * (playerSpeed == 0 ? MaxSpeed : playerSpeed) * Mathf.Clamp(distance + 0.25f,1,2) ,Time.deltaTime);
+				transform.position = Vector3.Lerp(transform.position,transform.position + (target.transform.position - transform.position + Vector3.up).normalized * (playerSpeed <= 0 ? MaxSpeed : playerSpeed) * Mathf.Clamp(distance + 0.25f,1,2) ,Time.deltaTime);
 				//transform.position = (player.transform.position - transform.position + Vector3.up).normalized * Time.deltaTime * speed;
 			}
 		}

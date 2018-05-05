@@ -28,7 +28,8 @@ public class InteractiveObject : MonoBehaviour {
 		//Debug.Log (c.gameObject);
 		//Debug.Log (ContentOfMail());
 		//GameObject.FindGameObjectWithTag ("Message").GetComponent<Text> ().text = ContentOfMail();
-		NextAction (c.name);
+
+		//NextAction (c.name);
 	}
 
 	/*public string ContentOfMail() {
