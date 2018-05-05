@@ -5,6 +5,13 @@ using UnityEngine;
 public class TriggerUp : MonoBehaviour {
 
     bool isGrounded;
+    Rigidbody rigb;
+
+	private void Start()
+	{
+        rigb = GetComponent<Rigidbody>();
+	}
+
 	private void Update()
 	{
         float DistanceToTheGround = GetComponent<Collider>().bounds.extents.y;
@@ -13,7 +20,7 @@ public class TriggerUp : MonoBehaviour {
         if (!isGrounded)
         {
             
-            GetComponent<Rigidbody>().AddForce(Vector3.right * 0.1f);
+            rigb.AddForce(-Vector3.right * 0.1f);
 
         }
 
@@ -25,9 +32,16 @@ public class TriggerUp : MonoBehaviour {
         
         if(other.tag == "fairy" && isGrounded){
             
-            GetComponent<Rigidbody>().AddForce(Vector3.up * 100);
+            rigb.AddForce(Vector3.up * 50);
 
-            GetComponent<Rigidbody>().AddForce(Vector3.right * 5);
+            rigb.AddForce(Vector3.right * 5);
         }
 	}
+
+    public void ApplyForceUp(Vector3 f){
+        if (transform.position.y <= 50f)
+        {
+            rigb.AddForce(f);
+        }
+    }
 }

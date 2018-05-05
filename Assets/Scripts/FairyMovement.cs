@@ -22,13 +22,13 @@ public class FairyMovement : MonoBehaviour {
 		destPos = transform.position;
         //target = GameObject.FindGameObjectWithTag ("Player");
         //playerSpeed = target.GetComponent<Movement> ().currentSpeed;
-        playerSpeed = 1;
+        playerSpeed = 100;
 	}
 	
 	// Update is called once per frame
 	void Update () {
         //playerSpeed = target.GetComponent<Movement> ().currentSpeed;
-        playerSpeed = 1;
+        //playerSpeed = 1;
 		if (lastPoint == transform.position) {
 			speed = 0;
 		} 
@@ -37,7 +37,7 @@ public class FairyMovement : MonoBehaviour {
 			//Debug.Log ("Click");
 			RaycastHit hit;
 			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-			if (Physics.Raycast (ray, out hit, 1000)) {
+			if (Physics.Raycast (ray, out hit, 100000)) {
 				//Debug.Log (hit.point);
 				destPos = hit.point + Vector3.up * 0.5f;
 			}

@@ -10,15 +10,30 @@ public class CameraChasing : MonoBehaviour {
 	public Vector3 offset;
 	public Terrain terrian;
 	private Vector3 avoidObstacleOffset;
+    private float limitedCount = 2;
 
+    private float disMax = 250;
 	void Start(){
 		
 	}
 
 	void Update () {
-		transform.position = Vector3.Lerp (transform.position, target.transform.position+offset+new Vector3(0,terrian.terrainData.GetHeight((int)transform.position.x,(int)transform.position.z) / 2f,0) + avoidObstacleOffset ,Time.deltaTime * 2);
+        
 
-		transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(((chaseTarget.transform.position - (chaseTarget.transform.position - target.transform.position).normalized * (chaseTarget.transform.position - target.transform.position).magnitude/2.0f) - Camera.main.transform.position).normalized), Time.deltaTime);
+        Vector3 targetPos = target.transform.position;
+        targetPos += new Vector3(0, terrian.terrainData.GetHeight((int)transform.position.x, (int)transform.position.z) / 2.0f, 0);
+        targetPos += offset;
+        targetPos += avoidObstacleOffset;
+
+        transform.position = Vector3.Lerp (transform.position, targetPos ,Time.deltaTime);
+
+        float disVector = (chaseTarget.transform.position - target.transform.position).magnitude;
+        Vector3 lookAtPoint = (chaseTarget.transform.position - target.transform.position).normalized;
+        lookAtPoint = lookAtPoint * (disVector / 2.0f + Mathf.Clamp(disVector/disMax, 0f, 1f) * disVector / 2);
+        lookAtPoint = ((chaseTarget.transform.position - lookAtPoint) - Camera.main.transform.position).normalized;
+
+
+        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(lookAtPoint), Time.deltaTime);
 
 	}
 

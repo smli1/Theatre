@@ -12,7 +12,7 @@ public class TriggerRoundParts : MonoBehaviour {
         ownNum = getNum();
         otherTag = "fairy";
         TriggerRound.Initialize();
-        TriggerRound.temps[TriggerRound.testNum++] = gameObject;
+        //TriggerRound.temps[TriggerRound.testNum++] = gameObject;
 	}
 
 	private void OnTriggerEnter(Collider other)

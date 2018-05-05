@@ -23,13 +23,10 @@ public class TriggerRound {
     private static int dirNum = 4;
     private static bool isInitialized = false;
 
-    public static GameObject[] temps;
-    public static int testNum = 0;
     private static GameObject temp;
 
     public static void Initialize(){
         if(!isInitialized){
-            temps = new GameObject[4];
             Debug.Log("Initialized!");
             isInitialized = true;
             enterBools = new bool[dirNum];
@@ -53,21 +50,17 @@ public class TriggerRound {
 
         if(orderString.Length == 0){
             orderString += "" + num;
-            //temp.GetComponent<Renderer>().material.color = Color.red;
         }else{
             if(CheckVaildOrder(num)){
                 
-                //temp.GetComponent<Renderer>().material.color = Color.red;
                 orderString += "" + num; 
                 if(orderString.Length == 4){
                     Debug.Log("Rounded !");
-                    temp.GetComponent<Rigidbody>().AddForce(Vector3.up * 20);
+                    temp.GetComponent<TriggerUp>().ApplyForceUp(Vector3.up * 300 + Vector3.right * 500);
                     orderString = "";
-                    Reset();
                 }
             }else{
                 orderString = "";
-                Reset();
             }
         }
         //Debug.Log(orderString);
@@ -86,10 +79,6 @@ public class TriggerRound {
         return false;
     }
 
-    private static void Reset(){
-        for (int i = 0; i < 4; i++){
-            temps[i].GetComponent<Renderer>().material.color = Color.white;
-        }
-    }
+
 }
 
