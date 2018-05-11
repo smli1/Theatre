@@ -56,7 +56,7 @@ public class TriggerRound {
                 orderString += "" + num; 
                 if(orderString.Length == 4){
                     Debug.Log("Rounded !");
-                    temp.GetComponent<TriggerUp>().ApplyForceUp(Vector3.up * 300 + Vector3.right * 500);
+                    temp.GetComponent<TriggerUp>().ApplyForceUp(Vector3.up * 200 + Vector3.right * 50);
                     orderString = "";
                 }
             }else{

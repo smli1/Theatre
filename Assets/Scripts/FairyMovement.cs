@@ -5,9 +5,8 @@ using UnityEngine;
 public class FairyMovement : MonoBehaviour {
 
 	[SerializeField]
-	float MaxSpeed = 5;
+	float MaxSpeed = 10;
 	private float speed = 0;
-	private float playerSpeed;
     Vector3 destPos;
     [SerializeField]
     GameObject target;
@@ -15,17 +14,16 @@ public class FairyMovement : MonoBehaviour {
 	private Vector3 lastPoint;
 	private bool enable;
 
-	// Use this for initialization
+
 	void Start () {
 		enable = true;
 		lastPoint = Vector3.zero;
 		destPos = transform.position;
         //target = GameObject.FindGameObjectWithTag ("Player");
         //playerSpeed = target.GetComponent<Movement> ().currentSpeed;
-        playerSpeed = 100;
 	}
 	
-	// Update is called once per frame
+
 	void Update () {
         //playerSpeed = target.GetComponent<Movement> ().currentSpeed;
         //playerSpeed = 1;
@@ -39,7 +37,7 @@ public class FairyMovement : MonoBehaviour {
 			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 			if (Physics.Raycast (ray, out hit, 100000)) {
 				//Debug.Log (hit.point);
-				destPos = hit.point + Vector3.up * 0.5f;
+				destPos = hit.point;
 			}
 			if (speed < MaxSpeed) {
 				speed += MaxSpeed * 0.1f;
@@ -48,14 +46,14 @@ public class FairyMovement : MonoBehaviour {
 			}
 
 			if (Vector3.Distance (transform.position, destPos) >= 0.5f) {
-				transform.position = Vector3.Lerp(transform.position,transform.position + (destPos - transform.position).normalized * speed ,Time.deltaTime);
+				transform.position = Vector3.Lerp(transform.position,transform.position + (destPos - transform.position).normalized * speed ,Time.deltaTime / 2);
 			}
 			timeCount = 0;
 		} else {
 			timeCount += Time.deltaTime;
 			float distance = Vector3.Distance (transform.position, target.transform.position + Vector3.up);
-			if(distance >= 0.75f && timeCount >= 3f){
-				transform.position = Vector3.Lerp(transform.position,transform.position + (target.transform.position - transform.position + Vector3.up).normalized * (playerSpeed <= 0 ? MaxSpeed : playerSpeed) * Mathf.Clamp(distance + 0.25f,1,2) ,Time.deltaTime);
+			if(timeCount >= 3f){
+                //transform.position = Vector3.Lerp(transform.position,transform.position + (target.transform.position - transform.position - Vector3.right * 2 ).normalized * MaxSpeed * Mathf.Clamp(distance + 0.25f,1,2) ,Time.deltaTime /2);
 				//transform.position = (player.transform.position - transform.position + Vector3.up).normalized * Time.deltaTime * speed;
 			}
 		}

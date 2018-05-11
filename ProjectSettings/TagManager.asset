@@ -17,6 +17,8 @@ TagManager:
   - canvas
   - MailBoxContainer
   - MailContent
+  - mail
+  - actor
   layers:
   - Default
   - TransparentFX

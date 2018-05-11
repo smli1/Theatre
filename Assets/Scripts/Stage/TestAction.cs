@@ -6,6 +6,7 @@ public class TestAction : MonoBehaviour {
     Animator animator;
     bool actionFinished = false;
     bool isInOut = false;
+	public bool  isInOuting = false;
     int nextActionNum = 0;
     Vector3 defaultPosY;
 
@@ -91,7 +92,9 @@ public class TestAction : MonoBehaviour {
             }
             else
             {
-                SetInOut(false);
+				//SetInOut(false);
+				LevelManager.NextLevel();
+
             }
         }
         else
@@ -136,6 +139,7 @@ public class TestAction : MonoBehaviour {
         transform.rotation = Quaternion.Euler(0,0,0);
         yield return new WaitForSeconds(0.2f);
         actionFinished = true;
+		isInOuting = false;
     }
 
     IEnumerator ChangeActionThread(string clipName, Vector3 offset, float secToNextAction, bool offsetToFixedPos = false){
@@ -166,6 +170,7 @@ public class TestAction : MonoBehaviour {
     }
 
     public void SetInOut(bool trueFalse){
+		isInOuting = true;
         StartCoroutine(SetInOutThread(trueFalse));
     }
 

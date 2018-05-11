@@ -26,17 +26,16 @@ public class TriggerUp : MonoBehaviour {
 
         GetComponent<Rigidbody>().AddForce(-Vector3.up * 0.98f / 2);
 	}
-
+    /*
 	private void OnTriggerEnter(Collider other)
 	{
         
-        if(other.tag == "fairy" && isGrounded){
+        if(other.tag == "fairy"){
             
             rigb.AddForce(Vector3.up * 50);
-
-            rigb.AddForce(Vector3.right * 5);
         }
 	}
+    */
 
     public void ApplyForceUp(Vector3 f){
         if (transform.position.y <= 50f)

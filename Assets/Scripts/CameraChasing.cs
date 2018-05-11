@@ -12,7 +12,7 @@ public class CameraChasing : MonoBehaviour {
 	private Vector3 avoidObstacleOffset;
     private float limitedCount = 2;
 
-    private float disMax = 250;
+    private float disMax = 100;
 	void Start(){
 		
 	}
@@ -25,7 +25,7 @@ public class CameraChasing : MonoBehaviour {
         targetPos += offset;
         targetPos += avoidObstacleOffset;
 
-        transform.position = Vector3.Lerp (transform.position, targetPos ,Time.deltaTime);
+        transform.position = Vector3.Lerp (transform.position, targetPos ,Time.deltaTime * 2);
 
         float disVector = (chaseTarget.transform.position - target.transform.position).magnitude;
         Vector3 lookAtPoint = (chaseTarget.transform.position - target.transform.position).normalized;
