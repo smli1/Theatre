@@ -1016,7 +1016,7 @@ Prefab:
         type: 0}
     - target: {fileID: 1910754475237250, guid: 00d21a68cbc6d4e038062f2237cc048f, type: 2}
       propertyPath: m_Name
-      value: Marker_06
+      value: girl_markers_06
       objectReference: {fileID: 0}
     - target: {fileID: 4032314893392390, guid: 00d21a68cbc6d4e038062f2237cc048f, type: 2}
       propertyPath: m_LocalScale.x
@@ -1407,7 +1407,7 @@ Prefab:
         type: 0}
     - target: {fileID: 1910754475237250, guid: 00d21a68cbc6d4e038062f2237cc048f, type: 2}
       propertyPath: m_Name
-      value: Marker_01
+      value: girl_markers_01
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 00d21a68cbc6d4e038062f2237cc048f, type: 2}
@@ -1854,7 +1854,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1910754475237250, guid: 00d21a68cbc6d4e038062f2237cc048f, type: 2}
       propertyPath: m_Name
-      value: Marker_07
+      value: gdma_markers_07
       objectReference: {fileID: 0}
     - target: {fileID: 4032314893392390, guid: 00d21a68cbc6d4e038062f2237cc048f, type: 2}
       propertyPath: m_LocalScale.x
@@ -2025,7 +2025,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1910754475237250, guid: 00d21a68cbc6d4e038062f2237cc048f, type: 2}
       propertyPath: m_Name
-      value: Marker_07
+      value: girl_markers_07
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 00d21a68cbc6d4e038062f2237cc048f, type: 2}
@@ -2088,7 +2088,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1910754475237250, guid: 00d21a68cbc6d4e038062f2237cc048f, type: 2}
       propertyPath: m_Name
-      value: Marker_01
+      value: gdma_markers_01
       objectReference: {fileID: 0}
     - target: {fileID: 1910754475237250, guid: 00d21a68cbc6d4e038062f2237cc048f, type: 2}
       propertyPath: m_Icon
@@ -2103,6 +2103,159 @@ Transform:
   m_PrefabParentObject: {fileID: 4032314893392390, guid: 00d21a68cbc6d4e038062f2237cc048f,
     type: 2}
   m_PrefabInternal: {fileID: 342804243}
+--- !u!1001 &368064329
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 794163880}
+    m_Modifications:
+    - target: {fileID: 114608007808910414, guid: 6254f240585ac49dd8a9882e6007a701,
+        type: 2}
+      propertyPath: clipNames.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114608007808910414, guid: 6254f240585ac49dd8a9882e6007a701,
+        type: 2}
+      propertyPath: offsetArray.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114608007808910414, guid: 6254f240585ac49dd8a9882e6007a701,
+        type: 2}
+      propertyPath: actionNumArray.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114608007808910414, guid: 6254f240585ac49dd8a9882e6007a701,
+        type: 2}
+      propertyPath: applyClipDelay.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114608007808910414, guid: 6254f240585ac49dd8a9882e6007a701,
+        type: 2}
+      propertyPath: offsetMarkerArray.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114608007808910414, guid: 6254f240585ac49dd8a9882e6007a701,
+        type: 2}
+      propertyPath: afterClipDelayArray.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114608007808910414, guid: 6254f240585ac49dd8a9882e6007a701,
+        type: 2}
+      propertyPath: eachActionDelayArray.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4698588194510924, guid: 6254f240585ac49dd8a9882e6007a701, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 1.73
+      objectReference: {fileID: 0}
+    - target: {fileID: 4698588194510924, guid: 6254f240585ac49dd8a9882e6007a701, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 4698588194510924, guid: 6254f240585ac49dd8a9882e6007a701, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 11.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 4698588194510924, guid: 6254f240585ac49dd8a9882e6007a701, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4698588194510924, guid: 6254f240585ac49dd8a9882e6007a701, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4698588194510924, guid: 6254f240585ac49dd8a9882e6007a701, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4698588194510924, guid: 6254f240585ac49dd8a9882e6007a701, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4698588194510924, guid: 6254f240585ac49dd8a9882e6007a701, type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114608007808910414, guid: 6254f240585ac49dd8a9882e6007a701,
+        type: 2}
+      propertyPath: offsetMarkerArray.Array.data[0]
+      value: 
+      objectReference: {fileID: 342804244}
+    - target: {fileID: 114608007808910414, guid: 6254f240585ac49dd8a9882e6007a701,
+        type: 2}
+      propertyPath: offsetMarkerArray.Array.data[1]
+      value: 
+      objectReference: {fileID: 1640343549}
+    - target: {fileID: 114608007808910414, guid: 6254f240585ac49dd8a9882e6007a701,
+        type: 2}
+      propertyPath: offsetMarkerArray.Array.data[2]
+      value: 
+      objectReference: {fileID: 1906226429}
+    - target: {fileID: 114608007808910414, guid: 6254f240585ac49dd8a9882e6007a701,
+        type: 2}
+      propertyPath: offsetMarkerArray.Array.data[3]
+      value: 
+      objectReference: {fileID: 1924046222}
+    - target: {fileID: 114608007808910414, guid: 6254f240585ac49dd8a9882e6007a701,
+        type: 2}
+      propertyPath: offsetMarkerArray.Array.data[4]
+      value: 
+      objectReference: {fileID: 1032395494}
+    - target: {fileID: 114608007808910414, guid: 6254f240585ac49dd8a9882e6007a701,
+        type: 2}
+      propertyPath: offsetMarkerArray.Array.data[5]
+      value: 
+      objectReference: {fileID: 1941729014}
+    - target: {fileID: 114608007808910414, guid: 6254f240585ac49dd8a9882e6007a701,
+        type: 2}
+      propertyPath: offsetMarkerArray.Array.data[6]
+      value: 
+      objectReference: {fileID: 319947809}
+    - target: {fileID: 114608007808910414, guid: 6254f240585ac49dd8a9882e6007a701,
+        type: 2}
+      propertyPath: offsetMarkerArray.Array.data[7]
+      value: 
+      objectReference: {fileID: 2030418296}
+    - target: {fileID: 1948981045878850, guid: 6254f240585ac49dd8a9882e6007a701, type: 2}
+      propertyPath: m_Name
+      value: grandma
+      objectReference: {fileID: 0}
+    - target: {fileID: 114608007808910414, guid: 6254f240585ac49dd8a9882e6007a701,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1948981045878850, guid: 6254f240585ac49dd8a9882e6007a701, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4698588194510924, guid: 6254f240585ac49dd8a9882e6007a701, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 8.97973
+      objectReference: {fileID: 0}
+    - target: {fileID: 4698588194510924, guid: 6254f240585ac49dd8a9882e6007a701, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 8.97973
+      objectReference: {fileID: 0}
+    - target: {fileID: 4698588194510924, guid: 6254f240585ac49dd8a9882e6007a701, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 8.97973
+      objectReference: {fileID: 0}
+    - target: {fileID: 114608007808910414, guid: 6254f240585ac49dd8a9882e6007a701,
+        type: 2}
+      propertyPath: smoke
+      value: 
+      objectReference: {fileID: 1007937207843764, guid: a409f392cbe67499881e76ba7eb6b742,
+        type: 2}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 6254f240585ac49dd8a9882e6007a701, type: 2}
+  m_IsPrefabParent: 0
+--- !u!4 &368064330 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4698588194510924, guid: 6254f240585ac49dd8a9882e6007a701,
+    type: 2}
+  m_PrefabInternal: {fileID: 368064329}
 --- !u!1001 &370314526
 Prefab:
   m_ObjectHideFlags: 0
@@ -2144,7 +2297,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1910754475237250, guid: 00d21a68cbc6d4e038062f2237cc048f, type: 2}
       propertyPath: m_Name
-      value: Marker_08
+      value: gdma_markers_08
       objectReference: {fileID: 0}
     - target: {fileID: 4032314893392390, guid: 00d21a68cbc6d4e038062f2237cc048f, type: 2}
       propertyPath: m_LocalScale.x
@@ -4649,8 +4802,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1052971515}
-  - {fileID: 1421878497}
   - {fileID: 1402229355}
+  - {fileID: 368064330}
+  - {fileID: 1421878497}
   - {fileID: 1939972241}
   - {fileID: 2046661176}
   m_Father: {fileID: 0}
@@ -9637,7 +9791,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1910754475237250, guid: 00d21a68cbc6d4e038062f2237cc048f, type: 2}
       propertyPath: m_Name
-      value: Marker_05
+      value: gdma_markers_05
       objectReference: {fileID: 0}
     - target: {fileID: 1910754475237250, guid: 00d21a68cbc6d4e038062f2237cc048f, type: 2}
       propertyPath: m_Icon
@@ -10581,7 +10735,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1910754475237250, guid: 00d21a68cbc6d4e038062f2237cc048f, type: 2}
       propertyPath: m_Name
-      value: Marker_03
+      value: girl_markers_03
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 00d21a68cbc6d4e038062f2237cc048f, type: 2}
@@ -11476,13 +11630,11 @@ MonoBehaviour:
   - Idle
   - Walk1
   - Walk2
-  afterClipDelayArray: []
   actionNumArray: 
   eachActionDelayArray: []
   offsetArray: []
   offsetMarkerArray: []
-  isFixedPos: 
-  applyClipDelay: 
+  isFixedPos: 0
   smoke: {fileID: 1007937207843764, guid: a409f392cbe67499881e76ba7eb6b742, type: 2}
 --- !u!4 &1474574577
 Transform:
@@ -12074,7 +12226,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1910754475237250, guid: 00d21a68cbc6d4e038062f2237cc048f, type: 2}
       propertyPath: m_Name
-      value: Marker_02
+      value: gdma_markers_02
       objectReference: {fileID: 0}
     - target: {fileID: 1910754475237250, guid: 00d21a68cbc6d4e038062f2237cc048f, type: 2}
       propertyPath: m_Icon
@@ -12372,7 +12524,7 @@ Prefab:
         type: 0}
     - target: {fileID: 1910754475237250, guid: 00d21a68cbc6d4e038062f2237cc048f, type: 2}
       propertyPath: m_Name
-      value: Marker_05
+      value: girl_markers_05
       objectReference: {fileID: 0}
     - target: {fileID: 4032314893392390, guid: 00d21a68cbc6d4e038062f2237cc048f, type: 2}
       propertyPath: m_LocalScale.x
@@ -12743,6 +12895,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1763365962}
+  - component: {fileID: 1763365967}
   - component: {fileID: 1763365963}
   - component: {fileID: 1763365965}
   - component: {fileID: 1763365964}
@@ -12809,6 +12962,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0c34a198fa4b54b49bbfaaea8045e6fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1763365967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1763365961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23b7e246a06ca4604aff0360c9b1bb6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1763542440
@@ -13133,7 +13297,7 @@ Prefab:
         type: 0}
     - target: {fileID: 1910754475237250, guid: 00d21a68cbc6d4e038062f2237cc048f, type: 2}
       propertyPath: m_Name
-      value: Marker_04
+      value: girl_markers_04
       objectReference: {fileID: 0}
     - target: {fileID: 4032314893392390, guid: 00d21a68cbc6d4e038062f2237cc048f, type: 2}
       propertyPath: m_LocalScale.x
@@ -13278,7 +13442,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4698588194510924, guid: 6254f240585ac49dd8a9882e6007a701, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114608007808910414, guid: 6254f240585ac49dd8a9882e6007a701,
         type: 2}
@@ -13320,6 +13484,19 @@ Prefab:
       propertyPath: offsetMarkerArray.Array.data[7]
       value: 
       objectReference: {fileID: 2030418296}
+    - target: {fileID: 1948981045878850, guid: 6254f240585ac49dd8a9882e6007a701, type: 2}
+      propertyPath: m_Name
+      value: grandma_
+      objectReference: {fileID: 0}
+    - target: {fileID: 114608007808910414, guid: 6254f240585ac49dd8a9882e6007a701,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1948981045878850, guid: 6254f240585ac49dd8a9882e6007a701, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6254f240585ac49dd8a9882e6007a701, type: 2}
   m_IsPrefabParent: 0
@@ -13416,6 +13593,31 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 794163880}
     m_Modifications:
+    - target: {fileID: 114497152635440148, guid: 69c33c87f764044edbfa75a8cef7a996,
+        type: 2}
+      propertyPath: clipNames.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114497152635440148, guid: 69c33c87f764044edbfa75a8cef7a996,
+        type: 2}
+      propertyPath: offsetArray.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114497152635440148, guid: 69c33c87f764044edbfa75a8cef7a996,
+        type: 2}
+      propertyPath: actionNumArray.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114497152635440148, guid: 69c33c87f764044edbfa75a8cef7a996,
+        type: 2}
+      propertyPath: offsetMarkerArray.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114497152635440148, guid: 69c33c87f764044edbfa75a8cef7a996,
+        type: 2}
+      propertyPath: eachActionDelayArray.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4542896781515736, guid: 69c33c87f764044edbfa75a8cef7a996, type: 2}
       propertyPath: m_LocalPosition.x
       value: -2.21
@@ -13446,7 +13648,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4542896781515736, guid: 69c33c87f764044edbfa75a8cef7a996, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114497152635440148, guid: 69c33c87f764044edbfa75a8cef7a996,
         type: 2}
@@ -13483,6 +13685,16 @@ Prefab:
       propertyPath: offsetMarkerArray.Array.data[6]
       value: 
       objectReference: {fileID: 337088991}
+    - target: {fileID: 1990484224097376, guid: 69c33c87f764044edbfa75a8cef7a996, type: 2}
+      propertyPath: m_Name
+      value: girl
+      objectReference: {fileID: 0}
+    - target: {fileID: 114497152635440148, guid: 69c33c87f764044edbfa75a8cef7a996,
+        type: 2}
+      propertyPath: smoke
+      value: 
+      objectReference: {fileID: 1007937207843764, guid: a409f392cbe67499881e76ba7eb6b742,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 69c33c87f764044edbfa75a8cef7a996, type: 2}
   m_IsPrefabParent: 0
@@ -13539,7 +13751,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1910754475237250, guid: 00d21a68cbc6d4e038062f2237cc048f, type: 2}
       propertyPath: m_Name
-      value: Marker_03
+      value: gdma_markers_03
       objectReference: {fileID: 0}
     - target: {fileID: 1910754475237250, guid: 00d21a68cbc6d4e038062f2237cc048f, type: 2}
       propertyPath: m_Icon
@@ -13792,7 +14004,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1910754475237250, guid: 00d21a68cbc6d4e038062f2237cc048f, type: 2}
       propertyPath: m_Name
-      value: Marker_04
+      value: gdma_markers_04
       objectReference: {fileID: 0}
     - target: {fileID: 1910754475237250, guid: 00d21a68cbc6d4e038062f2237cc048f, type: 2}
       propertyPath: m_Icon
@@ -14000,7 +14212,7 @@ Transform:
   - {fileID: 319947809}
   - {fileID: 2030418296}
   m_Father: {fileID: 794163880}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1941045483
 GameObject:
@@ -14147,7 +14359,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1910754475237250, guid: 00d21a68cbc6d4e038062f2237cc048f, type: 2}
       propertyPath: m_Name
-      value: Marker_06
+      value: gdma_markers_06
       objectReference: {fileID: 0}
     - target: {fileID: 4032314893392390, guid: 00d21a68cbc6d4e038062f2237cc048f, type: 2}
       propertyPath: m_LocalScale.x
@@ -14383,7 +14595,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1910754475237250, guid: 00d21a68cbc6d4e038062f2237cc048f, type: 2}
       propertyPath: m_Name
-      value: Marker_02
+      value: girl_markers_02
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 00d21a68cbc6d4e038062f2237cc048f, type: 2}
@@ -14881,7 +15093,7 @@ Transform:
   - {fileID: 228061335}
   - {fileID: 337088991}
   m_Father: {fileID: 794163880}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2055551768
 GameObject:

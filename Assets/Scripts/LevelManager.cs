@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour {
 
-	static int levelNum = 0;
+	static public int levelNum = 0;
 
 	private void Start()
 	{
-		InitializeLevel(levelNum++);
+		InitializeLevel(levelNum);
 	}
 
 	private static void InitializeLevel(int num){
 		switch(num){
 			case 0: //Hide and seek
-				GameObject.Find("Manager").GetComponent<HideAndSeekEvent>().ActiveIt(GameObject.Find("Girl"),7);
+				GameObject.Find("Manager").GetComponent<HideAndSeekEvent>().ActiveIt(GameObject.Find("girl"),7);
 				break;
 			case 1:
 				GameObject.Find("Manager").GetComponent<HideAndSeekEvent>().ActiveIt(GameObject.Find("Book"), 1);
@@ -23,7 +23,8 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	public static void NextLevel(){
-		InitializeLevel(levelNum++);
+		levelNum++;
+		InitializeLevel(levelNum);
 	}
 
 }

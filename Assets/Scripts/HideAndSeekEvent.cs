@@ -25,18 +25,24 @@ public class HideAndSeekEvent : MonoBehaviour {
 				RaycastHit raycastHit;
 				if (Physics.Raycast(ray, out raycastHit, 1000f))
 				{
+					
 					Debug.Log(raycastHit.collider.gameObject);
 
 					triggerAnim(raycastHit.collider.gameObject);
-
-					executeEvent();
+               
 					if (target == raycastHit.collider.gameObject)
 					{
-						if(stepCount < stepNum){
-							stepCount++;
-						}else{
-							stepCount++;
+						executeEvent();
+						stepCount++;
+						if (stepCount > stepNum)
+						{
+							StopCoroutine("delayActive");
 							isActive = false;
+							target = null;
+						}
+						else{
+							isActive = false;
+							StartCoroutine(delayActive(0.5f));
 						}
 					}
 				}
@@ -49,13 +55,7 @@ public class HideAndSeekEvent : MonoBehaviour {
         if (animator)
         {
 			if(animator){
-				//try
-				//{
 				animator.Play(gameObject.name + "Anim");
-				//}
-				//catch(){
-					
-				//}
 			}
         }
 	}
@@ -64,6 +64,11 @@ public class HideAndSeekEvent : MonoBehaviour {
 		this.stepNum = stepNum;
 		stepCount = 0;
 		this.target = target;
+		isActive = true;
+	}
+
+	public IEnumerator delayActive(float sec){
+		yield return new WaitForSeconds(sec);
 		isActive = true;
 	}
 

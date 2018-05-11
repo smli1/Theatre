@@ -2,26 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using Newtonsoft.Json;
 
 public class ReadJson : MonoBehaviour {
 
 	private string jsonString;
+	public static RootObject data;
 
 	void Start () {
 		jsonString = File.ReadAllText(Application.dataPath + "/Resources/Json/ScriptSetting.json");
 		//Debug.Log(jsonString);
-		//RootObject data = JsonConvert.DeserializeObject<RootObject>(jsonstring);
+		data = JsonConvert.DeserializeObject<RootObject>(jsonString);
 		//Debug.Log(data.script[0].actors[0].name);
-	}
-	
-
+	}   
 }
 
 public class ActorStepOffset
 {
-    public int x { get; set; }
-    public int y { get; set; }
-    public int z { get; set; }
+    public double x { get; set; }
+    public double y { get; set; }
+    public double z { get; set; }
 }
 
 public class Actor
@@ -31,7 +31,7 @@ public class Actor
     public List<string> actor_clip_name { get; set; }
     public int actor_total_steps { get; set; }
     public List<int> actor_steps_action { get; set; }
-    public List<int> actor_steps_delay { get; set; }
+    public List<double> actor_steps_delay { get; set; }
     public string actor_markers_name { get; set; }
     public List<string> actor_markers_num { get; set; }
     public bool isFixedPosition { get; set; }

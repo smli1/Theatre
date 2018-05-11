@@ -10,24 +10,15 @@ public class TestAction : MonoBehaviour {
     int nextActionNum = 0;
     Vector3 defaultPosY;
 
-    [SerializeField]
-    string[] clipNames;
-    [SerializeField]
-    float[] afterClipDelayArray;
-    [SerializeField]
-    int[] actionNumArray;
-    [SerializeField]
-    float[] eachActionDelayArray;
-    [SerializeField]
-    Vector3[] offsetArray;
-    [SerializeField]
-    Transform[] offsetMarkerArray;
-    [SerializeField]
-    bool[] isFixedPos;
-    [SerializeField]
-    bool[] applyClipDelay;
-    [SerializeField]
-    GameObject smoke;
+    public string[] clipNames;
+	//public double[] afterClipDelayArray;
+	public int[] actionNumArray;
+	public double[] eachActionDelayArray;
+	public Vector3[] offsetArray;
+	public Transform[] offsetMarkerArray;
+	public bool isFixedPos;
+	//public bool[] applyClipDelay;
+	public GameObject smoke;
 
 	void Start () {
         defaultPosY = new Vector3(0,transform.position.y,0);
@@ -46,21 +37,15 @@ public class TestAction : MonoBehaviour {
         {
             offsetMarkerArray = new Transform[actionNumArray.Length];
         }
-        if (isFixedPos == null)
-        {
-            isFixedPos = new bool[actionNumArray.Length];
-        }
         if (offsetArray == null)
         {
             offsetArray = new Vector3[actionNumArray.Length];
         }
         if (eachActionDelayArray == null)
         {
-            eachActionDelayArray = new float[actionNumArray.Length];
+			eachActionDelayArray = new double[actionNumArray.Length];
         }
-        if(applyClipDelay == null){
-            applyClipDelay = new bool[actionNumArray.Length];
-        }
+
         printTotalActionTime();
     }
 
@@ -71,16 +56,12 @@ public class TestAction : MonoBehaviour {
             actionFinished = false;
             if (nextActionNum != -1)
             {
-                float delayTime = -1; // -1 equals to pause action
+				double delayTime = -1; // -1 equals to pause action
                 if(eachActionDelayArray[nextActionNum] >= 0){
                     delayTime = eachActionDelayArray[nextActionNum];
-                }else if(applyClipDelay[nextActionNum]){
-                    if (afterClipDelayArray[actionNumArray[nextActionNum]] >= 0)
-                    {
-                        delayTime = afterClipDelayArray[actionNumArray[nextActionNum]];
-                    }
                 }
-                ChangeAction(clipNames[actionNumArray[nextActionNum]], getOffsetPosition(nextActionNum), delayTime,isFixedPos[nextActionNum]);
+
+                ChangeAction(clipNames[actionNumArray[nextActionNum]], getOffsetPosition(nextActionNum), delayTime,isFixedPos);
                 if (nextActionNum >= actionNumArray.Length - 1)
                 {
                     nextActionNum = -1;
@@ -142,7 +123,7 @@ public class TestAction : MonoBehaviour {
 		isInOuting = false;
     }
 
-    IEnumerator ChangeActionThread(string clipName, Vector3 offset, float secToNextAction, bool offsetToFixedPos = false){
+	IEnumerator ChangeActionThread(string clipName, Vector3 offset, double secToNextAction, bool offsetToFixedPos = false){
         for (int i = 0; i < 90; i+=5){
             transform.Rotate(0, 10, 0);
             if(i == 45){
@@ -160,12 +141,12 @@ public class TestAction : MonoBehaviour {
         transform.rotation = Quaternion.Euler(0, 0, 0);
         if (secToNextAction >=0 )
         {
-            yield return new WaitForSeconds(secToNextAction);
+			yield return new WaitForSeconds((float)secToNextAction);
             actionFinished = true;
         }
     }
 
-    public void ChangeAction(string clipName, Vector3 offset, float secToNextAction, bool offsetToFixedPos = false){
+	public void ChangeAction(string clipName, Vector3 offset, double secToNextAction, bool offsetToFixedPos = false){
         StartCoroutine(ChangeActionThread(clipName, offset, secToNextAction, offsetToFixedPos));
     }
 
@@ -224,15 +205,12 @@ public class TestAction : MonoBehaviour {
     }
 
     void printTotalActionTime(){
-        float sum = 0;
+		double sum = 0;
         for (int i = 0; i < actionNumArray.Length; i++){
             if(eachActionDelayArray[i] >= 0f){
                 sum += eachActionDelayArray[i];
-            }else if(applyClipDelay[i]){
-                if(afterClipDelayArray[actionNumArray[i]] > 0f){
-                    sum += afterClipDelayArray[actionNumArray[i]];
-                }
             }
+
         }
         sum += 2; // in and out animation Time
         sum += 0.68f * actionNumArray.Length; // total change anim time
