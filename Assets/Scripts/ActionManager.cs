@@ -26,7 +26,7 @@ public class ActionManager : MonoBehaviour {
 	private void ImportDataToActors(){
 	    List<Script> scripts = ReadJson.data.script;
 		for (int i = 0; i < scripts.Count; i++){
-			if(LevelManager.levelNum == i){
+			if(LevelManager.levelWhichScript[LevelManager.levelNum] == i){
 				List<Actor> actors = scripts[i].actors;
 				for (int j = 0; j < actors.Count; j++){
 					foreach(TestAction ta in actions){

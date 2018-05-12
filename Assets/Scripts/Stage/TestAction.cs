@@ -17,10 +17,12 @@ public class TestAction : MonoBehaviour {
 	public Vector3[] offsetArray;
 	public Transform[] offsetMarkerArray;
 	public bool isFixedPos;
+	public bool isReadyForNext;
 	//public bool[] applyClipDelay;
 	public GameObject smoke;
 
 	void Start () {
+		isReadyForNext = false;
         defaultPosY = new Vector3(0,transform.position.y,0);
         animator = GetComponent<Animator>();
         SetInOut(true);
@@ -51,7 +53,7 @@ public class TestAction : MonoBehaviour {
 
 	private void Update()
 	{
-        if (actionFinished)
+		if (actionFinished && !ScriptManager.isScripting)
         {
             actionFinished = false;
             if (nextActionNum != -1)
@@ -74,7 +76,7 @@ public class TestAction : MonoBehaviour {
             else
             {
 				//SetInOut(false);
-				LevelManager.NextLevel();
+				//LevelManager.NextLevel();
 
             }
         }
@@ -85,6 +87,15 @@ public class TestAction : MonoBehaviour {
                     NextAction();
             }
         }
+	}
+
+	public bool GetReady(){
+		if(isReadyForNext){
+			isReadyForNext = false;
+			return true;
+		}else{
+			return false;
+		}
 	}
 
 
@@ -121,6 +132,11 @@ public class TestAction : MonoBehaviour {
         yield return new WaitForSeconds(0.2f);
         actionFinished = true;
 		isInOuting = false;
+		isReadyForNext = true;
+		if (nextActionNum != -1)
+		{
+			GameObject.Find("Manager").GetComponent<ScriptManager>().changeTextScript(nextActionNum);
+		}
     }
 
 	IEnumerator ChangeActionThread(string clipName, Vector3 offset, double secToNextAction, bool offsetToFixedPos = false){
@@ -143,6 +159,12 @@ public class TestAction : MonoBehaviour {
         {
 			yield return new WaitForSeconds((float)secToNextAction);
             actionFinished = true;
+
+        }
+		isReadyForNext = true;
+		if (nextActionNum != -1)
+        {
+            GameObject.Find("Manager").GetComponent<ScriptManager>().changeTextScript(nextActionNum);
         }
     }
 

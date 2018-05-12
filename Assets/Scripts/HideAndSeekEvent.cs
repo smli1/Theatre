@@ -5,7 +5,7 @@ using UnityEngine;
 public class HideAndSeekEvent : MonoBehaviour {
 
 
-	private GameObject target;
+	public GameObject target;
 	private int stepCount = 0;
 	private int stepNum;
 	private bool isActive;
@@ -17,40 +17,48 @@ public class HideAndSeekEvent : MonoBehaviour {
 
 	private void Update()
 	{
-		if (isActive && target)
+		if (target)
 		{
-			if (Input.GetMouseButtonDown(0))
+			if (Input.GetMouseButtonDown(0) && isActive && !ScriptManager.isScripting)
 			{
 				Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 				RaycastHit raycastHit;
 				if (Physics.Raycast(ray, out raycastHit, 1000f))
 				{
-					
-					Debug.Log(raycastHit.collider.gameObject);
-
-					triggerAnim(raycastHit.collider.gameObject);
+					TriggerAnim(raycastHit.collider.gameObject);
                
 					if (target == raycastHit.collider.gameObject)
-					{
-						executeEvent();
+					{    
+						if(target.tag == "actor"){
+							if(!target.GetComponent<TestAction>().GetReady()){
+								return;
+							}
+						}
 						stepCount++;
-						if (stepCount > stepNum)
+						//print("" + stepCount);
+						if (stepCount <= stepNum)
 						{
-							StopCoroutine("delayActive");
+							ExecuteEvent();
+                            isActive = false;
+                            StartCoroutine(DelayActive(0.5f));
+						}
+
+						if(stepCount == stepNum){                     
+                            stepCount = 0;
 							isActive = false;
 							target = null;
+							StopCoroutine("delayActive");
+                            LevelManager.NextLevel();
 						}
-						else{
-							isActive = false;
-							StartCoroutine(delayActive(0.5f));
-						}
+
+
 					}
 				}
 			}
 		}
 	}
 
-	public void triggerAnim(GameObject gameObject){
+	public void TriggerAnim(GameObject gameObject){
 		Animator animator = gameObject.GetComponent<Animator>();
         if (animator)
         {
@@ -67,14 +75,17 @@ public class HideAndSeekEvent : MonoBehaviour {
 		isActive = true;
 	}
 
-	public IEnumerator delayActive(float sec){
+	public IEnumerator DelayActive(float sec){
 		yield return new WaitForSeconds(sec);
 		isActive = true;
 	}
 
-	void executeEvent(){
+	void ExecuteEvent(){
 		
-       
+		if(target.name == "Book"){
+			GameObject.Find("Manager").GetComponent<ActionManager>().AllActorNextStep();
+			print("Hit!");
+		}
 		if (target.tag == "actor")
 		{
 			if (target.GetComponent<TestAction>().isInOuting)
