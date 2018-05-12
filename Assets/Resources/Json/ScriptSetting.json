@@ -203,24 +203,44 @@
           "showOnActionNum": 3
         },
         {
-          "text": "<color=#ff9df8>Merli </color> .",
+          "text": "<color=#ff9df8>Merli</color> ",
           "showOnActionNum": 3
         },
         {
-          "text": "<color=#ff9df8>Mer. li.</color> ",
+          "text": "<color=#ff9df8>Merli</color> ,Where are you?",
           "showOnActionNum": 3
         },
         {
           "text": "",
-          "showOnActionNum": 2
+          "showOnActionNum": 4
         },
         {
-          "text": "<color=#ff9df8>Sweetie</color> ...",
+          "text": "<color=#ff9df8>Sweetie</color> . . .",
           "showOnActionNum": 5
         },
         {
-          "text": " <color=#ff9df8>Merli</color> !",
-          "showOnActionNum": 7
+          "text": "",
+          "showOnActionNum": 6
+        },
+        {
+          "text": "<color=#ff9df8>Merli</color> !",
+          "showOnActionNum": 8
+        },
+        {
+          "text": "HeHe, <color=#ffc445>Grandma</color> !",
+          "showOnActionNum": 8
+        },
+        {
+          "text": "Time to sleep, <color=#ff9df8>Marli</color> !",
+          "showOnActionNum": 8
+        },
+        {
+          "text": "Before sleeping, Can read me a BOOK? <color=#ffc445>Grandma</color>",
+          "showOnActionNum": 8
+        },
+        {
+          "text": "Okay.",
+          "showOnActionNum": 9
         }
       ]
     }

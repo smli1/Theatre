@@ -8,13 +8,14 @@ public class ScriptManager : MonoBehaviour {
 
 	public static string[] textScripts;
 	public static int[] actionNum;
-	float delayTime = 4f;
+	float delayTime = 2f;
 	[SerializeField]
 	Text textScriptContainer;
 	public static bool isScripting = false;
 
 	private List<string> scriptingText;
 	float timeCount = 0;
+	private string currentText = "";
 
 	private void Start()
 	{
@@ -29,23 +30,36 @@ public class ScriptManager : MonoBehaviour {
 				timeCount = 0;
 				if (scriptingText.Count != 0)
 				{
-					StartCoroutine(ShowWordWithAnimation(scriptingText[0],delayTime/4.0f)); 
-					//textScriptContainer.text = scriptingText[0];
+					currentText = scriptingText[0];
+					StartCoroutine(ShowWordWithAnimation(currentText,delayTime/5.0f)); 
+                  
 					scriptingText.RemoveAt(0);
 				}else{
 					isScripting = false;
 				}
 			}
-			if(Input.GetMouseButtonDown(0)){
-				StopCoroutine("ShowWordWithAnimation");
-				timeCount = delayTime;
-			}
 		}
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            StopCoroutine("ShowWordWithAnimation");
+			if (isScripting)
+			{
+				if(textScriptContainer.text == currentText){
+					timeCount = delayTime;
+				}else{
+					textScriptContainer.text = currentText;
+				}
+			}else{
+				textScriptContainer.text = currentText;
+			}
+        }
 	}
 
 	public void changeTextScript(int currentActionNum){
 		string[] temp = getActionTextScript(currentActionNum);
 		if(temp[0] != "none"){
+			currentText = temp[0];
 			StartCoroutine(ShowWordWithAnimation(temp[0], 0.38f));
 		}
 	}
@@ -67,7 +81,7 @@ public class ScriptManager : MonoBehaviour {
 		{
 			isScripting = true;
 			scriptingText = temp;
-			StartCoroutine(ShowWordWithAnimation(temp[0], delayTime));
+
 			return new string[]{"none"};
 		}
 		else
@@ -79,10 +93,16 @@ public class ScriptManager : MonoBehaviour {
 	private IEnumerator ShowWordWithAnimation(string text, float duration){
 		string[] temp = text.Split(' ');
 		string wholeText = "";
-		foreach(string s in temp){
-			wholeText += s + " ";
+		for (int i = 0; i < temp.Length; i++)
+		{
+			
+			if (i != 0)
+			{
+				wholeText += " ";
+			}
+			wholeText += temp[i];
 			textScriptContainer.text = wholeText;
-			yield return new WaitForSeconds(duration/temp.Length);
+			yield return new WaitForSeconds(0.2f);
 		}
 	}
 
