@@ -7,7 +7,7 @@ public class TestAction : MonoBehaviour {
     bool actionFinished = false;
     bool isInOut = false;
 	public bool  isInOuting = false;
-    int nextActionNum = 0;
+    public int nextActionNum = 0;
     Vector3 defaultPosY;
 
     public string[] clipNames;
@@ -17,12 +17,12 @@ public class TestAction : MonoBehaviour {
 	public Vector3[] offsetArray;
 	public Transform[] offsetMarkerArray;
 	public bool isFixedPos;
-	public bool isReadyForNext;
+	//public bool isReadyForNext;
 	//public bool[] applyClipDelay;
 	public GameObject smoke;
 
 	void Start () {
-		isReadyForNext = false;
+		//isReadyForNext = false;
         defaultPosY = new Vector3(0,transform.position.y,0);
         animator = GetComponent<Animator>();
         SetInOut(true);
@@ -56,6 +56,7 @@ public class TestAction : MonoBehaviour {
 		if (actionFinished && !ScriptManager.isScripting)
         {
             actionFinished = false;
+			//Debug.Log(nextActionNum);
             if (nextActionNum != -1)
             {
 				double delayTime = -1; // -1 equals to pause action
@@ -64,7 +65,8 @@ public class TestAction : MonoBehaviour {
                 }
 
                 ChangeAction(clipNames[actionNumArray[nextActionNum]], getOffsetPosition(nextActionNum), delayTime,isFixedPos);
-                if (nextActionNum >= actionNumArray.Length - 1)
+
+                if (nextActionNum >= actionNumArray.Length -1)
                 {
                     nextActionNum = -1;
                 }
@@ -89,14 +91,14 @@ public class TestAction : MonoBehaviour {
         }
 	}
 
-	public bool GetReady(){
-		if(isReadyForNext){
-			isReadyForNext = false;
-			return true;
-		}else{
-			return false;
-		}
-	}
+	//public bool GetReady(){
+		//if(isReadyForNext){
+		//	isReadyForNext = false;
+		//	return true;
+		//}else{
+		//	return false;
+		//}
+	//}
 
 
 	IEnumerator SetInOutThread(bool trueFalse){
@@ -132,11 +134,7 @@ public class TestAction : MonoBehaviour {
         yield return new WaitForSeconds(0.2f);
         actionFinished = true;
 		isInOuting = false;
-		isReadyForNext = true;
-		if (nextActionNum != -1)
-		{
-			GameObject.Find("Manager").GetComponent<ScriptManager>().changeTextScript(nextActionNum);
-		}
+		//isReadyForNext = true;
     }
 
 	IEnumerator ChangeActionThread(string clipName, Vector3 offset, double secToNextAction, bool offsetToFixedPos = false){
@@ -151,21 +149,22 @@ public class TestAction : MonoBehaviour {
                 }else{
                     transform.position = offset;
                 }
+				if (nextActionNum != -1)
+                {
+                    GameObject.Find("Manager").GetComponent<ScriptManager>().ChangeTextScript(nextActionNum);
+                }
             }
             yield return new WaitForSeconds(0.01f);
         }
         transform.rotation = Quaternion.Euler(0, 0, 0);
-        if (secToNextAction >=0 )
+        if (secToNextAction >= 0 )
         {
 			yield return new WaitForSeconds((float)secToNextAction);
             actionFinished = true;
 
         }
-		isReadyForNext = true;
-		if (nextActionNum != -1)
-        {
-            GameObject.Find("Manager").GetComponent<ScriptManager>().changeTextScript(nextActionNum);
-        }
+		//isReadyForNext = true;
+
     }
 
 	public void ChangeAction(string clipName, Vector3 offset, double secToNextAction, bool offsetToFixedPos = false){

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class MouseSelector : MonoBehaviour {
 
 	Image image;
-	private float selectTime = 2;
+	//private float selectTime = 2;
 	private float count = 0;
 	private bool isAniming = false;
 	private static bool isActive = false;
@@ -99,5 +99,10 @@ public class MouseSelector : MonoBehaviour {
 		count = 0;
         image.fillAmount = 0;
 		isAniming = false;
+	}
+
+	public void Reset()
+	{
+		isActive = false;
 	}
 }

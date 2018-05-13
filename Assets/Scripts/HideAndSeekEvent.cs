@@ -75,7 +75,7 @@ public class HideAndSeekEvent : MonoBehaviour {
 		
 		if(target.name == "Book"){
 			GameObject.Find("Manager").GetComponent<ActionManager>().AllActorNextStep();
-			print("Hit!");
+			//print("Hit!");
 		}
 		if (target.tag == "actor")
 		{

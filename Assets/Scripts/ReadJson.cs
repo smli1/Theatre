@@ -29,6 +29,7 @@ public class Actor
 {
     public string name { get; set; }
     public int actor_num { get; set; }
+    public string actor_color { get; set; }
     public List<string> actor_clip_name { get; set; }
     public int actor_total_steps { get; set; }
     public List<int> actor_steps_action { get; set; }
@@ -42,6 +43,7 @@ public class Actor
 public class Textscript
 {
     public string text { get; set; }
+    public string textColor { get; set; }
     public int showOnActionNum { get; set; }
 }
 

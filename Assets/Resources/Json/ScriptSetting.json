@@ -6,13 +6,14 @@
         {
           "name": "grandma",
           "actor_num": 0,
+          "actor_color" : "#ffc445",
           "actor_clip_name": [
             "Idle_Front",
             "Idle_Back",
             "Idle_Left",
             "Idle_Right"
           ],
-          "actor_total_steps": 9,
+          "actor_total_steps": 10,
           "actor_steps_action": [
             2,
             1,
@@ -22,6 +23,7 @@
             2,
             0,
             2,
+            1,
             0
           ],
           "actor_steps_delay": [
@@ -33,6 +35,7 @@
             -1.0,
             1.0,
             -1.0,
+            1.0,
             1.0
           ],
           "actor_markers_name": "gdma_markers_",
@@ -45,7 +48,8 @@
             "06",
             "07",
             "08",
-            "09"
+            "09",
+            "10"
           ],
           "isFixedPosition": true,
           "actor_step_offset": [
@@ -93,19 +97,25 @@
               "x": 3.0,
               "y": 0.0,
               "z": 0.0
+            },
+            {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
             }
           ]
         },
         {
           "name": "girl",
           "actor_num": 1,
+          "actor_color": "#ff9df8",
           "actor_clip_name": [
             "Idle_Front",
             "Idle_Back",
             "Idle_Left",
             "Idle_Right"
           ],
-          "actor_total_steps": 9,
+          "actor_total_steps": 10,
           "actor_steps_action": [
             1,
             0,
@@ -115,6 +125,7 @@
             0,
             2,
             3,
+            2,
             3
           ],
           "actor_steps_delay": [
@@ -126,6 +137,7 @@
             -1.0,
             1.0,
             -1.0,
+            1.0,
             1.0
           ],
           "actor_markers_name": "girl_markers_",
@@ -138,7 +150,8 @@
             "06",
             "07",
             "08",
-            "09"
+            "09",
+            "10"
           ],
           "isFixedPosition": true,
           "actor_step_offset": [
@@ -183,7 +196,12 @@
               "z": 0.0
             },
             {
-              "x": 3.0,
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            {
+              "x": 0.0,
               "y": 0.0,
               "z": 0.0
             }
@@ -192,55 +210,68 @@
       ],
       "textscript": [
         {
-          "text": "<color=#ff9df8>Merli</color>",
+          "text": "Merli",
+          "textColor": "#ffc445",
           "showOnActionNum": 1
         },
         {
           "text": "'Someone behind the seat.'",
+          "textColor": "#ffffff",
           "showOnActionNum": 1
         },
         {
           "text": "'Candle light her'",
+          "textColor": "#ffffff",
           "showOnActionNum": 2
         },
         {
-          "text": "Where are you? <color=#ff9df8>Merli</color>",
-          "showOnActionNum": 3
-        },
-        {
-          "text": "<color=#ff9df8>Merli</color> ",
+          "text": "Where are you? Merli",
+          "textColor": "#ffc445",
           "showOnActionNum": 3
         },
         {
           "text": "'Find her'",
+          "textColor": "#ffffff",
           "showOnActionNum": 4
         },
         {
-          "text": "<color=#ff9df8>Sweetie</color> . . .",
+          "text": "Sweetie . . .",
+          "textColor": "#ffc445",
           "showOnActionNum": 5
         },
         {
-          "text": "'She disappeared! Where are she?'",
+          "text": "'She disappeared!'",
+          "textColor": "#ffffff",
           "showOnActionNum": 6
         },
         {
-          "text": "<color=#ff9df8>Merli</color> !",
+          "text": "Merli !",
+          "textColor": "#ffc445",
           "showOnActionNum": 8
         },
         {
-          "text": "HeHe, <color=#ffc445>Grandma</color> !",
+          "text": "HeHe, Grandma !",
+          "textColor": "#ff9df8",
           "showOnActionNum": 8
         },
         {
-          "text": "Time to sleep, <color=#ff9df8>Marli</color> !",
+          "text": "Time to sleep, Marli !",
+          "textColor": "#ffc445",
           "showOnActionNum": 8
         },
         {
-          "text": "Before sleeping, Can read me a BOOK? <color=#ffc445>Grandma</color>",
+          "text": "Before sleeping, Can read me a BOOK? Grandma",
+          "textColor": "#ff9df8",
+          "showOnActionNum": 8
+        },
+        {
+          "text": "Book?",
+          "textColor": "#ffc445",
           "showOnActionNum": 8
         },
         {
           "text": "Okay.",
+          "textColor": "#ffc445",
           "showOnActionNum": 9
         }
       ]

@@ -19,7 +19,7 @@ public class ActionManager : MonoBehaviour {
 	public void AllActorNextStep(){
 		foreach(TestAction t in actions){
 			t.NextAction();
-		}
+		}      
 	}
     
 

@@ -37,6 +37,7 @@ public class CameraZoom : MonoBehaviour {
 
 			if (raycastHit.collider.gameObject)
 			{
+				//Debug.Log(raycastHit.collider.gameObject.name);
 				TriggerAnim(raycastHit.collider.gameObject);
 			}
             
@@ -71,4 +72,9 @@ public class CameraZoom : MonoBehaviour {
             animator.Play(gameObject.name + "Anim");
         }
     }
+
+	public void Reset()
+	{
+		isActive = false;
+	}
 }

@@ -4,28 +4,42 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour {
 
-	static public int levelNum = 0;
-	static public int[] levelWhichScript = {0};
-
+	public static int levelNum = 0;
+	public static int[] levelWhichScript = {0};
+	private GameObject manager;
 	private void Start()
 	{
+		manager = GameObject.Find("Manager");
 		InitializeLevel(levelNum);
 	}
 
-	private static void InitializeLevel(int num){
+	public void InitializeLevel(int num){
 		switch(num){
 			case 0: //Hide and seek
-				GameObject.Find("Manager").GetComponent<HideAndSeekEvent>().ActiveIt(GameObject.Find("girl"),6);
+				manager.GetComponent<HideAndSeekEvent>().ActiveIt(GameObject.Find("girl"),6);
 				break;
 			case 1:
-				GameObject.Find("Manager").GetComponent<HideAndSeekEvent>().ActiveIt(GameObject.Find("Book"), 1);
+				manager.GetComponent<HideAndSeekEvent>().ActiveIt(GameObject.Find("Book"), 1);
+				break;
+			case 2:
+				//StageCurtainSwitch.SwitchCurtain(false);
+
+				StartCoroutine(WaitForAnimEnd(2f));
 				break;
 		}
 	}
 
 	public static void NextLevel(){
 		levelNum++;
-		InitializeLevel(levelNum);
+		GameObject.Find("Manager").GetComponent<LevelManager>().InitializeLevel(levelNum);
 	}
 
+	IEnumerator WaitForAnimEnd(float sec){
+		yield return new WaitForSeconds(sec);
+		StageCurtainSwitch.SwitchCurtain(false);
+		manager.GetComponent<ScriptManager>().Reset();
+        GameObject.Find("MouseSelector").GetComponent<MouseSelector>().Reset();
+        Camera.main.GetComponent<CameraZoom>().Reset();
+	}
+   
 }

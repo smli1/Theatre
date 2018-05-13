@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class StageCurtainSwitch : MonoBehaviour {
 
-    Animator animator;
-    bool isOpened = false;
+    static Animator animator;
+    static bool isOpened = false;
 
 	void Start () {
         animator = GetComponent<Animator>();
@@ -13,12 +13,12 @@ public class StageCurtainSwitch : MonoBehaviour {
         isOpened = !isOpened;
 	}
 
-	void Update()
-	{
-        if(Input.GetKeyDown(KeyCode.O)){
-            animator.Play(isOpened ? "CloseCurtain" : "OpenCurtain");
-            isOpened = !isOpened;
-        }	
+	public static void SwitchCurtain(bool isOC){
+		if (!isOC == isOpened )
+		{
+			animator.Play(!isOC ? "CloseCurtain" : "OpenCurtain");
+			isOpened = !isOC;
+		}
 	}
 
     /*
