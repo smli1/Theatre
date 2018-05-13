@@ -8,7 +8,7 @@ public class HideAndSeekEvent : MonoBehaviour {
 	public GameObject target;
 	private int stepCount = 0;
 	private int stepNum;
-	private bool isActive;
+	private static bool isActive;
 
 	public void Start()
 	{
@@ -19,40 +19,29 @@ public class HideAndSeekEvent : MonoBehaviour {
 	{
 		if (target)
 		{
-			if (Input.GetMouseButtonDown(0) && isActive && !ScriptManager.isScripting)
+			if (MouseSelector.getSelected() && isActive && !ScriptManager.isScripting)
 			{
-				Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-				RaycastHit raycastHit;
-				if (Physics.Raycast(ray, out raycastHit, 1000f))
+				Debug.Log("Catched!");
+				//if(target.tag == "actor"){
+					//if(!target.GetComponent<TestAction>().GetReady()){
+					//	return;
+					//}
+				//}
+				stepCount++;
+
+				if (stepCount <= stepNum)
 				{
-					TriggerAnim(raycastHit.collider.gameObject);
-               
-					if (target == raycastHit.collider.gameObject)
-					{    
-						if(target.tag == "actor"){
-							if(!target.GetComponent<TestAction>().GetReady()){
-								return;
-							}
-						}
-						stepCount++;
-						//print("" + stepCount);
-						if (stepCount <= stepNum)
-						{
-							ExecuteEvent();
-                            isActive = false;
-                            StartCoroutine(DelayActive(0.5f));
-						}
+					ExecuteEvent();
+                    isActive = false;
+                    StartCoroutine(DelayActive(0.5f));
+				}
 
-						if(stepCount == stepNum){                     
-                            stepCount = 0;
-							isActive = false;
-							target = null;
-							StopCoroutine("delayActive");
-                            LevelManager.NextLevel();
-						}
-
-
-					}
+				if(stepCount == stepNum){                     
+                    stepCount = 0;
+					isActive = false;
+					target = null;
+					StopCoroutine("delayActive");
+                    LevelManager.NextLevel();            
 				}
 			}
 		}
@@ -73,11 +62,13 @@ public class HideAndSeekEvent : MonoBehaviour {
 		stepCount = 0;
 		this.target = target;
 		isActive = true;
+		MouseSelector.ActiveSelector(target);
 	}
 
 	public IEnumerator DelayActive(float sec){
 		yield return new WaitForSeconds(sec);
 		isActive = true;
+		MouseSelector.ActiveSelector(target);
 	}
 
 	void ExecuteEvent(){

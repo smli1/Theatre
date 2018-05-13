@@ -82,10 +82,10 @@ public class TestAction : MonoBehaviour {
         }
         else
         {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                    NextAction();
-            }
+            //if (Input.GetKeyDown(KeyCode.Space))
+            //{
+             //       NextAction();
+            //}
         }
 	}
 

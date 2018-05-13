@@ -32,7 +32,7 @@ public class Actor
     public List<string> actor_clip_name { get; set; }
     public int actor_total_steps { get; set; }
     public List<int> actor_steps_action { get; set; }
-	public List<double> actor_steps_delay { get; set; }
+    public List<double> actor_steps_delay { get; set; }
     public string actor_markers_name { get; set; }
     public List<string> actor_markers_num { get; set; }
     public bool isFixedPosition { get; set; }
@@ -47,6 +47,7 @@ public class Textscript
 
 public class Script
 {
+    public string name { get; set; }
     public List<Actor> actors { get; set; }
     public List<Textscript> textscript { get; set; }
 }

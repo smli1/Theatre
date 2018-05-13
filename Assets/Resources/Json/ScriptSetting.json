@@ -1,6 +1,7 @@
 {
   "script": [
     {
+      "name": "Scene_01",
       "actors": [
         {
           "name": "grandma",
@@ -195,7 +196,11 @@
           "showOnActionNum": 1
         },
         {
-          "text": "",
+          "text": "'Someone behind the seat.'",
+          "showOnActionNum": 1
+        },
+        {
+          "text": "'Candle light her'",
           "showOnActionNum": 2
         },
         {
@@ -207,11 +212,7 @@
           "showOnActionNum": 3
         },
         {
-          "text": "<color=#ff9df8>Merli</color> ,Where are you?",
-          "showOnActionNum": 3
-        },
-        {
-          "text": "",
+          "text": "'Find her'",
           "showOnActionNum": 4
         },
         {
@@ -219,7 +220,7 @@
           "showOnActionNum": 5
         },
         {
-          "text": "",
+          "text": "'She disappeared! Where are she?'",
           "showOnActionNum": 6
         },
         {
