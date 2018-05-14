@@ -14,7 +14,7 @@ public class ReadJson : MonoBehaviour {
 		//Debug.Log(jsonString);
 		data = JsonConvert.DeserializeObject<RootObject>(jsonString);
 		//Debug.Log(data.script[0].actors[0].name);
-		Debug.Log(data.script[0]);
+		//Debug.Log(data.script[0]);
 	}   
 }
 

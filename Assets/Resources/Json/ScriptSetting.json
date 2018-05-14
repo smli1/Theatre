@@ -215,7 +215,7 @@
           "showOnActionNum": 1
         },
         {
-          "text": "'Someone behind the seat.'",
+          "text": "'Where is her?'",
           "textColor": "#ffffff",
           "showOnActionNum": 1
         },
@@ -267,6 +267,11 @@
         {
           "text": "Book?",
           "textColor": "#ffc445",
+          "showOnActionNum": 8
+        },
+        {
+          "text": "'Where is the BOOK?'",
+          "textColor": "#ffffff",
           "showOnActionNum": 8
         },
         {
