@@ -280,6 +280,55 @@
           "showOnActionNum": 9
         }
       ]
+    },
+    {
+    "name" : "Scene_02",
+      "actors": [
+        {
+          "name": "Fairy",
+          "actor_num": 0,
+          "actor_color": "#ffffff",
+          "actor_clip_name": [
+            "Fairy_Idle"
+          ],
+          "actor_total_steps": 10,
+          "actor_steps_action": [
+           0
+          ],
+          "actor_steps_delay": [
+            -1.0
+          ],
+          "actor_markers_name": "gdma_markers_",
+          "actor_markers_num": [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10"
+          ],
+          "isFixedPosition": true,
+          "actor_step_offset": [
+            {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            }
+          ]
+        }
+      ],
+      "textscript": [
+        {
+          "text": "0",
+          "textColor": "#ffffff",
+          "showOnActionNum": 0
+        }
+      ]
+       
     }
   ]
 }

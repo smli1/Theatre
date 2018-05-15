@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 224271674316297840}
   - component: {fileID: 222107033773525162}
   - component: {fileID: 114074115416129804}
+  - component: {fileID: 114471892814292592}
   m_Layer: 5
   m_Name: Cell
   m_TagString: Untagged
@@ -40,7 +41,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.83823526, g: 0.62502086, b: 0.43144464, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -55,6 +56,19 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114471892814292592
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1850348076182026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b524e7d491e294692bc63f567c710002, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  x: 0
+  y: 0
 --- !u!222 &222107033773525162
 CanvasRenderer:
   m_ObjectHideFlags: 1
