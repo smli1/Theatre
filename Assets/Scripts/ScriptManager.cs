@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class ScriptManager : MonoBehaviour {
+public class ScriptManager : MonoBehaviour
+{
 
 	public static string[] textScripts;
 	public static string[] textScriptsColor;
@@ -23,11 +24,29 @@ public class ScriptManager : MonoBehaviour {
 
 	private void Start()
 	{
+		Reset();
+	}
+
+	public void Reset()
+	{
+		isActive = false;
+		currentIndex = 0;
+		lastActionNum = -1;
+		timeCount = 0;
+		isScripting = false;
+		StopCoroutine("ShowWordWithAnimation");
+		currentText = "";
+		textScriptContainer = GameObject.Find("TextScript").GetComponent<Text>();
 		ImportDataToTextScripts();
 	}
-    
+
 	private void Update()
 	{
+		if(!textScriptContainer){
+			Debug.Log("textContainer disappear");
+			textScriptContainer = GameObject.Find("TextScript").GetComponent<Text>();
+			return;
+		}
 		if (isActive)
 		{
 			if (isScripting)
@@ -38,6 +57,7 @@ public class ScriptManager : MonoBehaviour {
 					timeCount = 0;
 					if (scriptingTextIndex.Count != 0)
 					{
+						//Debug.Log(""+currentText);
 						currentText = textScripts[scriptingTextIndex[0]];
 						currentIndex = scriptingTextIndex[0];
 						StartCoroutine(ShowWordWithAnimation(currentText, delayTime / 5.0f));
@@ -76,7 +96,8 @@ public class ScriptManager : MonoBehaviour {
 		}
 	}
 
-	public void ChangeTextScript(int currentActionNum){
+	public void ChangeTextScript(int currentActionNum)
+	{
 		isActive = true;
 		if (currentActionNum != lastActionNum)
 		{
@@ -91,11 +112,14 @@ public class ScriptManager : MonoBehaviour {
 		}
 	}
 
-	public int[] getActionTextScript(int currentActionNum){
+	public int[] getActionTextScript(int currentActionNum)
+	{
 		//string temp = "none";
 		List<int> temp = new List<int>();
-		for (int i = 0; i < actionNum.Length; i++){
-			if(currentActionNum == actionNum[i]){
+		for (int i = 0; i < actionNum.Length; i++)
+		{
+			if (currentActionNum == actionNum[i])
+			{
 				temp.Add(i);
 
 			}
@@ -111,20 +135,21 @@ public class ScriptManager : MonoBehaviour {
 			isScripting = true;
 			scriptingTextIndex = temp;
 			currentIndex = scriptingTextIndex[0];
-			return new int[]{-1};
+			return new int[] { -1 };
 		}
 		else
 		{
 			return new int[] { -1 };
 		}
 	}
-	private IEnumerator ShowWordWithAnimation(string text, float duration){
+	private IEnumerator ShowWordWithAnimation(string text, float duration)
+	{
 		string[] temp = text.Split(' ');
 		string wholeText = "";
 		for (int i = 0; i < temp.Length; i++)
 		{
-			
-			if (i != 0 )
+
+			if (i != 0)
 			{
 				wholeText += " ";
 			}
@@ -136,31 +161,25 @@ public class ScriptManager : MonoBehaviour {
 	}
 
 	private void ImportDataToTextScripts()
-    {
-        List<Script> scripts = ReadJson.data.script;
-        for (int i = 0; i < scripts.Count; i++)
-        {
-            if (LevelManager.levelWhichScript[LevelManager.levelNum] == i)
-            {
+	{
+		List<Script> scripts = ReadJson.data.script;
+		for (int i = 0; i < scripts.Count; i++)
+		{
+			if (LevelManager.levelWhichScript[LevelManager.levelNum] == i)
+			{
 				List<Textscript> tsTemp = scripts[i].textscript;
 				textScripts = new string[tsTemp.Count];
 				textScriptsColor = new string[tsTemp.Count];
 				actionNum = new int[tsTemp.Count];
-				for (int j = 0; j < tsTemp.Count; j++){
+				for (int j = 0; j < tsTemp.Count; j++)
+				{
 					textScripts[j] = tsTemp[j].text;
+					//Debug.Log(textScripts[j]);
 					textScriptsColor[j] = tsTemp[j].textColor;
 					actionNum[j] = tsTemp[j].showOnActionNum;
 				}
-                return;
-            }
-        }
-    }
-
-	public void Reset()
-	{
-		isActive = false;
-		StopCoroutine("ShowWordWithAnimation");      
-		currentText = "";
-		textScriptContainer.text = "";
+				return;
+			}
+		}
 	}
 }

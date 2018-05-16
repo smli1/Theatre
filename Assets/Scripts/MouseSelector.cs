@@ -13,18 +13,20 @@ public class MouseSelector : MonoBehaviour {
 	private static bool isSelected = false;
 	private static bool isPressingDown = false;
 	static GameObject target;
-	// Use this for initialization
+
 	void Start () {
 		image = GetComponent<Image>();
 	}
-	
-	// Update is called once per frame
+
+
 	void Update () {
 		transform.position = Input.mousePosition;
+		Debug.Log("Active!:(Update) " + isActive);
 		if (!isAniming && isActive && !ScriptManager.isScripting)
 		{
 			if (Input.GetMouseButton(0) && image.fillAmount < 1f && !isPressingDown)
 			{
+				
 				
 				Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 				RaycastHit raycastHit;
@@ -48,6 +50,7 @@ public class MouseSelector : MonoBehaviour {
                 isAniming = true;
                 isSelected = true;
                 isActive = false;
+				Debug.Log("Active!: " +" false");
                 CameraZoom.isActive = false;
 			}
 			else if (Input.GetMouseButtonUp(0))
@@ -59,6 +62,7 @@ public class MouseSelector : MonoBehaviour {
 					isAniming = true;
 					isSelected = true;
 					isActive = false;
+					Debug.Log("Active!: " + " false");
 					CameraZoom.isActive = false;
 				}else{
 					count = 0;
@@ -71,21 +75,21 @@ public class MouseSelector : MonoBehaviour {
 				CameraZoom.isActive = true;
 			}
 		}
+		//Debug.Log("Active!Update: " + isActive);
 	}
 
 	public static void ActiveSelector(GameObject target){
-		if (!isActive)
-		{
+		//Debug.Log("target: "+target);
 			MouseSelector.target = target;
 			isActive = true;
 			if (!isPressingDown)
 			{
 				CameraZoom.isActive = true;
 			}
-		}
+		Debug.Log("Active!: " + isActive);
 	}
 
-	public static bool getSelected(){
+	public static bool GetSelected(){
 		if(isSelected){
 			bool temp = isSelected;
 			isSelected = false;
@@ -103,6 +107,15 @@ public class MouseSelector : MonoBehaviour {
 
 	public void Reset()
 	{
+		Debug.Log("Selector reset");
 		isActive = false;
+		Debug.Log("Active!: " + " false");
+		isAniming = false;
+		isPressingDown = false;
+		count = 0;
+		if (image)
+		{
+			image.fillAmount = 0;
+		}
 	}
 }

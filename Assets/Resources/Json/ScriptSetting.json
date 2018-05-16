@@ -6,14 +6,15 @@
         {
           "name": "grandma",
           "actor_num": 0,
-          "actor_color" : "#ffc445",
+          "actor_color": "#ffc445",
           "actor_clip_name": [
             "Idle_Front",
             "Idle_Back",
             "Idle_Left",
             "Idle_Right"
           ],
-          "actor_total_steps": 10,
+          "start_action_step": 0,
+          "actor_total_steps": 12,
           "actor_steps_action": [
             2,
             1,
@@ -24,6 +25,8 @@
             0,
             2,
             1,
+            0,
+            0,
             0
           ],
           "actor_steps_delay": [
@@ -35,6 +38,8 @@
             -1.0,
             1.0,
             -1.0,
+            1.0,
+            1.0,
             1.0,
             1.0
           ],
@@ -49,57 +54,14 @@
             "07",
             "08",
             "09",
+            "10",
+            "10",
             "10"
           ],
           "isFixedPosition": true,
           "actor_step_offset": [
             {
               "x": 3.0,
-              "y": 0.0,
-              "z": 0.0
-            },
-            {
-              "x": -5.0,
-              "y": 0.0,
-              "z": 0.0
-            },
-            {
-              "x": 4.0,
-              "y": 0.0,
-              "z": 0.0
-            },
-            {
-              "x": -7.0,
-              "y": 0.0,
-              "z": 0.0
-            },
-            {
-              "x": -10,
-              "y": 0.0,
-              "z": 0.0
-            },
-            {
-              "x": -6,
-              "y": 0.0,
-              "z": 0.0
-            },
-            {
-              "x": -6,
-              "y": 0.0,
-              "z": 0.0
-            },
-            {
-              "x": 3.0,
-              "y": 0.0,
-              "z": 0.0
-            },
-            {
-              "x": 3.0,
-              "y": 0.0,
-              "z": 0.0
-            },
-            {
-              "x": 0.0,
               "y": 0.0,
               "z": 0.0
             }
@@ -115,7 +77,8 @@
             "Idle_Left",
             "Idle_Right"
           ],
-          "actor_total_steps": 10,
+          "start_action_step": 0,
+          "actor_total_steps": 12,
           "actor_steps_action": [
             1,
             0,
@@ -126,6 +89,8 @@
             2,
             3,
             2,
+            3,
+            3,
             3
           ],
           "actor_steps_delay": [
@@ -137,6 +102,8 @@
             -1.0,
             1.0,
             -1.0,
+            1.0,
+            1.0,
             1.0,
             1.0
           ],
@@ -151,6 +118,8 @@
             "07",
             "08",
             "09",
+            "10",
+            "10",
             "10"
           ],
           "isFixedPosition": true,
@@ -159,47 +128,30 @@
               "x": 3.0,
               "y": 0.0,
               "z": 0.0
-            },
-            {
-              "x": -5.0,
-              "y": 0.0,
-              "z": 0.0
-            },
-            {
-              "x": 4.0,
-              "y": 0.0,
-              "z": 0.0
-            },
-            {
-              "x": -7.0,
-              "y": 0.0,
-              "z": 0.0
-            },
-            {
-              "x": -10,
-              "y": 0.0,
-              "z": 0.0
-            },
-            {
-              "x": -6,
-              "y": 0.0,
-              "z": 0.0
-            },
-            {
-              "x": -6,
-              "y": 0.0,
-              "z": 0.0
-            },
-            {
-              "x": 3.0,
-              "y": 0.0,
-              "z": 0.0
-            },
-            {
-              "x": 0.0,
-              "y": 0.0,
-              "z": 0.0
-            },
+            }
+          ]
+        },
+        {
+          "name": "Fairy",
+          "actor_num": 0,
+          "actor_color": "#ffffff",
+          "actor_clip_name": [
+            "Fairy_Idle"
+          ],
+          "start_action_step": 11,
+          "actor_total_steps": 1,
+          "actor_steps_action": [
+            0
+          ],
+          "actor_steps_delay": [
+            -1.0
+          ],
+          "actor_markers_name": "fairy_markers_",
+          "actor_markers_num": [
+            "01"
+          ],
+          "isFixedPosition": true,
+          "actor_step_offset": [
             {
               "x": 0.0,
               "y": 0.0,
@@ -278,38 +230,158 @@
           "text": "Okay.",
           "textColor": "#ffc445",
           "showOnActionNum": 9
+        },
+        {
+          "text": "This yearning story.",
+          "textColor": "#ffc445",
+          "showOnActionNum": 10
+        },
+        {
+          "text": "Once upon a time.",
+          "textColor": "#ffc445",
+          "showOnActionNum": 10
+        },
+        {
+          "text": "There have many fairies, which lived in the world.",
+          "textColor": "#ffc445",
+          "showOnActionNum": 11
         }
       ]
     },
     {
-    "name" : "Scene_02",
+      "name": "Scene_02",
       "actors": [
         {
-          "name": "Fairy",
+          "name": "Fairy_2",
           "actor_num": 0,
           "actor_color": "#ffffff",
           "actor_clip_name": [
             "Fairy_Idle"
           ],
-          "actor_total_steps": 10,
+          "start_action_step": 0,
+          "actor_total_steps": 16,
           "actor_steps_action": [
-           0
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
           ],
           "actor_steps_delay": [
-            -1.0
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.5,
+            1.0,
+            1.0,
+            1.5,
+            1.0,
+            1.5,
+            1.0,
+            -1.0,
+            0.5,
+            0.5,
+            0.5,
+            0.5
           ],
-          "actor_markers_name": "gdma_markers_",
+          "actor_markers_name": "fairy_2_markers_",
           "actor_markers_num": [
             "01",
             "02",
             "03",
             "04",
             "05",
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "01",
+            "02",
+            "06",
             "06",
             "07",
-            "08",
-            "09",
-            "10"
+            "08"
+          ],
+          "isFixedPosition": true,
+          "actor_step_offset": [
+            {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            }
+          ]
+        },
+        {
+          "name": "Fairy_3",
+          "actor_num": 0,
+          "actor_color": "#ffffff",
+          "actor_clip_name": [
+            "Fairy_Idle"
+          ],
+          "start_action_step": 13,
+          "actor_total_steps": 3,
+          "actor_steps_action": [
+            0,
+            0,
+            0
+          ],
+          "actor_steps_delay": [
+            0.5,
+            0.5,
+            0.5
+          ],
+          "actor_markers_name": "fairy_3_markers_",
+          "actor_markers_num": [
+            "01",
+            "02",
+            "03"
+          ],
+          "isFixedPosition": true,
+          "actor_step_offset": [
+            {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            }
+          ]
+        },
+        {
+          "name": "Fairy_4",
+          "actor_num": 0,
+          "actor_color": "#ffffff",
+          "actor_clip_name": [
+            "Fairy_Idle"
+          ],
+          "start_action_step": 13,
+          "actor_total_steps": 3,
+          "actor_steps_action": [
+            0,
+            0,
+            0
+          ],
+          "actor_steps_delay": [
+            0.5,
+            0.5,
+            0.5
+          ],
+          "actor_markers_name": "fairy_4_markers_",
+          "actor_markers_num": [
+            "01",
+            "02",
+            "03"
           ],
           "isFixedPosition": true,
           "actor_step_offset": [
@@ -323,12 +395,17 @@
       ],
       "textscript": [
         {
-          "text": "0",
+          "text": "'Catch it!'",
           "textColor": "#ffffff",
           "showOnActionNum": 0
+        },
+        {
+          "text": "'Catch it!'",
+          "textColor": "#ffffff",
+          "showOnActionNum": 1
         }
       ]
-       
+
     }
   ]
 }

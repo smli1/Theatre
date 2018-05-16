@@ -16,10 +16,15 @@ public class CameraZoom : MonoBehaviour {
 		originalRotation = transform.rotation;
         chaseTarget = GameObject.Find("StageCenter");
 		originalFOV = Camera.main.fieldOfView;
+		isActive = false;
 	}
 
 
 	void FixedUpdate () {
+		if(!chaseTarget){
+			chaseTarget = GameObject.Find("StageCenter");
+			return;
+		}
 		if (Input.GetMouseButton(0) && isActive && !ScriptManager.isScripting)
 		{
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -75,6 +80,10 @@ public class CameraZoom : MonoBehaviour {
 
 	public void Reset()
 	{
-		isActive = false;
+		Debug.Log("Camera Zoom reset");
+		//isActive = false;
+		originalRotation = transform.rotation;
+        chaseTarget = GameObject.Find("StageCenter");
+        originalFOV = Camera.main.fieldOfView;
 	}
 }

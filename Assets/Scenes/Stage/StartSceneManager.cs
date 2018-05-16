@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class StartSceneManager : MonoBehaviour {
+	bool isClicked = false;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
 	void Update () {
-		if(Input.GetMouseButtonDown(0)){
-			StartCoroutine(NextAction());
+		if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex == 0 && !isClicked)
+		{
+			if (Input.GetMouseButtonDown(0))
+			{
+				isClicked = true;
+				StartCoroutine(NextAction());
+			}
 		}
 	}
 
@@ -25,6 +25,6 @@ public class StartSceneManager : MonoBehaviour {
 			yield return new WaitForSeconds(0.02f);
 		}
 		yield return new WaitForSeconds(3f);
-		SceneManager.NextScene();
+		GameObject.Find("Manager").GetComponent<GameSceneManager>().NextScene();
 	}
 }

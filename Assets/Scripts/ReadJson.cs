@@ -10,12 +10,16 @@ public class ReadJson : MonoBehaviour {
 	public static RootObject data;
 
 	void Awake () {
-		jsonString = File.ReadAllText(Application.dataPath + "/Resources/Json/ScriptSetting.json");
-		//Debug.Log(jsonString);
-		data = JsonConvert.DeserializeObject<RootObject>(jsonString);
+		Reset();
 		//Debug.Log(data.script[0].actors[0].name);
 		//Debug.Log(data.script[0]);
-	}   
+	}
+
+	public void Reset()
+	{
+		jsonString = File.ReadAllText(Application.dataPath + "/Resources/Json/ScriptSetting.json");
+        data = JsonConvert.DeserializeObject<RootObject>(jsonString);
+	}
 }
 
 public class ActorStepOffset
@@ -31,6 +35,7 @@ public class Actor
     public int actor_num { get; set; }
     public string actor_color { get; set; }
     public List<string> actor_clip_name { get; set; }
+    public int start_action_step { get; set; }
     public int actor_total_steps { get; set; }
     public List<int> actor_steps_action { get; set; }
     public List<double> actor_steps_delay { get; set; }

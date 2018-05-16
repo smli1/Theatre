@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TestAction : MonoBehaviour {
     Animator animator;
@@ -17,43 +18,88 @@ public class TestAction : MonoBehaviour {
 	public Vector3[] offsetArray;
 	public Transform[] offsetMarkerArray;
 	public bool isFixedPos;
+	public int startActionNum;
 	//public bool isReadyForNext;
 	//public bool[] applyClipDelay;
 	public GameObject smoke;
+	private string lastMarkerName = "";
+	private bool isDisabled = false;
+    
+	private static int classActionNum = 0;
 
+    /*
 	void Start () {
 		//isReadyForNext = false;
-        defaultPosY = new Vector3(0,transform.position.y,0);
-        animator = GetComponent<Animator>();
-        SetInOut(true);
-        //StartCoroutine(changeAction(clipNames[2], new Vector3(1,0,0), 0.2f));
+        
         Initialize();
 
 	}
+	*/
 
-    void Initialize(){
-        if(offsetMarkerArray == null){
-            offsetMarkerArray = new Transform[actionNumArray.Length];
-        }
-        if (offsetMarkerArray == null)
-        {
-            offsetMarkerArray = new Transform[actionNumArray.Length];
-        }
-        if (offsetArray == null)
-        {
-            offsetArray = new Vector3[actionNumArray.Length];
-        }
-        if (eachActionDelayArray == null)
-        {
-			eachActionDelayArray = new double[actionNumArray.Length];
-        }
+	public static void updateClassActionNum(int num){
+		if(num > classActionNum){
+			classActionNum = num;
+			//Debug.Log("classActionNum: "+classActionNum);
+		}
+	}
 
-        printTotalActionTime();
+	public void Initialize(){
+		defaultPosY = new Vector3(0, transform.position.y, 0);
+        animator = GetComponent<Animator>();
+        if (startActionNum == 0)
+        {
+            SetInOut(true);
+        }
+        else
+        {
+            Disable();
+        }
+    }
+
+	private void Disable(){
+		if (!isDisabled)
+		{
+			isDisabled = true;
+			for (int i = 0; i < transform.childCount; i++)
+			{
+				transform.GetChild(i).gameObject.SetActive(false);
+			}
+			Image image = GetComponent<Image>();
+			if (image)
+			{
+				image.enabled = false;
+			}
+			if (animator)
+			{
+				animator.enabled = false;
+			}
+		}
+	}
+
+	private void Enable()
+    {
+		if (isDisabled)
+		{
+			isDisabled = false;
+			for (int i = 0; i < transform.childCount; i++)
+			{
+				transform.GetChild(i).gameObject.SetActive(true);
+			}
+			Image image = GetComponent<Image>();
+			if (image)
+			{
+				image.enabled = true;
+			}
+			if (animator)
+			{
+				animator.enabled = true;
+			}
+		}
     }
 
 	private void Update()
 	{
-		if (actionFinished && !ScriptManager.isScripting)
+		if (actionFinished && !ScriptManager.isScripting && classActionNum >= startActionNum)
         {
             actionFinished = false;
 			//Debug.Log(nextActionNum);
@@ -63,32 +109,32 @@ public class TestAction : MonoBehaviour {
                 if(eachActionDelayArray[nextActionNum] >= 0){
                     delayTime = eachActionDelayArray[nextActionNum];
                 }
-
-                ChangeAction(clipNames[actionNumArray[nextActionNum]], getOffsetPosition(nextActionNum), delayTime,isFixedPos);
+				//Debug.Log("NAN: "+nextActionNum+ " / " + delayTime);
+				string mName = lastMarkerName;
+				//Debug.Log("LastMarker: "+mName);
+				Vector3 temp = GetOffsetPosition(nextActionNum);
+				ChangeNextAction(clipNames[actionNumArray[nextActionNum]], temp, delayTime, isFixedPos,mName != lastMarkerName);
 
                 if (nextActionNum >= actionNumArray.Length -1)
                 {
                     nextActionNum = -1;
+					ActionManager.FinishedAllAction();
                 }
                 else
                 {
                     nextActionNum++;
+					updateClassActionNum(nextActionNum);
                 }
             }
-            else
-            {
-				//SetInOut(false);
-				//LevelManager.NextLevel();
+        }
 
-            }
-        }
-        else
-        {
-            //if (Input.GetKeyDown(KeyCode.Space))
-            //{
-             //       NextAction();
-            //}
-        }
+		if (classActionNum == startActionNum && startActionNum != 0 && isDisabled)
+		{
+			nextActionNum = 0;
+			Debug.Log(transform.name + ": " + nextActionNum + " In!");
+			SetInOut(true);
+			return;
+		}
 	}
 
 	//public bool GetReady(){
@@ -101,14 +147,14 @@ public class TestAction : MonoBehaviour {
 	//}
 
 
-	IEnumerator SetInOutThread(bool trueFalse){
-        int num = 50;
-
+	IEnumerator SetInOutThread(bool trueFalse){      
+		int num = 50;      
         if (trueFalse && !isInOut)
         {
+			Enable();
             isInOut = true;
             Instantiate(smoke,transform.position-Vector3.up,Quaternion.identity);
-            setEnabledRenderers(trueFalse);
+            SetEnabledRenderers(trueFalse);
             for (int i = 0; i < num; i++)
             {
                 transform.Rotate(new Vector3(0, i, 0));
@@ -126,7 +172,7 @@ public class TestAction : MonoBehaviour {
                 transform.Rotate(new Vector3(0, i, 0));
                 yield return new WaitForSeconds(0.01f);
             }
-            setEnabledRenderers(trueFalse);
+            SetEnabledRenderers(trueFalse);
             Instantiate(smoke, transform.position- Vector3.up, Quaternion.identity);
         }
 
@@ -137,10 +183,24 @@ public class TestAction : MonoBehaviour {
 		//isReadyForNext = true;
     }
 
+	IEnumerator NoChangeActionThread(string clipName, Vector3 offset, double secToNextAction, bool offsetToFixedPos = false){
+		yield return new WaitForSeconds(0.09f);
+		if (nextActionNum != -1)
+		{
+			GameObject.Find("Manager").GetComponent<ScriptManager>().ChangeTextScript(nextActionNum);
+		}
+		yield return new WaitForSeconds(0.09f);
+		if (secToNextAction >= 0)
+        {
+            yield return new WaitForSeconds((float)secToNextAction);
+            actionFinished = true;         
+        }      
+	}
+
 	IEnumerator ChangeActionThread(string clipName, Vector3 offset, double secToNextAction, bool offsetToFixedPos = false){
-        for (int i = 0; i < 90; i+=5){
+        for (int i = 0; i < 18; i++){
             transform.Rotate(0, 10, 0);
-            if(i == 45){
+            if(i == 9){
                 transform.rotation = Quaternion.Euler(0, -90, 0);
                 animator.Play(clipName);
                 if (!offsetToFixedPos)
@@ -158,17 +218,23 @@ public class TestAction : MonoBehaviour {
         }
         transform.rotation = Quaternion.Euler(0, 0, 0);
         if (secToNextAction >= 0 )
-        {
+		{
 			yield return new WaitForSeconds((float)secToNextAction);
             actionFinished = true;
+			//Debug.Log("secToNextAction: "+secToNextAction+" / "+"curAct: "+(nextActionNum - 1));
 
         }
 		//isReadyForNext = true;
 
     }
 
-	public void ChangeAction(string clipName, Vector3 offset, double secToNextAction, bool offsetToFixedPos = false){
-        StartCoroutine(ChangeActionThread(clipName, offset, secToNextAction, offsetToFixedPos));
+	public void ChangeNextAction(string clipName, Vector3 offset, double secToNextAction, bool offsetToFixedPos, bool haveChangeAction){
+		if (haveChangeAction)
+		{
+			StartCoroutine(ChangeActionThread(clipName, offset, secToNextAction, offsetToFixedPos));
+		}else{
+			StartCoroutine(NoChangeActionThread(clipName, offset, secToNextAction, offsetToFixedPos));
+		}
     }
 
     public void SetInOut(bool trueFalse){
@@ -177,12 +243,16 @@ public class TestAction : MonoBehaviour {
     }
 
     public void NextAction(){
-        StopCoroutine("ChangeActionThread");
-        actionFinished = true;
+		//Debug.Log("NextAction");
+		if (this)
+		{
+			StopCoroutine("ChangeActionThread");
+			actionFinished = true;
+		}
+
     }
 
-
-    void setEnabledRenderers(bool e){
+	private void SetEnabledRenderers(bool e){
         SpriteRenderer[] renderers;
         renderers = GetComponentsInChildren<SpriteRenderer>();
         //Debug.Log(renderers.Length);
@@ -192,11 +262,12 @@ public class TestAction : MonoBehaviour {
         }
     }
 
-    Vector3 getOffsetPosition(int num){
+	Vector3 GetOffsetPosition(int num){
         if (num < offsetMarkerArray.Length)
         {
             if (offsetMarkerArray[num] != null)
             {
+				lastMarkerName = offsetMarkerArray[num].name;
                 return offsetMarkerArray[num].position;
             }else{
                 if (num < offsetArray.Length)
@@ -225,7 +296,7 @@ public class TestAction : MonoBehaviour {
         return Vector3.zero;
     }
 
-    void printTotalActionTime(){
+	void PrintTotalActionTime(){
 		double sum = 0;
         for (int i = 0; i < actionNumArray.Length; i++){
             if(eachActionDelayArray[i] >= 0f){
