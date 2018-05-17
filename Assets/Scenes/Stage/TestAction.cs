@@ -12,29 +12,21 @@ public class TestAction : MonoBehaviour {
     Vector3 defaultPosY;
 
     public string[] clipNames;
-	//public double[] afterClipDelayArray;
 	public int[] actionNumArray;
 	public double[] eachActionDelayArray;
 	public Vector3[] offsetArray;
 	public Transform[] offsetMarkerArray;
 	public bool isFixedPos;
 	public int startActionNum;
-	//public bool isReadyForNext;
-	//public bool[] applyClipDelay;
 	public GameObject smoke;
 	private string lastMarkerName = "";
 	private bool isDisabled = false;
-    
+	public bool isNeedFadeOut = false;
+	public bool isNeedFadeIn = true;
+	private bool isInitailized = false;
+	public bool isSpinable = true;
+
 	private static int classActionNum = 0;
-
-    /*
-	void Start () {
-		//isReadyForNext = false;
-        
-        Initialize();
-
-	}
-	*/
 
 	public static void updateClassActionNum(int num){
 		if(num > classActionNum){
@@ -44,17 +36,33 @@ public class TestAction : MonoBehaviour {
 	}
 
 	public void Initialize(){
+		//classActionNum = 0;
+		if(isInitailized){
+			return;	
+		}
+		isInitailized = true;
 		defaultPosY = new Vector3(0, transform.position.y, 0);
         animator = GetComponent<Animator>();
+		//Debug.Log(gameObject.name + " / "+startActionNum);
         if (startActionNum == 0)
         {
-            SetInOut(true);
+			if (isNeedFadeIn)
+			{
+				SetInOut(true);
+			}else{
+				isInOut = true;
+				Enable();
+				actionFinished = true;
+
+			}
         }
         else
         {
+			//Debug.Log(gameObject.name+" disable");
             Disable();
         }
-    }
+
+	}
 
 	private void Disable(){
 		if (!isDisabled)
@@ -102,14 +110,14 @@ public class TestAction : MonoBehaviour {
 		if (actionFinished && !ScriptManager.isScripting && classActionNum >= startActionNum)
         {
             actionFinished = false;
-			//Debug.Log(nextActionNum);
+
             if (nextActionNum != -1)
             {
 				double delayTime = -1; // -1 equals to pause action
                 if(eachActionDelayArray[nextActionNum] >= 0){
                     delayTime = eachActionDelayArray[nextActionNum];
                 }
-				//Debug.Log("NAN: "+nextActionNum+ " / " + delayTime);
+
 				string mName = lastMarkerName;
 				//Debug.Log("LastMarker: "+mName);
 				Vector3 temp = GetOffsetPosition(nextActionNum);
@@ -118,34 +126,38 @@ public class TestAction : MonoBehaviour {
                 if (nextActionNum >= actionNumArray.Length -1)
                 {
                     nextActionNum = -1;
-					ActionManager.FinishedAllAction();
+					//actionFinished = true;
                 }
                 else
                 {
                     nextActionNum++;
 					updateClassActionNum(nextActionNum);
                 }
-            }
+			}else if(nextActionNum == -1){
+				if(eachActionDelayArray[eachActionDelayArray.Length-1] <= -1){
+
+					return;
+				}
+				ActionManager.FinishedAllAction(this);
+				if (isNeedFadeOut)
+                {
+					if (name == "Mail_1")
+                    {
+                        Debug.Log("Mail_1 : setOut");
+                    }
+                    SetInOut(false);
+                }
+			}
         }
 
 		if (classActionNum == startActionNum && startActionNum != 0 && isDisabled)
 		{
 			nextActionNum = 0;
-			Debug.Log(transform.name + ": " + nextActionNum + " In!");
+			//smDebug.Log(transform.name + ": " + nextActionNum + " In!");
 			SetInOut(true);
 			return;
 		}
 	}
-
-	//public bool GetReady(){
-		//if(isReadyForNext){
-		//	isReadyForNext = false;
-		//	return true;
-		//}else{
-		//	return false;
-		//}
-	//}
-
 
 	IEnumerator SetInOutThread(bool trueFalse){      
 		int num = 50;      
@@ -154,34 +166,54 @@ public class TestAction : MonoBehaviour {
 			Enable();
             isInOut = true;
             Instantiate(smoke,transform.position-Vector3.up,Quaternion.identity);
-            SetEnabledRenderers(trueFalse);
-            for (int i = 0; i < num; i++)
-            {
-                transform.Rotate(new Vector3(0, i, 0));
-                yield return new WaitForSeconds(0.01f);
-            }
-            for (int i = num; i > 0; i--)
-            {
-                transform.Rotate(new Vector3(0, i, 0));
-                yield return new WaitForSeconds(0.01f);
-            }
+			//SetEnabledRenderers(trueFalse);
+			if (isSpinable)
+			{
+				for (int i = 0; i < num; i++)
+				{
+					transform.Rotate(new Vector3(0, i, 0));
+					yield return new WaitForSeconds(0.01f);
+				}
+				for (int i = num; i > 0; i--)
+				{
+					transform.Rotate(new Vector3(0, i, 0));
+					yield return new WaitForSeconds(0.01f);
+				}
+			}else{
+				yield return new WaitForSeconds(1f);
+			}
         }else if (!trueFalse && isInOut ){
             isInOut = false;
-            for (int i = 0; i < num; i++)
-            {
-                transform.Rotate(new Vector3(0, i, 0));
-                yield return new WaitForSeconds(0.01f);
-            }
-            SetEnabledRenderers(trueFalse);
+			if (isSpinable)
+			{
+				for (int i = 0; i < num; i++)
+				{
+					transform.Rotate(new Vector3(0, i, 0));
+					yield return new WaitForSeconds(0.01f);
+				}
+			}else{
+				yield return new WaitForSeconds(0.5f);
+			}
+			Disable();
             Instantiate(smoke, transform.position- Vector3.up, Quaternion.identity);
+			Destroy(gameObject);
         }
 
         transform.rotation = Quaternion.Euler(0,0,0);
         yield return new WaitForSeconds(0.2f);
         actionFinished = true;
+		//Debug.Log("action finished (SetInOutThread)");
 		isInOuting = false;
 		//isReadyForNext = true;
     }
+
+	IEnumerator MoveSmoothToDes(Vector3 des){
+		while (Vector3.Distance(des,transform.position) >= 0.1f)
+		{
+			transform.position = Vector3.Lerp(transform.position, des, 0.1f);
+			yield return new WaitForSeconds(0.02f);
+		}
+	}
 
 	IEnumerator NoChangeActionThread(string clipName, Vector3 offset, double secToNextAction, bool offsetToFixedPos = false){
 		yield return new WaitForSeconds(0.09f);
@@ -193,34 +225,68 @@ public class TestAction : MonoBehaviour {
 		if (secToNextAction >= 0)
         {
             yield return new WaitForSeconds((float)secToNextAction);
-            actionFinished = true;         
+            actionFinished = true;
+			//Debug.Log("action finished (NoChangeActionThread)");
         }      
 	}
 
 	IEnumerator ChangeActionThread(string clipName, Vector3 offset, double secToNextAction, bool offsetToFixedPos = false){
-        for (int i = 0; i < 18; i++){
-            transform.Rotate(0, 10, 0);
-            if(i == 9){
-                transform.rotation = Quaternion.Euler(0, -90, 0);
+		if (isSpinable)
+		{
+			for (int i = 0; i < 18; i++)
+			{
+				transform.Rotate(0, 10, 0);
+				if (i == 9)
+				{
+					transform.rotation = Quaternion.Euler(0, -90, 0);
+					if (animator)
+					{
+						animator.Play(clipName);
+					}
+					if (!offsetToFixedPos)
+					{
+						transform.position += offset;
+					}
+					else
+					{
+						transform.position = offset;
+					}
+					if (nextActionNum != -1)
+					{
+						GameObject.Find("Manager").GetComponent<ScriptManager>().ChangeTextScript(nextActionNum);
+					}
+				}
+				yield return new WaitForSeconds(0.01f);
+			}
+		}else{
+			yield return new WaitForSeconds(0.09f);
+			Debug.Log(clipName+" / "+gameObject.name);
+			if (animator)
+            {
                 animator.Play(clipName);
-                if (!offsetToFixedPos)
-                {
-                    transform.position += offset;
-                }else{
-                    transform.position = offset;
-                }
-				if (nextActionNum != -1)
-                {
-                    GameObject.Find("Manager").GetComponent<ScriptManager>().ChangeTextScript(nextActionNum);
-                }
             }
-            yield return new WaitForSeconds(0.01f);
-        }
+			if (!offsetToFixedPos)
+            {
+                transform.position += offset;
+            }
+            else
+            {
+				//transform.position = offset;
+				//StopCoroutine("MoveSmoothToDes");
+				StartCoroutine(MoveSmoothToDes(offset));
+            }
+			if (nextActionNum != -1)
+            {
+                GameObject.Find("Manager").GetComponent<ScriptManager>().ChangeTextScript(nextActionNum);
+            }
+			yield return new WaitForSeconds(0.09f);
+		}
         transform.rotation = Quaternion.Euler(0, 0, 0);
         if (secToNextAction >= 0 )
 		{
 			yield return new WaitForSeconds((float)secToNextAction);
             actionFinished = true;
+			//Debug.Log("action finished (ChangeACtionThread) / "+secToNextAction+ " / "+nextActionNum);
 			//Debug.Log("secToNextAction: "+secToNextAction+" / "+"curAct: "+(nextActionNum - 1));
 
         }
@@ -243,11 +309,20 @@ public class TestAction : MonoBehaviour {
     }
 
     public void NextAction(){
-		//Debug.Log("NextAction");
+		Debug.Log("NextAction");
 		if (this)
 		{
 			StopCoroutine("ChangeActionThread");
 			actionFinished = true;
+            
+			Debug.Log("action finished "+"(NextAction)");
+			if(nextActionNum == -1 && eachActionDelayArray[eachActionDelayArray.Length - 1] <= -1){
+				ActionManager.FinishedAllAction(this);
+                if (isNeedFadeOut)
+                {
+                    SetInOut(false);
+                }
+			}
 		}
 
     }

@@ -3,33 +3,43 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Recall : MonoBehaviour {
-
+	GameObject manager;
 	// Use this for initialization
 	void Start () {
-		GameObject manager = GameObject.Find("Manager");
+		
+		manager = GameObject.Find("Manager");
+		StartCoroutine(WaitForLastSceneUnload());
+
+	}
+
+	IEnumerator WaitForLastSceneUnload(){
+		while (!GameSceneManager.IsLastSceneUnloaded())
+		{
+			yield return new WaitForSeconds(0.5f);
+		}
 		if (manager)
-		{         
-			if (manager.GetComponent<ScriptManager>())
-			{
-				manager.GetComponent<ScriptManager>().Reset();
-			}
+        {      
+            if (manager.GetComponent<ScriptManager>())
+            {
+                manager.GetComponent<ScriptManager>().Reset();
+            }
 
-			if (GameObject.Find("MouseSelector"))
-			{
-				GameObject.Find("MouseSelector").GetComponent<MouseSelector>().Reset();
-			}
+            if (GameObject.Find("MouseSelector"))
+            {
+                GameObject.Find("MouseSelector").GetComponent<MouseSelector>().Reset();
+            }
 
-			if (Camera.main.GetComponent<CameraZoom>())
-			{
-				Camera.main.GetComponent<CameraZoom>().Reset();
-			}
+            if (Camera.main.GetComponent<CameraZoom>())
+            {
+                Camera.main.GetComponent<CameraZoom>().Reset();
+            }
 
-			if(manager.GetComponent<HideAndSeekEvent>())
-			{
-				manager.GetComponent<HideAndSeekEvent>().Reset();
-			}
+            if(manager.GetComponent<HideAndSeekEvent>())
+            {
+                manager.GetComponent<HideAndSeekEvent>().Reset();
+            }
 
-			if (manager.GetComponent<ReadJson>())
+            if (manager.GetComponent<ReadJson>())
             {
                 manager.GetComponent<ReadJson>().Reset();
             }
@@ -37,13 +47,12 @@ public class Recall : MonoBehaviour {
             {
                 manager.GetComponent<ActionManager>().Reset();
             }
-			if (manager.GetComponent<LevelManager>())
-			{
-				manager.GetComponent<LevelManager>().Reset();
+            if (manager.GetComponent<LevelManager>())
+            {
+                manager.GetComponent<LevelManager>().Reset();
 
-			}
-		}
-
+            }
+        }      
 	}
 
 }

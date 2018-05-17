@@ -37,6 +37,9 @@ public class Actor
     public List<string> actor_clip_name { get; set; }
     public int start_action_step { get; set; }
     public int actor_total_steps { get; set; }
+    public bool actor_spinable { get; set; }
+    public bool after_actions_isFadeOut { get; set; }
+    public bool after_actions_isFadeIn { get; set; }
     public List<int> actor_steps_action { get; set; }
     public List<double> actor_steps_delay { get; set; }
     public string actor_markers_name { get; set; }

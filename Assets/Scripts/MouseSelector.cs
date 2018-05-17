@@ -13,16 +13,19 @@ public class MouseSelector : MonoBehaviour {
 	private static bool isSelected = false;
 	private static bool isPressingDown = false;
 	static GameObject target;
+	private static GameObject lastTarget ;
+	static List<GameObject> targets;
 
 	void Start () {
 		image = GetComponent<Image>();
+		targets = new List<GameObject>();
 	}
 
 
 	void Update () {
 		transform.position = Input.mousePosition;
-		Debug.Log("Active!:(Update) " + isActive);
-		if (!isAniming && isActive && !ScriptManager.isScripting)
+		//Debug.Log("Active!:(Update) " + isActive);
+		if (!isAniming && isActive && !ScriptManager.isScripting && !GridManager.isActive)
 		{
 			if (Input.GetMouseButton(0) && image.fillAmount < 1f && !isPressingDown)
 			{
@@ -31,8 +34,15 @@ public class MouseSelector : MonoBehaviour {
 				Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 				RaycastHit raycastHit;
 				Physics.Raycast(ray, out raycastHit, 1000f);
-				if (raycastHit.collider.gameObject == target)
+				if (raycastHit.collider.gameObject == target || targets.Contains(raycastHit.collider.gameObject))
 				{
+					if(targets.Contains(raycastHit.collider.gameObject)){
+						target = raycastHit.collider.gameObject;
+						if(lastTarget != target){
+							count = 0;
+						}                  
+					}
+					lastTarget = target;
 					count += Time.deltaTime;
 
 				}else{
@@ -49,8 +59,21 @@ public class MouseSelector : MonoBehaviour {
                 StartCoroutine(countAnimTime());
                 isAniming = true;
                 isSelected = true;
-                isActive = false;
-				Debug.Log("Active!: " +" false");
+				if (targets.Contains(target))
+                {
+                    targets.Remove(target);
+                }
+                if (targets.Count == 0)
+                {
+                    isActive = false;
+					Debug.Log("Active!: " + " false");
+                }
+				if(targets.Contains(target)){
+					targets.Remove(target);
+				}
+				target = null;
+                
+
                 CameraZoom.isActive = false;
 			}
 			else if (Input.GetMouseButtonUp(0))
@@ -61,7 +84,16 @@ public class MouseSelector : MonoBehaviour {
 					StartCoroutine(countAnimTime());
 					isAniming = true;
 					isSelected = true;
-					isActive = false;
+					if (targets.Contains(target))
+                    {
+                        targets.Remove(target);
+                    }
+					if (targets.Count == 0)
+                    {
+                        isActive = false;
+                    }
+
+					//target = null;
 					Debug.Log("Active!: " + " false");
 					CameraZoom.isActive = false;
 				}else{
@@ -86,16 +118,28 @@ public class MouseSelector : MonoBehaviour {
 			{
 				CameraZoom.isActive = true;
 			}
-		Debug.Log("Active!: " + isActive);
+		//Debug.Log("Active!: " + isActive);
 	}
 
-	public static bool GetSelected(){
+	public static void ActiveSelector(List<GameObject> targets)
+    {
+        //Debug.Log("target: "+target);
+        MouseSelector.targets = targets;
+        isActive = true;
+        if (!isPressingDown)
+        {
+            CameraZoom.isActive = true;
+        }
+        //Debug.Log("Active!: " + isActive);
+    }
+
+	public static GameObject GetSelected(){
 		if(isSelected){
-			bool temp = isSelected;
 			isSelected = false;
-			return temp;
+			Debug.Log("lasttarget:"+lastTarget);
+			return lastTarget;
 		}
-		return isSelected;
+		return null;
 	}
 
 	IEnumerator countAnimTime(){
@@ -107,10 +151,12 @@ public class MouseSelector : MonoBehaviour {
 
 	public void Reset()
 	{
+		targets = new List<GameObject>();
 		Debug.Log("Selector reset");
 		isActive = false;
-		Debug.Log("Active!: " + " false");
+		//Debug.Log("Active!: " + " false");
 		isAniming = false;
+		target = null;
 		isPressingDown = false;
 		count = 0;
 		if (image)

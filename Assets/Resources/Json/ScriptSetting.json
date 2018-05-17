@@ -15,6 +15,9 @@
           ],
           "start_action_step": 0,
           "actor_total_steps": 12,
+          "actor_spinable": true,
+          "after_actions_isFadeOut": false,
+          "after_actions_isFadeIn": true,
           "actor_steps_action": [
             2,
             1,
@@ -79,6 +82,9 @@
           ],
           "start_action_step": 0,
           "actor_total_steps": 12,
+          "actor_spinable": true,
+          "after_actions_isFadeOut": false,
+          "after_actions_isFadeIn": true,
           "actor_steps_action": [
             1,
             0,
@@ -144,7 +150,7 @@
             0
           ],
           "actor_steps_delay": [
-            -1.0
+            1.0
           ],
           "actor_markers_name": "fairy_markers_",
           "actor_markers_num": [
@@ -260,6 +266,9 @@
           ],
           "start_action_step": 0,
           "actor_total_steps": 16,
+          "actor_spinable": true,
+          "after_actions_isFadeOut": true,
+          "after_actions_isFadeIn": true,
           "actor_steps_action": [
             0,
             0,
@@ -279,17 +288,17 @@
             0
           ],
           "actor_steps_delay": [
+            0.5,
             1.0,
             1.0,
-            1.0,
-            1.0,
+            0.5,
             1.5,
             1.0,
             1.0,
             1.5,
             1.0,
             1.5,
-            1.0,
+            0.5,
             -1.0,
             0.5,
             0.5,
@@ -333,6 +342,9 @@
           ],
           "start_action_step": 13,
           "actor_total_steps": 3,
+          "actor_spinable": true,
+          "after_actions_isFadeOut": true,
+          "after_actions_isFadeIn": true,
           "actor_steps_action": [
             0,
             0,
@@ -367,6 +379,9 @@
           ],
           "start_action_step": 13,
           "actor_total_steps": 3,
+          "actor_spinable": true,
+          "after_actions_isFadeOut": true,
+          "after_actions_isFadeIn": true,
           "actor_steps_action": [
             0,
             0,
@@ -391,18 +406,303 @@
               "z": 0.0
             }
           ]
+        },
+        {
+          "name": "Mail",
+          "actor_clip_name": [
+            "Mail_Idle"
+          ],
+          "start_action_step": 13,
+          "actor_total_steps": 3,
+          "actor_spinable": false,
+          "after_actions_isFadeOut": true,
+          "after_actions_isFadeIn": true,
+          "actor_steps_action": [
+            0,
+            0,
+            0
+          ],
+          "actor_steps_delay": [
+            1,
+            1,
+            1
+          ],
+          "actor_markers_name": "mail_markers_",
+          "actor_markers_num": [
+            "01",
+            "02",
+            "03"
+          ],
+          "isFixedPosition": true,
+          "actor_step_offset": [
+            {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            }
+          ]
         }
       ],
       "textscript": [
         {
-          "text": "'Catch it!'",
+          "text": "'Catch'",
           "textColor": "#ffffff",
           "showOnActionNum": 0
         },
         {
-          "text": "'Catch it!'",
+          "text": "'Fairy'",
           "textColor": "#ffffff",
           "showOnActionNum": 1
+        }
+      ]
+
+    },
+    {
+      "name": "Scene_03",
+      "actors": [
+        {
+          "name": "Fairy_5",
+          "actor_num": 0,
+          "actor_color": "#ffffff",
+          "actor_clip_name": [
+            "Fairy_Idle"
+          ],
+          "start_action_step": 0,
+          "actor_total_steps": 8,
+          "actor_spinable": true,
+          "after_actions_isFadeOut": true,
+          "after_actions_isFadeIn": true,
+          "actor_steps_action": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "actor_steps_delay": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            -1.0,
+            -1.0,
+            -1.0
+          ],
+          "actor_markers_name": "fairy_5_markers_",
+          "actor_markers_num": [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "06",
+            "06"
+          ],
+          "isFixedPosition": true,
+          "actor_step_offset": [
+            {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            }
+          ]
+        },
+        {
+          "name": "Mail_1",
+          "actor_num": 0,
+          "actor_color": "#ffffff",
+          "actor_clip_name": [
+            "Mails_Idle"
+          ],
+          "start_action_step": 0,
+          "actor_total_steps": 1,
+          "actor_spinable": false,
+          "after_actions_isFadeOut": true,
+          "after_actions_isFadeIn": false,
+          "actor_steps_action": [
+            0
+          ],
+          "actor_steps_delay": [
+            -1.0
+          ],
+          "actor_markers_name": "mails_markers_",
+          "actor_markers_num": [
+            "01"
+          ],
+          "isFixedPosition": true,
+          "actor_step_offset": [
+            {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            }
+          ]
+        },
+        {
+          "name": "Mail_2",
+          "actor_num": 0,
+          "actor_color": "#ffffff",
+          "actor_clip_name": [
+            "Mails_Idle"
+          ],
+          "start_action_step": 0,
+          "actor_total_steps": 1,
+          "actor_spinable": false,
+          "after_actions_isFadeOut": true,
+          "after_actions_isFadeIn": false,
+          "actor_steps_action": [
+            0
+          ],
+          "actor_steps_delay": [
+            -1.0
+          ],
+          "actor_markers_name": "mails_markers_",
+          "actor_markers_num": [
+            "02"
+          ],
+          "isFixedPosition": true,
+          "actor_step_offset": [
+            {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            }
+          ]
+        },
+        {
+          "name": "Mail_3",
+          "actor_num": 0,
+          "actor_color": "#ffffff",
+          "actor_clip_name": [
+            "Mails_Idle"
+          ],
+          "start_action_step": 0,
+          "actor_total_steps": 1,
+          "actor_spinable": false,
+          "after_actions_isFadeOut": true,
+          "after_actions_isFadeIn": false,
+          "actor_steps_action": [
+            0
+          ],
+          "actor_steps_delay": [
+            -1.0
+          ],
+          "actor_markers_name": "mails_markers_",
+          "actor_markers_num": [
+            "03"
+          ],
+          "isFixedPosition": true,
+          "actor_step_offset": [
+            {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            }
+          ]
+        },
+        {
+          "name": "Mail_4",
+          "actor_num": 0,
+          "actor_color": "#ffffff",
+          "actor_clip_name": [
+            "Mails_Idle"
+          ],
+          "start_action_step": 0,
+          "actor_total_steps": 1,
+          "actor_spinable": false,
+          "after_actions_isFadeOut": true,
+          "after_actions_isFadeIn": false,
+          "actor_steps_action": [
+            0
+          ],
+          "actor_steps_delay": [
+            -1.0
+          ],
+          "actor_markers_name": "mails_markers_",
+          "actor_markers_num": [
+            "04"
+          ],
+          "isFixedPosition": true,
+          "actor_step_offset": [
+            {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            }
+          ]
+        },
+        {
+          "name": "Mail_5",
+          "actor_num": 0,
+          "actor_color": "#ffffff",
+          "actor_clip_name": [
+            "Mails_Idle"
+          ],
+          "start_action_step": 0,
+          "actor_total_steps": 1,
+          "actor_spinable": false,
+          "after_actions_isFadeOut": true,
+          "after_actions_isFadeIn": false,
+          "actor_steps_action": [
+            0
+          ],
+          "actor_steps_delay": [
+            -1.0
+          ],
+          "actor_markers_name": "mails_markers_",
+          "actor_markers_num": [
+            "05"
+          ],
+          "isFixedPosition": true,
+          "actor_step_offset": [
+            {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            }
+          ]
+        }
+      ],
+      "textscript": [
+        {
+          "text": "...",
+          "textColor": "#ffffff",
+          "showOnActionNum": 0
+        },
+        {
+          "text": "...",
+          "textColor": "#ffffff",
+          "showOnActionNum": 1
+        },
+        {
+          "text": "...",
+          "textColor": "#ffffff",
+          "showOnActionNum": 2
+        },
+        {
+          "text": "...",
+          "textColor": "#ffffff",
+          "showOnActionNum": 3
+        },
+        {
+          "text": "...",
+          "textColor": "#ffffff",
+          "showOnActionNum": 4
+        },
+        {
+          "text": "...",
+          "textColor": "#ffffff",
+          "showOnActionNum": 5
+        },
+        {
+          "text": "'Where is the mails?'",
+          "textColor": "#ffffff",
+          "showOnActionNum": 6
         }
       ]
 

@@ -9,50 +9,66 @@ public class HideAndSeekEvent : MonoBehaviour {
 	private int stepCount;
 	private int stepNum;
 	private static bool isActive;
+	public List<GameObject> targets;
 
 	public void Start()
 	{
-		Reset();
+		//Reset();
 	}
 
 	public void Reset()
 	{
+		target = null;
 		isActive = false;
 		stepCount = 0;
 	}
 
 	private void Update()
 	{
-		if (target)
+		if (isActive)
 		{
-			if (MouseSelector.GetSelected() && isActive && !ScriptManager.isScripting)
+			GameObject temp = MouseSelector.GetSelected();
+			if (temp)
 			{
-				Debug.Log("Catched! -> "+target);
-				//if(target.tag == "actor"){
-					//if(!target.GetComponent<TestAction>().GetReady()){
-					//	return;
-					//}
-				//}
+				Debug.Log("temp:"+temp.name);
+
+
+				if(targets.Contains(temp)){
+					targets.Remove(temp);
+				}
+
 				stepCount++;
 
 				if (stepCount < stepNum)
-				{               
-                    isActive = false;
+				{
+					if (targets.Count == 0)
+					{
+						isActive = false;
+					}else{
+						target = temp;
+					}
+					Debug.Log("Catched! -> " + temp);
 					ExecuteEvent();
                     StartCoroutine(DelayActive(0.5f));
 				}
 
 				if(stepCount == stepNum){  
-					ExecuteEvent();
+					
                     stepCount = 0;
-					isActive = false;
-					target = null;
+					if (targets.Count == 0)
+                    {
+                        isActive = false;
+					}else{
+						target = temp;
+					}
+					ExecuteEvent();
+					//target = null;
 					StopCoroutine("delayActive");
                     LevelManager.NextLevel();            
 				}
 			}
 		}
-		Debug.Log(stepCount+"/"+stepNum);
+		//Debug.Log(stepCount+"/"+stepNum);
 	}
 
 	public void TriggerAnim(GameObject gameObject){
@@ -71,8 +87,19 @@ public class HideAndSeekEvent : MonoBehaviour {
 		this.target = target;
 		isActive = true;
 		MouseSelector.ActiveSelector(target);
+		targets = new List<GameObject>();
 		//Debug.Log("Active");
 	}
+
+	public void ActiveIt(List<GameObject> targets, int stepNum)
+    {
+        this.stepNum = stepNum;
+        stepCount = 0;
+        this.targets = targets;
+        isActive = true;
+		MouseSelector.ActiveSelector(targets);
+        //Debug.Log("Active");
+    }
 
 	public IEnumerator DelayActive(float sec){
 		yield return new WaitForSeconds(sec);
@@ -88,16 +115,18 @@ public class HideAndSeekEvent : MonoBehaviour {
 		}
 		if (target.tag == "actor" && LevelManager.levelWhichScript[LevelManager.levelNum] == 0)
 		{
-			if (target.GetComponent<TestAction>().isInOuting)
-            {
-                return;
-            }
-			//Debug.Log("Next");
+			Debug.Log("All actor Next step");
 			GameObject.Find("Manager").GetComponent<ActionManager>().AllActorNextStep();
 		}
-		if(target.tag == "actor" && LevelManager.levelWhichScript[LevelManager.levelNum] == 1){
-			//GameObject.Find("Manager").GetComponent<ActionManager>().WaitForMinusOne();
-		}
+
+		if (target.tag == "actor" && LevelManager.levelWhichScript[LevelManager.levelNum] == 2)
+        {
+			//target.GetComponent<TestAction>().NextAction();
+			if(target.name.Split('_')[0] == "Mail"){
+				Debug.Log("Minigame start!");
+				GameObject.Find("Grid").GetComponent<GridManager>().activeIt(target);
+			}
+        }
 	}
     
 }

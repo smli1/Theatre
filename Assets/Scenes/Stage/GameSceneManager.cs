@@ -9,7 +9,8 @@ public class GameSceneManager : MonoBehaviour {
 
 	private GameObject manager;
 	public void NextScene(){
-		sceneNum++;      
+		sceneNum++;
+		//ActionManager.DeteleAllActors();
         manager = GameObject.Find("Manager");
 		StartCoroutine(LoadAsyncScene());
 
@@ -22,7 +23,10 @@ public class GameSceneManager : MonoBehaviour {
 		}
 	}
 
-
+	public static bool IsLastSceneUnloaded()
+	{
+		return !SceneManager.GetSceneByBuildIndex(Mathf.Max(0,sceneNum - 1) ).isLoaded;
+	}
 
 	IEnumerator LoadAsyncScene()
     {
