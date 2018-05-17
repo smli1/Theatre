@@ -110,7 +110,7 @@ public class ActionManager : MonoBehaviour {
 								break;
 							}
 						}else{
-							Debug.LogError("index = -1");
+							//Debug.LogError("index = -1");
 						}
 					}
 				}
