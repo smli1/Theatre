@@ -16,6 +16,7 @@ public class Recall : MonoBehaviour {
 		while (!GameSceneManager.IsLastSceneUnloaded())
 		{
 			yield return new WaitForSeconds(0.5f);
+
 		}
 		if (manager)
         {      
@@ -52,6 +53,7 @@ public class Recall : MonoBehaviour {
                 manager.GetComponent<LevelManager>().Reset();
 
             }
+			Debug.Log("Recall!");
         }      
 	}
 

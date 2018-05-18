@@ -320,6 +320,7 @@ public class TestAction : MonoBehaviour {
 				ActionManager.FinishedAllAction(this);
                 if (isNeedFadeOut)
                 {
+					Debug.Log(name+" out!");
                     SetInOut(false);
                 }
 			}

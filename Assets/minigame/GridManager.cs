@@ -20,7 +20,7 @@ public class GridManager : MonoBehaviour
         							    0, 1, 0 };
 	private readonly int[] pattern2 = { 1, 0, 0,
         							    1, 0, 0,
-        							    1, 1, 1 };
+        							    0, 0, 0 };
 	private readonly int[] pattern3 = { 1, 0, 0, 0,
         							    1, 1, 1, 0,
         							    0, 0, 1, 0,
@@ -53,9 +53,12 @@ public class GridManager : MonoBehaviour
 	{
 		if (isActive)
 		{
-			if (IsWon())
+			if (IsWon() || Input.GetKeyDown(KeyCode.P))
 			{
-				actor.GetComponent<TestAction>().NextAction();
+				if (actor)
+				{
+					actor.GetComponent<TestAction>().NextAction();
+				}
 				for (int y = 0; y < getLevelSize(); y++)
                 {
 					for (int x = 0; x < getLevelSize(); x++)

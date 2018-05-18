@@ -490,7 +490,7 @@
             1.0,
             -1.0,
             -1.0,
-            -1.0
+            1.0
           ],
           "actor_markers_name": "fairy_5_markers_",
           "actor_markers_num": [
@@ -695,14 +695,9 @@
           "showOnActionNum": 4
         },
         {
-          "text": "...",
-          "textColor": "#ffffff",
-          "showOnActionNum": 5
-        },
-        {
           "text": "'Where is the mails?'",
           "textColor": "#ffffff",
-          "showOnActionNum": 6
+          "showOnActionNum": 5
         }
       ]
 

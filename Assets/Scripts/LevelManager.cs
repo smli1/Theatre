@@ -5,14 +5,14 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour {
 
 	public static int levelNum = 0;
-	public static int[] levelWhichScript = {0,0,0,0,1,1,2,2,2};
+	public static int[] levelWhichScript = {0,0,0,0,1,1,2,2,2,2};
 	private GameObject manager;
 
 	private void Start()
 	{
 		//manager = GameObject.Find("Manager");
 		//InitializeLevel(levelNum);
-		manager = GameObject.Find("Manager");
+		//Reset();
 	}
 
 	public void Reset()
@@ -60,6 +60,9 @@ public class LevelManager : MonoBehaviour {
                 }
                 manager.GetComponent<HideAndSeekEvent>().ActiveIt(temp, temp.Count);
                 break;
+			case 9:
+				GameObject.Find("Manager").GetComponent<ActionManager>().WaitForEndNum(5);
+				break;
 		}
 	}
 
@@ -78,6 +81,8 @@ public class LevelManager : MonoBehaviour {
 			case 1:
 				GameObject.Find("Manager").GetComponent<LevelManager>().InitializeLevel(6);
                 levelNum = 7;
+				break;
+			case 2:
 				break;
 		}
     }

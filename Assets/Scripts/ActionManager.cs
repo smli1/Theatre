@@ -7,7 +7,7 @@ public class ActionManager : MonoBehaviour {
 	static List<TestAction> actions;
 	static List<TestAction> endedActions;
 	private static int endedActorNum = 0;
-	static int[] sceneActorNum = {0,3,4,6};
+	//static int[] sceneActorNum = {0,3,4,6};
 
 	private void Start()
 	{
@@ -42,7 +42,7 @@ public class ActionManager : MonoBehaviour {
     /*
 	public static void DeteleAllActors(){
 		foreach(TestAction t in actions){
-			Destroy(t.gameObject);
+			destroy(t.gameObject);
 		}
 		actions.Clear();
 	}*/
@@ -69,11 +69,30 @@ public class ActionManager : MonoBehaviour {
 		}
 	}
 
-	public void WaitForMinusOne(string actorName, bool isAllActorNext, bool isNextLevel){
-		StartCoroutine(WaitFor(actorName, isAllActorNext, isNextLevel));
+    public void WaitForMinusOne(string actorName, bool isAllActorNext, bool isNextLevel){
+		StartCoroutine(WaitForMinusOneThread(actorName, isAllActorNext, isNextLevel));
+    }
+
+	public void WaitForEndNum(int EndNum)
+    {
+		StartCoroutine(WaitForEndNumThread(EndNum));
+    }
+   
+	IEnumerator WaitForEndNumThread(int EndNum)
+	{ 
+		while (true)
+        {
+			Debug.Log("Wait for endnum = "+EndNum);
+			if(EndNum == endedActorNum){
+				AllActorNextStep();
+				Debug.Log("break wait endnum");
+				break;
+			}
+            yield return new WaitForSeconds(0.5f);
+        }
 	}
 
-	IEnumerator WaitFor(string n, bool isAllActorNext, bool isNextLevel)
+	IEnumerator WaitForMinusOneThread(string n, bool isAllActorNext, bool isNextLevel)
 	{
 		
 		bool isContinue = true;

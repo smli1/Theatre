@@ -44,9 +44,9 @@ public class HideAndSeekEvent : MonoBehaviour {
 					if (targets.Count == 0)
 					{
 						isActive = false;
-					}else{
-						target = temp;
+
 					}
+					target = temp;
 					Debug.Log("Catched! -> " + temp);
 					ExecuteEvent();
                     StartCoroutine(DelayActive(0.5f));
@@ -54,15 +54,15 @@ public class HideAndSeekEvent : MonoBehaviour {
 
 				if(stepCount == stepNum){  
 					
-                    stepCount = 0;
+                    
 					if (targets.Count == 0)
                     {
                         isActive = false;
-					}else{
-						target = temp;
 					}
+					target = temp;
 					ExecuteEvent();
 					//target = null;
+					stepCount = 0;
 					StopCoroutine("delayActive");
                     LevelManager.NextLevel();            
 				}
@@ -108,25 +108,29 @@ public class HideAndSeekEvent : MonoBehaviour {
 	}
 
 	void ExecuteEvent(){
-		
-		if(target.name == "Book" && LevelManager.levelWhichScript[LevelManager.levelNum] == 0){
-			GameObject.Find("Manager").GetComponent<ActionManager>().AllActorNextStep();
-			//print("Hit!");
-		}
-		if (target.tag == "actor" && LevelManager.levelWhichScript[LevelManager.levelNum] == 0)
+		if (target)
 		{
-			Debug.Log("All actor Next step");
-			GameObject.Find("Manager").GetComponent<ActionManager>().AllActorNextStep();
-		}
-
-		if (target.tag == "actor" && LevelManager.levelWhichScript[LevelManager.levelNum] == 2)
-        {
-			//target.GetComponent<TestAction>().NextAction();
-			if(target.name.Split('_')[0] == "Mail"){
-				Debug.Log("Minigame start!");
-				GameObject.Find("Grid").GetComponent<GridManager>().activeIt(target);
+			if (target.name == "Book" && LevelManager.levelWhichScript[LevelManager.levelNum] == 0)
+			{
+				GameObject.Find("Manager").GetComponent<ActionManager>().AllActorNextStep();
+				//print("Hit!");
 			}
-        }
+			if (target.tag == "actor" && LevelManager.levelWhichScript[LevelManager.levelNum] == 0)
+			{
+				Debug.Log("All actor Next step");
+				GameObject.Find("Manager").GetComponent<ActionManager>().AllActorNextStep();
+			}
+
+			if (target.tag == "actor" && LevelManager.levelWhichScript[LevelManager.levelNum] == 2)
+			{
+				//target.GetComponent<TestAction>().NextAction();
+				if (target.name.Split('_')[0] == "Mail")
+				{
+					Debug.Log("Minigame start!");
+					GameObject.Find("Grid").GetComponent<GridManager>().activeIt(target);
+				}
+			}
+		}
 	}
     
 }

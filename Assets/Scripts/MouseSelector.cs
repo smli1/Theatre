@@ -102,11 +102,14 @@ public class MouseSelector : MonoBehaviour {
 				}
 			}
 
-			if(Input.GetMouseButtonUp(0)){
-				isPressingDown = false;
-				CameraZoom.isActive = true;
-			}
+
 		}
+
+		if (Input.GetMouseButtonUp(0))
+        {
+            isPressingDown = false;
+            CameraZoom.isActive = true;
+        }
 		//Debug.Log("Active!Update: " + isActive);
 	}
 
