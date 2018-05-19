@@ -26,7 +26,7 @@ public class LevelManager : MonoBehaviour {
 		Debug.Log("Now Level:" + num);
 		switch(num){
 			case 0: //Hide and seek
-				manager.GetComponent<HideAndSeekEvent>().ActiveIt(GameObject.Find("girl"),6);
+				manager.GetComponent<HideAndSeekEvent>().ActiveIt(GameObject.Find("girl"), 6);
 				break;
 			case 1:
 				manager.GetComponent<HideAndSeekEvent>().ActiveIt(GameObject.Find("Book"), 1);

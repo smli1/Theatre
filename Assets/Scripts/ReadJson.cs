@@ -54,6 +54,7 @@ public class Textscript
     public string textColor { get; set; }
     public int showOnActionNum { get; set; }
     public string text_actor_name { get; set; }
+    public double text_speed { get; set; }
 }
 
 public class Script

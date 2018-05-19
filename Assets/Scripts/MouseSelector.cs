@@ -15,18 +15,30 @@ public class MouseSelector : MonoBehaviour {
 	static GameObject target;
 	private static GameObject lastTarget ;
 	static List<GameObject> targets;
+	private static GameObject searchIcon;
 
 	void Start () {
 		image = GetComponent<Image>();
 		targets = new List<GameObject>();
+		searchIcon = GameObject.Find("SearchIcon");
+		searchIcon.SetActive(false);
+		Debug.Log("SearchIcon set false");
 	}
 
 
 	void Update () {
+		if(searchIcon == null){
+			searchIcon = GameObject.Find("SearchIcon");
+			return;
+		}
 		transform.position = Input.mousePosition;
 		//Debug.Log("Active!:(Update) " + isActive);
 		if (!isAniming && isActive && !ScriptManager.isScripting && !GridManager.isActive)
 		{
+			if (!searchIcon.activeSelf)
+			{
+				searchIcon.SetActive(true);
+			}
 			if (Input.GetMouseButton(0) && image.fillAmount < 1f && !isPressingDown)
 			{
 				
@@ -65,8 +77,8 @@ public class MouseSelector : MonoBehaviour {
                 }
                 if (targets.Count == 0)
                 {
+					searchIcon.SetActive(false);
                     isActive = false;
-					Debug.Log("Active!: " + " false");
                 }
 				if(targets.Contains(target)){
 					targets.Remove(target);
@@ -90,11 +102,12 @@ public class MouseSelector : MonoBehaviour {
                     }
 					if (targets.Count == 0)
                     {
+						searchIcon.SetActive(false);
                         isActive = false;
                     }
 
 					//target = null;
-					Debug.Log("Active!: " + " false");
+					//Debug.Log("Active!: " + " false");
 					CameraZoom.isActive = false;
 				}else{
 					count = 0;
@@ -117,6 +130,7 @@ public class MouseSelector : MonoBehaviour {
 		//Debug.Log("target: "+target);
 			MouseSelector.target = target;
 			isActive = true;
+		    //searchIcon.SetActive(true);
 			if (!isPressingDown)
 			{
 				CameraZoom.isActive = true;
@@ -129,6 +143,7 @@ public class MouseSelector : MonoBehaviour {
         //Debug.Log("target: "+target);
         MouseSelector.targets = targets;
         isActive = true;
+
         if (!isPressingDown)
         {
             CameraZoom.isActive = true;
@@ -157,7 +172,6 @@ public class MouseSelector : MonoBehaviour {
 		targets = new List<GameObject>();
 		Debug.Log("Selector reset");
 		isActive = false;
-		//Debug.Log("Active!: " + " false");
 		isAniming = false;
 		target = null;
 		isPressingDown = false;

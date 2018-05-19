@@ -10,6 +10,7 @@ public class ScriptManager : MonoBehaviour
 	public static string[] textScripts;
 	public static string[] textScriptsColor;
 	public static string[] textActor;
+	public static float[] textSpeed;
 	public static int[] actionNum;
 	public static int currentIndex = 0;
 	float delayTime = 2f;
@@ -23,6 +24,7 @@ public class ScriptManager : MonoBehaviour
 	private string currentText = "";
 	private bool isActive = false;
 	private string currentActorName;
+	private Image mask;
 
 	private void Start()
 	{
@@ -48,23 +50,29 @@ public class ScriptManager : MonoBehaviour
 			Debug.Log("textContainer disappear");
 			textScriptContainer = GameObject.Find("TextScript").GetComponent<Text>();
 			return;
+		}else{
+			if(!mask){
+				mask = textScriptContainer.transform.parent.GetComponent<Image>();
+				return;
+			}
 		}
 		if (isActive)
 		{
 			if (isScripting)
 			{
 				timeCount += Time.deltaTime;
-				if (timeCount >= delayTime)
+				if (timeCount >= delayTime / textSpeed[currentIndex])
 				{
 					timeCount = 0;
 					if (scriptingTextIndex.Count != 0)
 					{
-						//Debug.Log(""+currentText);
-						currentText = textScripts[scriptingTextIndex[0]];
+						
 						currentIndex = scriptingTextIndex[0];
-						StartCoroutine(ShowWordWithAnimation(currentText, delayTime / 5.0f));
-
+						currentText = textScripts[currentIndex];
+						StartCoroutine(ShowWordWithAnimation(currentText, delayTime / textSpeed[currentIndex]));                  
 						scriptingTextIndex.RemoveAt(0);
+
+
 					}
 					else
 					{
@@ -75,25 +83,29 @@ public class ScriptManager : MonoBehaviour
 
 			if (Input.GetMouseButtonDown(0))
 			{
-				string temp = "<color=" + textScriptsColor[currentIndex] + ">" + currentText + "</color>";
+				
+				//string temp = "<color=" + textScriptsColor[currentIndex] + ">" + currentText + "</color>";
 				//string temp = currentText;
-				StopCoroutine("ShowWordWithAnimation");
+				//StopCoroutine("ShowWordWithAnimation");
 				if (isScripting)
 				{
 
-					if (textScriptContainer.text == temp)
+					if (mask.fillAmount > 1f)
 					{
-						timeCount = delayTime;
+						StopCoroutine("ShowWordWithAnimation");
+						timeCount = delayTime / textSpeed[currentIndex];
 					}
 					else
 					{
-						textScriptContainer.text = temp;
+						if (mask.fillAmount + 0.3f < 1f)
+						{
+							mask.fillAmount += 0.3f;
+						}else{
+							mask.fillAmount = 1f;
+						}
 					}
 				}
-				else
-				{
-					textScriptContainer.text = temp;
-				}
+
 			}
 			StartCoroutine(animActor());
 		}
@@ -112,7 +124,7 @@ public class ScriptManager : MonoBehaviour
             }
 			Vector3 scale = actor.transform.localScale;
 			currentActorName = actor.name;
-			Vector3 targetScale = new Vector3(scale.x * Random.Range(1.1f,0.8f), scale.y * Random.Range(1.05f, 0.95f),scale.z);
+			Vector3 targetScale = new Vector3(scale.x * Random.Range(1.05f,0.95f), scale.y * Random.Range(1.05f, 0.95f),scale.z);
 			Vector3 currentScale = new Vector3(scale.x,scale.y,scale.z);
 			float count = 0;
 			while (currentIndex == index)
@@ -134,8 +146,8 @@ public class ScriptManager : MonoBehaviour
 				}
 				//Debug.Log("Scale-mag. : "+(actor.transform.localScale - targetScale).magnitude);
 				if(xDiff <= 0.01f && yDiff <= 0.01f){
-					Debug.Log("Re-random scale.");
-					targetScale = new Vector3(scale.x * Random.Range(1.1f, 0.8f), scale.y * Random.Range(1.05f, 0.95f), scale.z);
+					//Debug.Log("Re-random scale.");
+					targetScale = new Vector3(scale.x * Random.Range(1.05f, 0.95f), scale.y * Random.Range(1.05f, 0.95f), scale.z);
 				}
 				yield return new WaitForSeconds(0.02f);
 				count += (float)Mathf.PI * 0.02f;
@@ -151,12 +163,6 @@ public class ScriptManager : MonoBehaviour
 		if (currentActionNum != lastActionNum)
 		{
 			int[] temp = getActionTextScript(currentActionNum);
-			if (temp[0] != -1)
-			{
-				currentText = textScripts[temp[0]];
-				currentIndex = temp[0];
-				StartCoroutine(ShowWordWithAnimation(textScripts[temp[0]], 0.38f));
-			}
 			lastActionNum = currentActionNum;
 		}
 	}
@@ -174,16 +180,13 @@ public class ScriptManager : MonoBehaviour
 			}
 		}
 		//Debug.Log(temp.ToArray().Length);
-		if (temp.Count == 1)
-		{
-			currentIndex = temp[0];
-			return temp.ToArray();
-		}
-		else if (temp.Count > 1)
+
+		if (temp.Count >= 1)
 		{
 			isScripting = true;
 			scriptingTextIndex = temp;
 			currentIndex = scriptingTextIndex[0];
+			//currentText = textScripts[currentIndex];
 			return new int[] { -1 };
 		}
 		else
@@ -193,6 +196,7 @@ public class ScriptManager : MonoBehaviour
 	}
 	private IEnumerator ShowWordWithAnimation(string text, float duration)
 	{
+		/*
 		string[] temp = text.Split(' ');
 		string wholeText = "";
 		for (int i = 0; i < temp.Length; i++)
@@ -207,6 +211,20 @@ public class ScriptManager : MonoBehaviour
 			//textScriptContainer.text = wholeText;
 			yield return new WaitForSeconds(0.2f);
 		}
+		*/
+		mask.fillAmount = 0;
+		textScriptContainer.text = "<color=" + textScriptsColor[currentIndex] + ">" + text + "</color>";
+		for (int i = 0; i < 50; i++)
+		{
+			if (mask.fillAmount < 1f)
+			{
+				mask.fillAmount += 0.02f;
+				yield return new WaitForSeconds(duration / 100.0f);
+			}else{
+				mask.fillAmount = 1f;
+				yield break;
+			}
+		}
 	}
 
 	private void ImportDataToTextScripts()
@@ -220,6 +238,7 @@ public class ScriptManager : MonoBehaviour
 				textScripts = new string[tsTemp.Count];
 				textScriptsColor = new string[tsTemp.Count];
 				textActor = new string[tsTemp.Count];
+				textSpeed = new float[tsTemp.Count];
 				actionNum = new int[tsTemp.Count];
 				for (int j = 0; j < tsTemp.Count; j++)
 				{
@@ -228,6 +247,7 @@ public class ScriptManager : MonoBehaviour
 					textScriptsColor[j] = tsTemp[j].textColor;
 					actionNum[j] = tsTemp[j].showOnActionNum;
 					textActor[j] = tsTemp[j].text_actor_name;
+					textSpeed[j] = (float)tsTemp[j].text_speed;
 				}
 				return;
 			}

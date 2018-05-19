@@ -171,102 +171,120 @@
           "text": "Merli?",
           "textColor": "#ffc445",
           "showOnActionNum": 1,
-          "text_actor_name": "grandma"
+          "text_actor_name": "grandma",
+          "text_speed": 0.5
         },
         {
           "text": "'Where is pink girl?'",
           "textColor": "#ffffff",
           "showOnActionNum": 1,
-          "text_actor_name": ""
+          "text_actor_name": "",
+          "text_speed": 1.0
         },
         {
           "text": "'She near something bright'",
           "textColor": "#ffffff",
           "showOnActionNum": 2,
-          "text_actor_name": ""
+          "text_actor_name": "",
+          "text_speed": 1.0
         },
         {
           "text": "Where are you? Merli",
           "textColor": "#ffc445",
           "showOnActionNum": 3,
-          "text_actor_name": "grandma"
+          "text_actor_name": "grandma",
+          "text_speed": 0.5
         },
         {
           "text": "'Find her'",
           "textColor": "#ffffff",
           "showOnActionNum": 4,
-          "text_actor_name": ""
+          "text_actor_name": "",
+          "text_speed": 1.0
         },
         {
           "text": "Sweetie . . .",
           "textColor": "#ffc445",
           "showOnActionNum": 5,
-          "text_actor_name": "grandma"
+          "text_actor_name": "grandma",
+          "text_speed": 0.5
         },
         {
           "text": "'She disappeared somewhere!'",
           "textColor": "#ffffff",
           "showOnActionNum": 6,
-          "text_actor_name": ""
+          "text_actor_name": "",
+          "text_speed": 1.0
         },
         {
           "text": "Merli !",
           "textColor": "#ffc445",
-          "showOnActionNum": 8
+          "showOnActionNum": 8,
+          "text_actor_name": "grandma",
+          "text_speed": 0.5
         },
         {
           "text": "HeHe, Grandma !",
           "textColor": "#ff9df8",
           "showOnActionNum": 8,
-          "text_actor_name": "girl"
+          "text_actor_name": "girl",
+          "text_speed": 0.8
         },
         {
           "text": "Time to sleep, Marli !",
           "textColor": "#ffc445",
           "showOnActionNum": 8,
-          "text_actor_name": "grandma"
+          "text_actor_name": "grandma",
+          "text_speed": 0.5
         },
         {
           "text": "Before sleeping, Can read me a BOOK? Grandma",
           "textColor": "#ff9df8",
           "showOnActionNum": 8,
-          "text_actor_name": "girl"
+          "text_actor_name": "girl",
+          "text_speed": 0.8
         },
         {
           "text": "Book?",
           "textColor": "#ffc445",
           "showOnActionNum": 8,
-          "text_actor_name": "grandma"
+          "text_actor_name": "grandma",
+          "text_speed": 0.5
         },
         {
           "text": "'Where is the BOOK?'",
           "textColor": "#ffffff",
           "showOnActionNum": 8,
-          "text_actor_name": ""
+          "text_actor_name": "",
+          "text_speed": 1.0
         },
         {
           "text": "Okay.",
           "textColor": "#ffc445",
           "showOnActionNum": 9,
-          "text_actor_name": "grandma"
+          "text_actor_name": "grandma",
+          "text_speed": 0.5
         },
         {
           "text": "Oh! A fairy story.",
           "textColor": "#ffc445",
           "showOnActionNum": 10,
-          "text_actor_name": "grandma"
+          "text_actor_name": "grandma",
+          "text_speed": 1.0
         },
         {
           "text": "Once upon a time.",
           "textColor": "#ffc445",
           "showOnActionNum": 10,
-          "text_actor_name": "grandma"
+          "text_actor_name": "grandma",
+          "text_speed": 0.5
         },
         {
           "text": "There have many fairies, which lived in the world.",
           "textColor": "#ffc445",
           "showOnActionNum": 11,
-          "text_actor_name": "grandma"
+          "text_actor_name": "grandma",
+          "text_speed": 0.5
         }
       ]
     },
@@ -463,12 +481,16 @@
         {
           "text": "...",
           "textColor": "#ffffff",
-          "showOnActionNum": 0
+          "showOnActionNum": 0,
+          "text_actor_name": "",
+          "text_speed": 1.0
         },
         {
           "text": "'Catch the fairy.'",
           "textColor": "#ffffff",
-          "showOnActionNum": 1
+          "showOnActionNum": 1,
+          "text_actor_name": "",
+          "text_speed": 2.0
         }
       ]
 
@@ -689,37 +711,43 @@
           "text": "...",
           "textColor": "#ffffff",
           "showOnActionNum": 0,
-          "text_actor_name": ""
+          "text_actor_name": "",
+          "text_speed": 0.5
         },
         {
           "text": "...",
           "textColor": "#ffffff",
           "showOnActionNum": 1,
-          "text_actor_name": ""
+          "text_actor_name": "",
+          "text_speed": 0.5
         },
         {
           "text": "...",
           "textColor": "#ffffff",
           "showOnActionNum": 2,
-          "text_actor_name": ""
+          "text_actor_name": "",
+          "text_speed": 0.5
         },
         {
           "text": "...",
           "textColor": "#ffffff",
           "showOnActionNum": 3,
-          "text_actor_name": ""
+          "text_actor_name": "",
+          "text_speed": 0.5
         },
         {
           "text": "...",
           "textColor": "#ffffff",
           "showOnActionNum": 4,
-          "text_actor_name": ""
+          "text_actor_name": "",
+          "text_speed": 0.5
         },
         {
           "text": "'Where is the mails?'",
           "textColor": "#ffffff",
           "showOnActionNum": 5,
-          "text_actor_name": ""
+          "text_actor_name": "",
+          "text_speed": 0.5
         }
       ]
 

@@ -36,9 +36,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1948981045878850}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1.73, y: 1.26, z: 11.24}
-  m_LocalScale: {x: 8.979733, y: 8.979733, z: 8.979733}
+  m_LocalScale: {x: 8.97973, y: 8.97973, z: 8.97973}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -80,51 +80,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 1948981045878850}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cf9b7e7083f0436f85e9b960ea44b68, type: 3}
+  m_Script: {fileID: 11500000, guid: fbaab39618e0a4d0996934394b3a457a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isInOuting: 0
-  clipNames:
-  - Idle_Front
-  - Idle_Back
-  - Idle_Left
-  - Idle_Right
-  afterClipDelayArray:
-  - 3
-  - 3
-  - 3
-  - 3
-  actionNumArray: 0200000001000000000000000100000003000000020000000000000000000000
-  eachActionDelayArray:
-  - -1
-  - -1
-  - -1
-  - -1
-  - -1
-  - -1
-  - -1
-  - -1
-  offsetArray:
-  - {x: 8, y: 0, z: 0}
-  - {x: -5, y: 0, z: 0}
-  - {x: 6, y: 0, z: 0}
-  - {x: -9, y: 0, z: 0}
-  - {x: 4, y: 0, z: 0}
-  - {x: -3, y: 0, z: 0}
-  - {x: -3, y: 0, z: 0}
-  - {x: -3, y: 0, z: 0}
-  offsetMarkerArray:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  isFixedPos: 0101010101010101
-  applyClipDelay: 0000000000000000
+  nextActionNum: 0
+  clipNames: []
+  actionNumArray: 
+  eachActionDelayArray: []
+  offsetArray: []
+  offsetMarkerArray: []
+  isFixedPos: 0
+  startActionNum: 0
   smoke: {fileID: 1007937207843764, guid: a409f392cbe67499881e76ba7eb6b742, type: 2}
+  isNeedFadeOut: 0
+  isNeedFadeIn: 1
+  isSpinable: 1
 --- !u!212 &212297493963848852
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -139,7 +110,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 78a04e18f8f444fa8a0adc46491924be, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

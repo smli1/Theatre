@@ -260,7 +260,7 @@ public class ActorData : MonoBehaviour {
 			}
 		}else{
 			yield return new WaitForSeconds(0.09f);
-			Debug.Log(clipName+" / "+gameObject.name);
+			//Debug.Log(clipName+" / "+gameObject.name);
 			if (animator)
             {
                 animator.Play(clipName);
