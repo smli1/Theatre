@@ -9,6 +9,7 @@ public class ScriptManager : MonoBehaviour
 
 	public static string[] textScripts;
 	public static string[] textScriptsColor;
+	public static string[] textActor;
 	public static int[] actionNum;
 	public static int currentIndex = 0;
 	float delayTime = 2f;
@@ -21,6 +22,7 @@ public class ScriptManager : MonoBehaviour
 	float timeCount = 0;
 	private string currentText = "";
 	private bool isActive = false;
+	private string currentActorName;
 
 	private void Start()
 	{
@@ -93,6 +95,53 @@ public class ScriptManager : MonoBehaviour
 					textScriptContainer.text = temp;
 				}
 			}
+			StartCoroutine(animActor());
+		}
+
+	}
+
+	IEnumerator animActor(){
+		
+		int index = currentIndex;
+		GameObject actor = GameObject.Find(textActor[index]);      
+		if (actor)
+		{
+			if (currentActorName == actor.name)
+            {
+				yield break;
+            }
+			Vector3 scale = actor.transform.localScale;
+			currentActorName = actor.name;
+			Vector3 targetScale = new Vector3(scale.x * Random.Range(1.1f,0.8f), scale.y * Random.Range(1.05f, 0.95f),scale.z);
+			Vector3 currentScale = new Vector3(scale.x,scale.y,scale.z);
+			float count = 0;
+			while (currentIndex == index)
+			{
+				float xDiff = Mathf.Abs(targetScale.x - currentScale.x);
+				float yDiff = Mathf.Abs(targetScale.y - currentScale.y);
+				if( xDiff > 0.01f){
+					currentScale.x = Mathf.Lerp(currentScale.x , targetScale.x,Mathf.Sin(count) );
+				}
+				if (yDiff > 0.01f)
+                {
+					currentScale.y = Mathf.Lerp(currentScale.y, targetScale.y, Mathf.Sin(count ) );
+                }
+				if (actor)
+				{
+					actor.transform.localScale = currentScale;
+				}else{
+					yield break;
+				}
+				//Debug.Log("Scale-mag. : "+(actor.transform.localScale - targetScale).magnitude);
+				if(xDiff <= 0.01f && yDiff <= 0.01f){
+					Debug.Log("Re-random scale.");
+					targetScale = new Vector3(scale.x * Random.Range(1.1f, 0.8f), scale.y * Random.Range(1.05f, 0.95f), scale.z);
+				}
+				yield return new WaitForSeconds(0.02f);
+				count += (float)Mathf.PI * 0.02f;
+			}
+			actor.transform.localScale = scale;
+			currentActorName = "";
 		}
 	}
 
@@ -170,6 +219,7 @@ public class ScriptManager : MonoBehaviour
 				List<Textscript> tsTemp = scripts[i].textscript;
 				textScripts = new string[tsTemp.Count];
 				textScriptsColor = new string[tsTemp.Count];
+				textActor = new string[tsTemp.Count];
 				actionNum = new int[tsTemp.Count];
 				for (int j = 0; j < tsTemp.Count; j++)
 				{
@@ -177,6 +227,7 @@ public class ScriptManager : MonoBehaviour
 					//Debug.Log(textScripts[j]);
 					textScriptsColor[j] = tsTemp[j].textColor;
 					actionNum[j] = tsTemp[j].showOnActionNum;
+					textActor[j] = tsTemp[j].text_actor_name;
 				}
 				return;
 			}

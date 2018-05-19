@@ -1,44 +1,60 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RandomMovement : MonoBehaviour {
-	
-	GameObject limitedAreaGameobejct;
+
+	[SerializeField]
+	Transform moveArea;
+	[SerializeField]
+	float areaDistance = 1;
 	Vector3 targetPos;
 	float count = 0;
-	float speed = 10;
-
-	// Use this for initialization
+	SpriteRenderer sprite;
+    
 	void Start () {
 		targetPos = transform.position;
-		limitedAreaGameobejct = transform.parent.gameObject;
+		sprite = GetComponent<SpriteRenderer>();
 	}
-	
-	// Update is called once per frame
+
+
 	void FixedUpdate () {
-		count += Time.fixedDeltaTime;
-		if (count >= 0.5f) {
-			count = 0;
-			float rx, ry, rz;
-			rx = Random.Range (-5,5);
-			ry = Random.Range (-5,5);
-			rz = Random.Range (-5,5);
-			speed = Random.Range (10, 20);
+		if (gameObject)
+		{
+			count += Time.fixedDeltaTime;
+			if (count >= 2f)
+			{
+				count = 0;
 
-			if( transform.position.y + ry < 0){
-				ry = 1;
-			}
-			if (Vector3.Distance(transform.position + new Vector3 (rx, ry, rz), limitedAreaGameobejct.transform.position) >= 10) {
-				targetPos = transform.position + (limitedAreaGameobejct.transform.position - transform.position).normalized * Random.Range (1, 5);
-			} else {
-				targetPos = transform.position + new Vector3 (rx, ry, rz);
-			}
-		} else {
-			if(Vector3.Distance(transform.position,targetPos) >= 0.5f){
-				transform.position += (targetPos - transform.position ).normalized * Time.fixedDeltaTime * speed;
-			}
-		}
+				Vector3 nextPos = moveArea.position + Vector3.one * Random.Range(-areaDistance,areaDistance);
+				Debug.Log(nextPos);
+				StartCoroutine(SpinForMove(nextPos));
 
+			}
+		}      
 	}
+
+	IEnumerator SpinForMove(Vector3 pos)
+    {
+       
+        for (int i = 0; i < 18; i++)
+        {
+            transform.Rotate(0, 10, 0);
+            if (i == 9)
+            {
+                
+				transform.position = pos;
+				if(sprite){
+					sprite.flipX = Random.Range(0, 2) == 1 ? true : false;
+				}
+				transform.rotation = Quaternion.Euler(0, 0, 0);
+                  
+            }
+            yield return new WaitForSeconds(0.01f);
+        }
+		transform.rotation = Quaternion.Euler(0, 0, 0);
+    }
+
+
 }

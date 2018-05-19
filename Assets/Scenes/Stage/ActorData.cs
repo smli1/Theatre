@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TestAction : MonoBehaviour {
+public class ActorData : MonoBehaviour {
     Animator animator;
     bool actionFinished = false;
     bool isInOut = false;

@@ -57,7 +57,7 @@ public class GridManager : MonoBehaviour
 			{
 				if (actor)
 				{
-					actor.GetComponent<TestAction>().NextAction();
+					actor.GetComponent<ActorData>().NextAction();
 				}
 				for (int y = 0; y < getLevelSize(); y++)
                 {
@@ -96,6 +96,14 @@ public class GridManager : MonoBehaviour
             cells[i] = new GameObject[sizeY];
         }
 		GetComponent<RectTransform>().sizeDelta = new Vector2(sizeX * 40, sizeY * 40);
+		switch(sizeX){
+			case 4:
+				boardUI.transform.localScale = new Vector3(1.25f, 1.25f, 1.25f);
+				break;
+			case 5:
+				boardUI.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+				break;
+		}
 
 
         for (int y = 0; y < sizeY; y++)

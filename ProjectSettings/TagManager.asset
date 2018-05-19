@@ -19,6 +19,7 @@ TagManager:
   - MailContent
   - mail
   - actor
+  - bird_markers
   layers:
   - Default
   - TransparentFX

@@ -53,6 +53,7 @@ public class Textscript
     public string text { get; set; }
     public string textColor { get; set; }
     public int showOnActionNum { get; set; }
+    public string text_actor_name { get; set; }
 }
 
 public class Script

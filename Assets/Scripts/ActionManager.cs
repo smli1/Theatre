@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ActionManager : MonoBehaviour {
 
-	static List<TestAction> actions;
-	static List<TestAction> endedActions;
+	static List<ActorData> actions;
+	static List<ActorData> endedActions;
 	private static int endedActorNum = 0;
 	//static int[] sceneActorNum = {0,3,4,6};
 
@@ -16,16 +16,16 @@ public class ActionManager : MonoBehaviour {
 
 	public void Reset()
 	{
-		endedActions = new List<TestAction>();
+		endedActions = new List<ActorData>();
 		endedActorNum = 0;
 		GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("actor");
-		actions = new List<TestAction>();
+		actions = new List<ActorData>();
 		actions.Clear();
         for (int i = 0; i < gameObjects.Length; i++)
         {
-			if (!actions.Contains(gameObjects[i].GetComponent<TestAction>()))
+			if (!actions.Contains(gameObjects[i].GetComponent<ActorData>()))
 			{
-				actions.Add(gameObjects[i].GetComponent<TestAction>());
+				actions.Add(gameObjects[i].GetComponent<ActorData>());
 			}
 			//actions.Add(gameObjects[i].GetComponent<TestAction>());
             
@@ -47,7 +47,7 @@ public class ActionManager : MonoBehaviour {
 		actions.Clear();
 	}*/
 
-	public static void FinishedAllAction(TestAction testAction){
+	public static void FinishedAllAction(ActorData testAction){
 		//Debug.Log("FinisedAllAction : "+testAction.gameObject.name);
 		if (actions.Contains(testAction))
 		{
@@ -82,7 +82,7 @@ public class ActionManager : MonoBehaviour {
 	{ 
 		while (true)
         {
-			Debug.Log("Wait for endnum = "+EndNum);
+			//Debug.Log("Wait for endnum = "+EndNum);
 			if(EndNum == endedActorNum){
 				AllActorNextStep();
 				Debug.Log("break wait endnum");
@@ -105,7 +105,7 @@ public class ActionManager : MonoBehaviour {
 					//Debug.Log("Wait for "+actions[i].gameObject);
 					if (actions[i].gameObject.name == n)
 					{
-						Debug.Log("gameobject name : " + n);
+						//Debug.Log("gameobject name : " + n);
 						//Debug.Log("NAN:" + (actions[i].nextActionNum) + " / ");
 						//Debug.Log(actions[i].eachActionDelayArray[actions[i].nextActionNum ]);
 						int temp = actions[i].nextActionNum - 1;
@@ -140,7 +140,7 @@ public class ActionManager : MonoBehaviour {
 	}
 
 	public void AllActorNextStep(){
-		foreach(TestAction t in actions){
+		foreach(ActorData t in actions){
 			t.NextAction();
 		}      
 	}
@@ -153,7 +153,7 @@ public class ActionManager : MonoBehaviour {
 				
 				List<Actor> actors = scripts[i].actors;
 				for (int j = 0; j < actors.Count; j++){
-					foreach(TestAction ta in actions){
+					foreach(ActorData ta in actions){
 						if(ta.gameObject.name == actors[j].name){
 							//Debug.Log(actors[j].name+" "+j);
 							ta.clipNames = actors[j].actor_clip_name.ToArray();

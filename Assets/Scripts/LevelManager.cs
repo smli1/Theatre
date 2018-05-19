@@ -63,6 +63,7 @@ public class LevelManager : MonoBehaviour {
 			case 9:
 				GameObject.Find("Manager").GetComponent<ActionManager>().WaitForEndNum(5);
 				break;
+			
 		}
 	}
 
@@ -83,6 +84,7 @@ public class LevelManager : MonoBehaviour {
                 levelNum = 7;
 				break;
 			case 2:
+				StageCurtainSwitch.SwitchCurtain(false);
 				break;
 		}
     }

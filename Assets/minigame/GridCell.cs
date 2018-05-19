@@ -8,7 +8,7 @@ public class GridCell : MonoBehaviour,IPointerClickHandler {
 
 	public void OnPointerClick(PointerEventData eventData)
 	{
-		Debug.Log("Hit");
+		//Debug.Log("Hit");
         GridManager.CellTrigger(x, y);
 	}
 
