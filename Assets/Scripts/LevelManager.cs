@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour {
 
-	// leveNum [1]:2 [2]:6 [3]:9
+	// leveNum [0]:0 [1]:3 [2]:7 [3]:10
 	public static int levelNum = 0;
 	//public static int[] levelWhichScript = {0,0,0,0,1,1,2,2,2,2};
-	public static int[] levelWhichScript = {0, 0, 1, 1, 1, 1, 2, 2, 3, 3, 3, 3 };
-	private GameObject manager;
+	public static int[] levelWhichScript = {0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3 };
+	private static GameObject manager;
 
 	private void Start()
 	{
@@ -28,39 +28,49 @@ public class LevelManager : MonoBehaviour {
 		Debug.Log("Now Level:" + num);
 		switch(num){
 			case 0:
-				//Catch Rose
+				manager.GetComponent<ActionManager>().WaitForMinusOne("Rose", true, true, false);
 				break;
 			case 1:
+				//Catch Rose
+				manager.GetComponent<HideAndSeekEvent>().ActiveIt(GameObject.Find("Rose"), 1);
+				break;
+			case 2:
 				//Wait for Rose end script
 				break;
-			case 2: //Hide and seek
+			case 3:
+                StartCoroutine(WaitForAnimEnd(2f));
+                break;
+			case 4: //Hide and seek
 				manager.GetComponent<HideAndSeekEvent>().ActiveIt(GameObject.Find("girl"), 6);
 				break;
-			case 3:
+			case 5:
 				manager.GetComponent<HideAndSeekEvent>().ActiveIt(GameObject.Find("Book"), 1);
 				break;
-			case 4:  
+			case 6:  
 				
 				break;
-			case 5:
+			case 7:
 				StartCoroutine(WaitForAnimEnd(2f));
 				break;
-			case 6:
+			case 8:
+				manager.GetComponent<ActionManager>().WaitForMinusOne("Fairy_2", true, true);
+				break;
+			case 9:
 				
 				manager.GetComponent<HideAndSeekEvent>().ActiveIt(GameObject.Find("Fairy_2").transform.GetChild(0).gameObject, 1);
 				break;
-			case 7:
+			case 10:
 				//Debug.Log("Wait for -1");
-				GameObject.Find("Manager").GetComponent<ActionManager>().WaitForMinusOne("Fairy_2", true, false);
+				manager.GetComponent<ActionManager>().WaitForMinusOne("Fairy_2", true, false);
 				break;
 			
-			case 8:
+			case 11:
                 StartCoroutine(WaitForAnimEnd(2f));
                 break;
-			case 9:
-                GameObject.Find("Manager").GetComponent<ActionManager>().WaitForMinusOne("Fairy_5", false, true);
+			case 12:
+				manager.GetComponent<ActionManager>().WaitForMinusOne("Fairy_5", false, true);
                 break;
-			case 10:
+			case 13:
 				List<GameObject> temp = new List<GameObject>();
                 for (int i = 1; i <= 5; i++)
                 {
@@ -68,8 +78,8 @@ public class LevelManager : MonoBehaviour {
                 }
                 manager.GetComponent<HideAndSeekEvent>().ActiveIt(temp, temp.Count);
                 break;
-			case 11:
-				GameObject.Find("Manager").GetComponent<ActionManager>().WaitForEndNum(5);
+			case 14:
+				manager.GetComponent<ActionManager>().WaitForEndNum(5);
 				break;
 			
 		}
@@ -82,16 +92,21 @@ public class LevelManager : MonoBehaviour {
 
 	public static void EndScene()
     {
+		Debug.Log("EndScene / Level num :"+levelNum);
 		switch(levelWhichScript[levelNum]){
 			case 0:
-				GameObject.Find("Manager").GetComponent<LevelManager>().InitializeLevel(5);
-				levelNum = 6;
-				break;
+				manager.GetComponent<LevelManager>().InitializeLevel(3);
+                levelNum = 4;
+                break;
 			case 1:
-				GameObject.Find("Manager").GetComponent<LevelManager>().InitializeLevel(8);
-                levelNum = 9;
+				manager.GetComponent<LevelManager>().InitializeLevel(7);
+				levelNum = 8;
 				break;
 			case 2:
+				manager.GetComponent<LevelManager>().InitializeLevel(11);
+                levelNum = 12;
+				break;
+			case 3:
 				StageCurtainSwitch.SwitchCurtain(false);
 				break;
 		}
@@ -101,7 +116,8 @@ public class LevelManager : MonoBehaviour {
 		yield return new WaitForSeconds(sec);
 		StageCurtainSwitch.SwitchCurtain(false);
 		yield return new WaitForSeconds(sec);
-		GameObject.Find("Manager").GetComponent<GameSceneManager>().NextScene();
+		//Debug.Log(manager);
+		manager.GetComponent<GameSceneManager>().NextScene();
 	}
    
 }

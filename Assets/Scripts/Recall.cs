@@ -19,7 +19,8 @@ public class Recall : MonoBehaviour {
 
 		}
 		if (manager)
-        {      
+		{
+			
             if (manager.GetComponent<ScriptManager>())
             {
                 manager.GetComponent<ScriptManager>().Reset();
@@ -53,7 +54,6 @@ public class Recall : MonoBehaviour {
                 manager.GetComponent<LevelManager>().Reset();
 
             }
-			Debug.Log("Recall!");
         }      
 	}
 

@@ -28,7 +28,7 @@ public class RandomMovement : MonoBehaviour {
 				count = 0;
 
 				Vector3 nextPos = moveArea.position + Vector3.one * Random.Range(-areaDistance,areaDistance);
-				Debug.Log(nextPos);
+				//Debug.Log(nextPos);
 				StartCoroutine(SpinForMove(nextPos));
 
 			}

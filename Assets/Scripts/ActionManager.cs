@@ -34,7 +34,7 @@ public class ActionManager : MonoBehaviour {
         for (int i = 0; i < actions.Count; i++)
         {
             actions[i].Initialize();
-			//Debug.Log(i + " " + actions[i].name);
+			Debug.Log(i + " " + actions[i].name);
 			Debug.Log("Actors ["+i+"] : "+actions[i].name);
         }
 		Debug.Log("Reseted : "+actions.Count);
@@ -63,14 +63,14 @@ public class ActionManager : MonoBehaviour {
 				endedActorNum = 0;
 				actions.Clear();
 				LevelManager.EndScene();
-				Debug.Log("EndScene");
+
 			}
 			//actions.Remove(testAction);
 		}
 	}
 
-    public void WaitForMinusOne(string actorName, bool isAllActorNext, bool isNextLevel){
-		StartCoroutine(WaitForMinusOneThread(actorName, isAllActorNext, isNextLevel));
+	public void WaitForMinusOne(string actorName, bool isAllActorNext, bool isNextLevel, bool isNextAction = true){
+		StartCoroutine(WaitForMinusOneThread(actorName, isAllActorNext, isNextLevel,isNextAction));
     }
 
 	public void WaitForEndNum(int EndNum)
@@ -92,7 +92,7 @@ public class ActionManager : MonoBehaviour {
         }
 	}
 
-	IEnumerator WaitForMinusOneThread(string n, bool isAllActorNext, bool isNextLevel)
+	IEnumerator WaitForMinusOneThread(string n, bool isAllActorNext, bool isNextLevel, bool isNextAction)
 	{
 		
 		bool isContinue = true;
@@ -117,13 +117,16 @@ public class ActionManager : MonoBehaviour {
 								{
 									LevelManager.NextLevel();
 								}
-								if (isAllActorNext)
+								if (isNextAction)
 								{
-									AllActorNextStep();
-								}
-								else
-								{
-									actions[i].NextAction();
+									if (isAllActorNext)
+									{
+										AllActorNextStep();
+									}
+									else
+									{
+										actions[i].NextAction();
+									}
 								}
 								isContinue = false;
 								break;

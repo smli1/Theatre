@@ -239,7 +239,7 @@ public class ActorData : MonoBehaviour {
 				if (i == 9)
 				{
 					transform.rotation = Quaternion.Euler(0, -90, 0);
-					if (animator)
+					if (animator && clipName != "Default")
 					{
 						animator.Play(clipName);
 					}
@@ -261,7 +261,7 @@ public class ActorData : MonoBehaviour {
 		}else{
 			yield return new WaitForSeconds(0.09f);
 			//Debug.Log(clipName+" / "+gameObject.name);
-			if (animator)
+			if (animator && clipName != "Default")
             {
                 animator.Play(clipName);
             }

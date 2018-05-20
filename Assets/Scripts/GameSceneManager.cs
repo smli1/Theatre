@@ -5,6 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class GameSceneManager : MonoBehaviour {
 
+	// 0 : start scene
+	// 1 : tutorial
+	// 2 : Grandma & Girl
+	// 3 : Catch fairy 
+	// 4 : Mails seeking
 	public static int sceneNum = 0;
 
 	private GameObject manager;
@@ -12,6 +17,9 @@ public class GameSceneManager : MonoBehaviour {
 		sceneNum++;
 		//ActionManager.DeteleAllActors();
         manager = GameObject.Find("Manager");
+		if(manager.GetComponent<StartSceneManager>().enabled){
+			manager.GetComponent<StartSceneManager>().enabled = false;
+		}
 		StartCoroutine(LoadAsyncScene());
 
 	}
@@ -25,7 +33,8 @@ public class GameSceneManager : MonoBehaviour {
 
 	public static bool IsLastSceneUnloaded()
 	{
-		return !SceneManager.GetSceneByBuildIndex(Mathf.Max(0,sceneNum - 1) ).isLoaded;
+		Debug.Log("isLoad : "+!SceneManager.GetSceneByBuildIndex(sceneNum-1).isLoaded);
+		return !SceneManager.GetSceneByBuildIndex(sceneNum -1).isLoaded;
 	}
 
 	IEnumerator LoadAsyncScene()
@@ -34,7 +43,7 @@ public class GameSceneManager : MonoBehaviour {
         Scene currentScene = SceneManager.GetActiveScene();
 
 
-		AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("scene_" + sceneNum, LoadSceneMode.Additive);
+		AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneNum, LoadSceneMode.Additive);
 
 
         while (!asyncLoad.isDone)
@@ -42,7 +51,7 @@ public class GameSceneManager : MonoBehaviour {
             yield return null;
         }
 
-		SceneManager.MoveGameObjectToScene(manager, SceneManager.GetSceneByName("scene_" + sceneNum));
+		SceneManager.MoveGameObjectToScene(manager, SceneManager.GetSceneByBuildIndex(sceneNum));
 
         SceneManager.UnloadSceneAsync(currentScene);
     }

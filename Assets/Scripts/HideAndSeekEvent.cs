@@ -88,7 +88,7 @@ public class HideAndSeekEvent : MonoBehaviour {
 		isActive = true;
 		MouseSelector.ActiveSelector(target);
 		targets = new List<GameObject>();
-		//Debug.Log("Active");
+		Debug.Log("Active");
 	}
 
 	public void ActiveIt(List<GameObject> targets, int stepNum)
@@ -110,18 +110,22 @@ public class HideAndSeekEvent : MonoBehaviour {
 	void ExecuteEvent(){
 		if (target)
 		{
-			if (target.name == "Book" && LevelManager.levelWhichScript[LevelManager.levelNum] == 0)
+			if (target.name == "Book" && LevelManager.levelWhichScript[LevelManager.levelNum] == 1)
 			{
 				GameObject.Find("Manager").GetComponent<ActionManager>().AllActorNextStep();
 				//print("Hit!");
 			}
-			if (target.tag == "actor" && LevelManager.levelWhichScript[LevelManager.levelNum] == 0)
+			if (target.tag == "actor" && LevelManager.levelWhichScript[LevelManager.levelNum] == 1)
 			{
 				Debug.Log("All actor Next step");
 				GameObject.Find("Manager").GetComponent<ActionManager>().AllActorNextStep();
 			}
+			if (target.tag == "actor" && LevelManager.levelWhichScript[LevelManager.levelNum] == 0)
+            {
+                GameObject.Find("Manager").GetComponent<ActionManager>().AllActorNextStep();
+            }
 
-			if (target.tag == "actor" && LevelManager.levelWhichScript[LevelManager.levelNum] == 2)
+			if (target.tag == "actor" && LevelManager.levelWhichScript[LevelManager.levelNum] == 3)
 			{
 				//target.GetComponent<TestAction>().NextAction();
 				if (target.name.Split('_')[0] == "Mail")

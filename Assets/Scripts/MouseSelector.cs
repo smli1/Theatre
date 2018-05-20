@@ -17,6 +17,7 @@ public class MouseSelector : MonoBehaviour {
 	static List<GameObject> targets;
 	private static GameObject searchIcon;
 
+    /*
 	void Start () {
 		image = GetComponent<Image>();
 		targets = new List<GameObject>();
@@ -24,6 +25,7 @@ public class MouseSelector : MonoBehaviour {
 		searchIcon.SetActive(false);
 		Debug.Log("SearchIcon set false");
 	}
+	*/
 
 
 	void Update () {
@@ -32,7 +34,7 @@ public class MouseSelector : MonoBehaviour {
 			return;
 		}
 		transform.position = Input.mousePosition;
-		//Debug.Log("Active!:(Update) " + isActive);
+		//Debug.Log("isScripting : " + ScriptManager.isScripting);
 		if (!isAniming && isActive && !ScriptManager.isScripting && !GridManager.isActive)
 		{
 			if (!searchIcon.activeSelf)
@@ -46,6 +48,7 @@ public class MouseSelector : MonoBehaviour {
 				Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 				RaycastHit raycastHit;
 				Physics.Raycast(ray, out raycastHit, 1000f);
+				//Debug.Log("RayHit " + raycastHit.collider.name);
 				if (raycastHit.collider.gameObject == target || targets.Contains(raycastHit.collider.gameObject))
 				{
 					if(targets.Contains(raycastHit.collider.gameObject)){
@@ -79,10 +82,9 @@ public class MouseSelector : MonoBehaviour {
                 {
 					searchIcon.SetActive(false);
                     isActive = false;
+
                 }
-				if(targets.Contains(target)){
-					targets.Remove(target);
-				}
+				Debug.Log("count : " + targets.Count);
 				target = null;
                 
 
@@ -104,11 +106,13 @@ public class MouseSelector : MonoBehaviour {
                     {
 						searchIcon.SetActive(false);
                         isActive = false;
-                    }
 
+                    }
+					Debug.Log("count : "+targets.Count);
 					//target = null;
 					//Debug.Log("Active!: " + " false");
 					CameraZoom.isActive = false;
+
 				}else{
 					count = 0;
                     image.fillAmount = 0;
@@ -116,12 +120,23 @@ public class MouseSelector : MonoBehaviour {
 			}
 
 
+		}else{
+			
+			if (image)
+			{
+				count = 0;
+				image.fillAmount = 0;
+			}
+
 		}
 
 		if (Input.GetMouseButtonUp(0))
         {
             isPressingDown = false;
-            CameraZoom.isActive = true;
+			if (targets.Count != 0)
+			{
+				CameraZoom.isActive = true;
+			}
         }
 		//Debug.Log("Active!Update: " + isActive);
 	}
@@ -131,23 +146,16 @@ public class MouseSelector : MonoBehaviour {
 			MouseSelector.target = target;
 			isActive = true;
 		    //searchIcon.SetActive(true);
-			if (!isPressingDown)
-			{
-				CameraZoom.isActive = true;
-			}
-		//Debug.Log("Active!: " + isActive);
+			CameraZoom.isActive = true;
+		Debug.Log("Active!: " + isActive);
 	}
 
 	public static void ActiveSelector(List<GameObject> targets)
     {
         //Debug.Log("target: "+target);
         MouseSelector.targets = targets;
-        isActive = true;
-
-        if (!isPressingDown)
-        {
-            CameraZoom.isActive = true;
-        }
+        isActive = true;      
+        CameraZoom.isActive = true;
         //Debug.Log("Active!: " + isActive);
     }
 
@@ -169,12 +177,15 @@ public class MouseSelector : MonoBehaviour {
 
 	public void Reset()
 	{
+		image = GetComponent<Image>();
 		targets = new List<GameObject>();
 		Debug.Log("Selector reset");
 		isActive = false;
 		isAniming = false;
 		target = null;
 		isPressingDown = false;
+		searchIcon = GameObject.Find("SearchIcon");
+        searchIcon.SetActive(false);
 		count = 0;
 		if (image)
 		{

@@ -11,25 +11,22 @@
             "Default"
           ],
           "start_action_step": 0,
-          "actor_total_steps": 1,
+          "actor_total_steps": 3,
           "actor_spinable": false,
           "after_actions_isFadeOut": false,
           "after_actions_isFadeIn": false,
           "actor_steps_action": [
             0,
             0,
-            0,
             0
           ],
           "actor_steps_delay": [
-            1.0,
-            1.0,
             -1.0,
+            1.0,
             1.0
           ],
           "actor_markers_name": "rose_marker_",
           "actor_markers_num": [
-            "01",
             "01",
             "01",
             "01"
@@ -46,7 +43,7 @@
       ],
       "textscript": [
         {
-          "text": "Hi",
+          "text": "Hi, welcome to the THEATRE!",
           "textColor": "#ffffff",
           "showOnActionNum": 1,
           "text_actor_name": "",
@@ -76,44 +73,44 @@
         {
           "text": "Perfect!",
           "textColor": "#ffffff",
-          "showOnActionNum": 1,
+          "showOnActionNum": 2,
           "text_actor_name": "",
           "text_speed": 0.5
         },
         {
-          "text": "You did it.",
+          "text": "Now you know how to do it.",
           "textColor": "#ffffff",
-          "showOnActionNum": 1,
+          "showOnActionNum": 2,
           "text_actor_name": "",
           "text_speed": 0.5
         },
         {
           "text": "Before the play start",
           "textColor": "#ffffff",
-          "showOnActionNum": 1,
+          "showOnActionNum": 2,
           "text_actor_name": "",
           "text_speed": 0.5
         },
         {
-          "text": "Please turn off all the device",
+          "text": "Please turn off all electronic devices",
           "textColor": "#ffffff",
-          "showOnActionNum": 1,
+          "showOnActionNum": 2,
           "text_actor_name": "",
           "text_speed": 0.5
         },
         {
-          "text": "The performance will start after few second",
+          "text": "The performance will start soon.",
           "textColor": "#ffffff",
-          "showOnActionNum": 1,
+          "showOnActionNum": 2,
           "text_actor_name": "",
           "text_speed": 0.5
         },
         {
           "text": "Enjoy!",
           "textColor": "#ffffff",
-          "showOnActionNum": 1,
+          "showOnActionNum": 2,
           "text_actor_name": "",
-          "text_speed": 0.5
+          "text_speed": 1.0
         }
       ]
     },
@@ -439,7 +436,7 @@
             0
           ],
           "actor_steps_delay": [
-            0.5,
+            -1.0,
             1.0,
             1.0,
             0.5,
@@ -598,14 +595,14 @@
         {
           "text": "...",
           "textColor": "#ffffff",
-          "showOnActionNum": 0,
+          "showOnActionNum": 1,
           "text_actor_name": "",
           "text_speed": 1.0
         },
         {
           "text": "'Catch the fairy.'",
           "textColor": "#ffffff",
-          "showOnActionNum": 1,
+          "showOnActionNum": 2,
           "text_actor_name": "",
           "text_speed": 2.0
         }
@@ -827,44 +824,37 @@
         {
           "text": "...",
           "textColor": "#ffffff",
-          "showOnActionNum": 0,
-          "text_actor_name": "",
-          "text_speed": 0.5
-        },
-        {
-          "text": "...",
-          "textColor": "#ffffff",
           "showOnActionNum": 1,
           "text_actor_name": "",
-          "text_speed": 0.5
+          "text_speed": 2.0
         },
         {
           "text": "...",
           "textColor": "#ffffff",
           "showOnActionNum": 2,
           "text_actor_name": "",
-          "text_speed": 0.5
+          "text_speed": 2.0
         },
         {
           "text": "...",
           "textColor": "#ffffff",
           "showOnActionNum": 3,
           "text_actor_name": "",
-          "text_speed": 0.5
+          "text_speed": 2.0
         },
         {
           "text": "...",
           "textColor": "#ffffff",
           "showOnActionNum": 4,
           "text_actor_name": "",
-          "text_speed": 0.5
+          "text_speed": 2.0
         },
         {
           "text": "'Where is the mails?'",
           "textColor": "#ffffff",
           "showOnActionNum": 5,
           "text_actor_name": "",
-          "text_speed": 0.5
+          "text_speed": 2.0
         }
       ]
 

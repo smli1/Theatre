@@ -43,7 +43,7 @@ RenderSettings:
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -89,7 +89,8 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000002, guid: ed8950c6deabe4b548d14c3cd8bd6b3a,
+    type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
@@ -4775,12 +4776,12 @@ GameObject:
   - component: {fileID: 261197602}
   - component: {fileID: 261197601}
   m_Layer: 0
-  m_Name: Manager
+  m_Name: Manager_
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &261197601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13372,7 +13373,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &930144449
 RectTransform:
   m_ObjectHideFlags: 0
@@ -18490,6 +18491,7 @@ GameObject:
   - component: {fileID: 1284406649}
   - component: {fileID: 1284406650}
   - component: {fileID: 1284406651}
+  - component: {fileID: 1284406652}
   m_Layer: 0
   m_Name: Rose
   m_TagString: actor
@@ -18555,6 +18557,18 @@ MonoBehaviour:
   isNeedFadeOut: 0
   isNeedFadeIn: 1
   isSpinable: 1
+--- !u!65 &1284406652
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1284406648}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.91, y: 3.43, z: 0.2}
+  m_Center: {x: 0, y: 1.49, z: 0}
 --- !u!1 &1305732129
 GameObject:
   m_ObjectHideFlags: 0
@@ -25369,7 +25383,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1783667056}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b76a175836b6b49e48ac8fd3dee121f4, type: 3}
   m_Name: 

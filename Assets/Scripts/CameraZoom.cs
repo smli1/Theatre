@@ -25,7 +25,7 @@ public class CameraZoom : MonoBehaviour {
 			chaseTarget = GameObject.Find("StageCenter");
 			return;
 		}
-		if (Input.GetMouseButton(0) && !ScriptManager.isScripting && !GridManager.isActive)
+		if (Input.GetMouseButton(0) && isActive && !ScriptManager.isScripting && !GridManager.isActive)
 		{
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 			RaycastHit raycastHit;

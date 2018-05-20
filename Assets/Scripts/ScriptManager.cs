@@ -25,6 +25,7 @@ public class ScriptManager : MonoBehaviour
 	private bool isActive = false;
 	private string currentActorName;
 	private Image mask;
+	private List<int> actedActionNum;
 
 	private void Start()
 	{
@@ -33,6 +34,7 @@ public class ScriptManager : MonoBehaviour
 
 	public void Reset()
 	{
+		actedActionNum = new List<int>();
 		isActive = false;
 		currentIndex = 0;
 		lastActionNum = -1;
@@ -69,6 +71,7 @@ public class ScriptManager : MonoBehaviour
 						
 						currentIndex = scriptingTextIndex[0];
 						currentText = textScripts[currentIndex];
+						Debug.Log("currentText : "+currentText);
 						StartCoroutine(ShowWordWithAnimation(currentText, delayTime / textSpeed[currentIndex]));                  
 						scriptingTextIndex.RemoveAt(0);
 
@@ -115,6 +118,9 @@ public class ScriptManager : MonoBehaviour
 	IEnumerator animActor(){
 		
 		int index = currentIndex;
+		if(index >= textActor.Length){
+			yield break;
+		}
 		GameObject actor = GameObject.Find(textActor[index]);      
 		if (actor)
 		{
@@ -152,18 +158,27 @@ public class ScriptManager : MonoBehaviour
 				yield return new WaitForSeconds(0.02f);
 				count += (float)Mathf.PI * 0.02f;
 			}
-			actor.transform.localScale = scale;
+			if (actor)
+			{
+				actor.transform.localScale = scale;
+			}
 			currentActorName = "";
+
 		}
 	}
 
 	public void ChangeTextScript(int currentActionNum)
 	{
-		isActive = true;
-		if (currentActionNum != lastActionNum)
+		if (!actedActionNum.Contains(currentActionNum))
 		{
-			getActionTextScript(currentActionNum);
-			lastActionNum = currentActionNum;
+			Debug.Log("Change text action num : "+currentActionNum);
+			isActive = true;
+			if (currentActionNum != lastActionNum)
+			{
+				getActionTextScript(currentActionNum);
+				lastActionNum = currentActionNum;
+			}
+			actedActionNum.Add(currentActionNum);
 		}
 	}
 
