@@ -155,7 +155,7 @@ public class ActionManager : MonoBehaviour {
 				for (int j = 0; j < actors.Count; j++){
 					foreach(ActorData ta in actions){
 						if(ta.gameObject.name == actors[j].name){
-							//Debug.Log(actors[j].name+" "+j);
+							Debug.Log(actors[j].name+" "+j);
 							ta.clipNames = actors[j].actor_clip_name.ToArray();
 							//Debug.Log(ta.clipNames[0]);
 							ta.actionNumArray = actors[j].actor_steps_action.ToArray();

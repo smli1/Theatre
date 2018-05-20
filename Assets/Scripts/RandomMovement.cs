@@ -9,12 +9,12 @@ public class RandomMovement : MonoBehaviour {
 	Transform moveArea;
 	[SerializeField]
 	float areaDistance = 1;
-	Vector3 targetPos;
+	//Vector3 targetPos;
 	float count = 0;
 	SpriteRenderer sprite;
     
 	void Start () {
-		targetPos = transform.position;
+		//targetPos = transform.position;
 		sprite = GetComponent<SpriteRenderer>();
 	}
 

@@ -47,7 +47,7 @@ public class ScriptManager : MonoBehaviour
 	private void Update()
 	{
 		if(!textScriptContainer){
-			Debug.Log("textContainer disappear");
+			//Debug.Log("textContainer disappear");
 			textScriptContainer = GameObject.Find("TextScript").GetComponent<Text>();
 			return;
 		}else{
@@ -162,12 +162,12 @@ public class ScriptManager : MonoBehaviour
 		isActive = true;
 		if (currentActionNum != lastActionNum)
 		{
-			int[] temp = getActionTextScript(currentActionNum);
+			getActionTextScript(currentActionNum);
 			lastActionNum = currentActionNum;
 		}
 	}
 
-	public int[] getActionTextScript(int currentActionNum)
+	public void getActionTextScript(int currentActionNum)
 	{
 		//string temp = "none";
 		List<int> temp = new List<int>();
@@ -187,11 +187,6 @@ public class ScriptManager : MonoBehaviour
 			scriptingTextIndex = temp;
 			currentIndex = scriptingTextIndex[0];
 			//currentText = textScripts[currentIndex];
-			return new int[] { -1 };
-		}
-		else
-		{
-			return new int[] { -1 };
 		}
 	}
 	private IEnumerator ShowWordWithAnimation(string text, float duration)

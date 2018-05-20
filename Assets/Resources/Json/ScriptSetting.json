@@ -1,6 +1,123 @@
 {
   "script": [
     {
+      "name": "Scene_00",
+      "actors": [
+        {
+          "name": "Rose",
+          "actor_num": 0,
+          "actor_color": "#ffc445",
+          "actor_clip_name": [
+            "Default"
+          ],
+          "start_action_step": 0,
+          "actor_total_steps": 1,
+          "actor_spinable": false,
+          "after_actions_isFadeOut": false,
+          "after_actions_isFadeIn": false,
+          "actor_steps_action": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "actor_steps_delay": [
+            1.0,
+            1.0,
+            -1.0,
+            1.0
+          ],
+          "actor_markers_name": "rose_marker_",
+          "actor_markers_num": [
+            "01",
+            "01",
+            "01",
+            "01"
+          ],
+          "isFixedPosition": true,
+          "actor_step_offset": [
+            {
+              "x": 3.0,
+              "y": 0.0,
+              "z": 0.0
+            }
+          ]
+        }
+      ],
+      "textscript": [
+        {
+          "text": "Hi",
+          "textColor": "#ffffff",
+          "showOnActionNum": 1,
+          "text_actor_name": "",
+          "text_speed": 0.5
+        },
+        {
+          "text": "I guess you come here at the first time",
+          "textColor": "#ffffff",
+          "showOnActionNum": 1,
+          "text_actor_name": "",
+          "text_speed": 0.5
+        },
+        {
+          "text": "You should know some rule",
+          "textColor": "#ffffff",
+          "showOnActionNum": 1,
+          "text_actor_name": "",
+          "text_speed": 0.5
+        },
+        {
+          "text": "Please hold your left mouse buttom. And select the Rose",
+          "textColor": "#ffffff",
+          "showOnActionNum": 1,
+          "text_actor_name": "",
+          "text_speed": 0.5
+        },
+        {
+          "text": "Perfect!",
+          "textColor": "#ffffff",
+          "showOnActionNum": 1,
+          "text_actor_name": "",
+          "text_speed": 0.5
+        },
+        {
+          "text": "You did it.",
+          "textColor": "#ffffff",
+          "showOnActionNum": 1,
+          "text_actor_name": "",
+          "text_speed": 0.5
+        },
+        {
+          "text": "Before the play start",
+          "textColor": "#ffffff",
+          "showOnActionNum": 1,
+          "text_actor_name": "",
+          "text_speed": 0.5
+        },
+        {
+          "text": "Please turn off all the device",
+          "textColor": "#ffffff",
+          "showOnActionNum": 1,
+          "text_actor_name": "",
+          "text_speed": 0.5
+        },
+        {
+          "text": "The performance will start after few second",
+          "textColor": "#ffffff",
+          "showOnActionNum": 1,
+          "text_actor_name": "",
+          "text_speed": 0.5
+        },
+        {
+          "text": "Enjoy!",
+          "textColor": "#ffffff",
+          "showOnActionNum": 1,
+          "text_actor_name": "",
+          "text_speed": 0.5
+        }
+      ]
+    },
+    {
       "name": "Scene_01",
       "actors": [
         {
