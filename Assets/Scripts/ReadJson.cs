@@ -17,8 +17,8 @@ public class ReadJson : MonoBehaviour {
 
 	public void Reset()
 	{
-		jsonString = File.ReadAllText(Application.dataPath + "/Resources/Json/ScriptSetting.json");
-        data = JsonConvert.DeserializeObject<RootObject>(jsonString);
+        TextAsset txtAsset = (TextAsset)Resources.Load("Json/ScriptSetting", typeof(TextAsset));
+        data = JsonConvert.DeserializeObject<RootObject>(txtAsset.text);
 	}
 }
 
